@@ -1,0 +1,6 @@
+D:\Github\DebtManagment\DebtManagment_DataAccessLayer\bin\Debug\DebtManagment_DataAccessLayer.dll
+D:\Github\DebtManagment\DebtManagment_DataAccessLayer\bin\Debug\DebtManagment_DataAccessLayer.pdb
+D:\Github\DebtManagment\DebtManagment_DataAccessLayer\obj\Debug\DebtManagment_DataAccessLayer.csproj.AssemblyReference.cache
+D:\Github\DebtManagment\DebtManagment_DataAccessLayer\obj\Debug\DebtManagment_DataAccessLayer.csproj.CoreCompileInputs.cache
+D:\Github\DebtManagment\DebtManagment_DataAccessLayer\obj\Debug\DebtManagment_DataAccessLayer.dll
+D:\Github\DebtManagment\DebtManagment_DataAccessLayer\obj\Debug\DebtManagment_DataAccessLayer.pdb

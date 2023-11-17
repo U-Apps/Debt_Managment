@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DebtManagment_DataAccessLayer
+namespace DebtManagment_DataAccessLayer       //[Database]
 {
-    public class datea
+    public class clsClienData
     {
         // not implemented yet
     }

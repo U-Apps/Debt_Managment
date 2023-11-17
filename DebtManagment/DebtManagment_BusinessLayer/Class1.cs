@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DebtManagment_DataAccessLayer; // refernecing the database Layer ,,,,
-namespace DebtManagment_BusinessLayer
+namespace DebtManagment_BusinessLayer      //[Logic]
 {
     public class Class1
     {
