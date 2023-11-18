@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using Guna;                        // Guna UI frame work
+using Guna;                        // Guna UI frame work, [ U should include the Guna.UI.dll in ur PersentationLayer\References]
 using DebtManagment_BusinessLayer; // refernecing the Business layer ....
 
 namespace DebtManagment_PersentationLayer
