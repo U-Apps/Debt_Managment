@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
-
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace DebtManagment_DataAccessLayer
 {
@@ -80,6 +84,7 @@ namespace DebtManagment_DataAccessLayer
                     // The record was found
                     isFound = true;
                     int PersonID = (int)reader["PersonID"];
+
 
                     if (!clsPersonData.GetPersonInfoByID(PersonID, ref Name, ref Email, ref Phone, ref Address))
                         return false;
@@ -194,6 +199,87 @@ namespace DebtManagment_DataAccessLayer
 
             return (rowsAffected > 0);
 
+        }
+
+        public static DataTable GetAllSuppliers()
+        {
+
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"SELECT tblSuppliers.SupplierID, tblPersons.Name, 
+		                    tblPersons.PhoneNumber,
+		                    tblPersons.Email,
+		                    tblPersons.Address,
+		                    tblSuppliers.Commercial_Registration
+
+                            FROM     tblSuppliers INNER JOIN
+                                      tblPersons ON tblSuppliers.PersonID = tblPersons.PersonID;";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+
+                {
+                    dt.Load(reader);
+                }
+
+                reader.Close();
+
+
+            }
+
+            catch (Exception ex)
+            {
+                // Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return dt;
+
+        }
+
+        public static bool IsSupplierExist(int SupplierID)
+        {
+            bool isFound = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = "SELECT Found=1 FROM tblSuppliers WHERE SupplierID = @SupplierID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@SupplierID", SupplierID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                isFound = reader.HasRows;
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isFound;
         }
 
         static int _GetPersonID_BySupplierID(int SupplierID)
