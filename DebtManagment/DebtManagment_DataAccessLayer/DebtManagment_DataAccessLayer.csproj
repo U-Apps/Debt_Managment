@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientData.cs" />
+    <Compile Include="DataAccessSettings.cs" />
+    <Compile Include="PersonData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SupplierData.cs" />
     <Compile Include="UserData.cs" />

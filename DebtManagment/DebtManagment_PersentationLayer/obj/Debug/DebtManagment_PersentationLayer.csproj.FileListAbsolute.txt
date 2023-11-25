@@ -45,3 +45,5 @@ D:\Github\DebtManagment\DebtManagment_PersentationLayer\obj\Debug\DebtManagment_
 D:\Github\DebtManagment\DebtManagment_PersentationLayer\obj\Debug\DebtManagment_PersentationLayer.csproj.CopyComplete
 D:\Github\DebtManagment\DebtManagment_PersentationLayer\obj\Debug\DebtManagment_PersentationLayer.exe
 D:\Github\DebtManagment\DebtManagment_PersentationLayer\obj\Debug\DebtManagment_PersentationLayer.pdb
+D:\Github\DebtManagment\DebtManagment_PersentationLayer\bin\Debug\DebtManagment_DataAccessLayer.dll
+D:\Github\DebtManagment\DebtManagment_PersentationLayer\bin\Debug\DebtManagment_DataAccessLayer.pdb
