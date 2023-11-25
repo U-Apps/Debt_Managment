@@ -10,10 +10,27 @@ namespace DebtManagment_PersentationLayer
         public Form1()
         {
             InitializeComponent();
+            MoveForm formover = new MoveForm();
+            formover.AttachToPanel(Top_panel, this);
         }
         
         private void Form1_Load(object sender, EventArgs e)
         {
+
+        }
+
+        private void guna2ToggleSwitch1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (guna2ToggleSwitch1.Checked)
+            {
+                guna2ShadowPanel1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(31)))), ((int)(((byte)(31)))));
+                BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(24)))), ((int)(((byte)(24)))));
+            }
+            else
+            {
+                BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+                this.guna2ShadowPanel1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(75)))), ((int)(((byte)(211)))));
+            }
 
         }
     }
