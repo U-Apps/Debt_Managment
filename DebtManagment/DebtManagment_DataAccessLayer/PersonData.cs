@@ -80,7 +80,6 @@ namespace DebtManagment_DataAccessLayer
 
             command.Parameters.AddWithValue("@PersonID", PersonID);
             command.Parameters.AddWithValue("@Name", Name);
-            command.Parameters.AddWithValue("@Email", Email);
             command.Parameters.AddWithValue("@Phone", Phone);
             command.Parameters.AddWithValue("@Address", Address);
 
@@ -117,8 +116,7 @@ namespace DebtManagment_DataAccessLayer
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"Delete tblPersons 
-                                where PersonID = @PersonID";
+            string query = @"delete from tblPersons where PersonID = @PersonID";
 
             SqlCommand command = new SqlCommand(query, connection);
 

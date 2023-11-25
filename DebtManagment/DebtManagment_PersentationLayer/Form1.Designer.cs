@@ -87,7 +87,7 @@
             this.guna2ShadowPanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.guna2ShadowPanel1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(75)))), ((int)(((byte)(211)))));
             this.guna2ShadowPanel1.Location = new System.Drawing.Point(0, 0);
-            this.guna2ShadowPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.guna2ShadowPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.guna2ShadowPanel1.Name = "guna2ShadowPanel1";
             this.guna2ShadowPanel1.ShadowColor = System.Drawing.Color.Black;
             this.guna2ShadowPanel1.Size = new System.Drawing.Size(196, 699);
@@ -104,7 +104,7 @@
             this.Left_panel.Controls.Add(this.panel6);
             this.Left_panel.Dock = System.Windows.Forms.DockStyle.Left;
             this.Left_panel.Location = new System.Drawing.Point(0, 0);
-            this.Left_panel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Left_panel.Margin = new System.Windows.Forms.Padding(4);
             this.Left_panel.Name = "Left_panel";
             this.Left_panel.Size = new System.Drawing.Size(196, 699);
             this.Left_panel.TabIndex = 1;
@@ -122,7 +122,7 @@
             this.btn_Anaylsis.Image = global::DebtManagment_PersentationLayer.Properties.Resources.competitor_analysis;
             this.btn_Anaylsis.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btn_Anaylsis.Location = new System.Drawing.Point(0, 451);
-            this.btn_Anaylsis.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_Anaylsis.Margin = new System.Windows.Forms.Padding(4);
             this.btn_Anaylsis.Name = "btn_Anaylsis";
             this.btn_Anaylsis.Size = new System.Drawing.Size(196, 55);
             this.btn_Anaylsis.TabIndex = 25;
@@ -142,7 +142,7 @@
             this.btn_Users.Image = global::DebtManagment_PersentationLayer.Properties.Resources.team__3_;
             this.btn_Users.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btn_Users.Location = new System.Drawing.Point(0, 396);
-            this.btn_Users.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_Users.Margin = new System.Windows.Forms.Padding(4);
             this.btn_Users.Name = "btn_Users";
             this.btn_Users.Size = new System.Drawing.Size(196, 55);
             this.btn_Users.TabIndex = 24;
@@ -162,7 +162,7 @@
             this.btn_Customers.Image = global::DebtManagment_PersentationLayer.Properties.Resources.people__1_;
             this.btn_Customers.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btn_Customers.Location = new System.Drawing.Point(0, 341);
-            this.btn_Customers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_Customers.Margin = new System.Windows.Forms.Padding(4);
             this.btn_Customers.Name = "btn_Customers";
             this.btn_Customers.Size = new System.Drawing.Size(196, 55);
             this.btn_Customers.TabIndex = 23;
@@ -182,7 +182,7 @@
             this.btn_Suppliers.Image = global::DebtManagment_PersentationLayer.Properties.Resources.studying;
             this.btn_Suppliers.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.btn_Suppliers.Location = new System.Drawing.Point(0, 286);
-            this.btn_Suppliers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_Suppliers.Margin = new System.Windows.Forms.Padding(4);
             this.btn_Suppliers.Name = "btn_Suppliers";
             this.btn_Suppliers.Size = new System.Drawing.Size(196, 55);
             this.btn_Suppliers.TabIndex = 22;
@@ -202,7 +202,7 @@
             this.Btn_home.Image = global::DebtManagment_PersentationLayer.Properties.Resources.home__2_;
             this.Btn_home.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.Btn_home.Location = new System.Drawing.Point(0, 231);
-            this.Btn_home.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Btn_home.Margin = new System.Windows.Forms.Padding(4);
             this.Btn_home.Name = "Btn_home";
             this.Btn_home.Size = new System.Drawing.Size(196, 55);
             this.Btn_home.TabIndex = 21;
@@ -216,7 +216,7 @@
             this.panel6.Controls.Add(this.panel8);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(0, 0);
-            this.panel6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel6.Margin = new System.Windows.Forms.Padding(4);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(196, 231);
             this.panel6.TabIndex = 0;
@@ -229,7 +229,7 @@
             this.pic_user.FillColor = System.Drawing.Color.Transparent;
             this.pic_user.ImageRotate = 0F;
             this.pic_user.Location = new System.Drawing.Point(0, 21);
-            this.pic_user.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pic_user.Margin = new System.Windows.Forms.Padding(4);
             this.pic_user.Name = "pic_user";
             this.pic_user.Size = new System.Drawing.Size(196, 179);
             this.pic_user.TabIndex = 3;
@@ -240,7 +240,7 @@
             this.panel7.Controls.Add(this.User_Name);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel7.Location = new System.Drawing.Point(0, 200);
-            this.panel7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel7.Margin = new System.Windows.Forms.Padding(4);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(196, 31);
             this.panel7.TabIndex = 1;
@@ -263,7 +263,7 @@
             this.panel8.Controls.Add(this.panel9);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel8.Location = new System.Drawing.Point(0, 0);
-            this.panel8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel8.Margin = new System.Windows.Forms.Padding(4);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(196, 21);
             this.panel8.TabIndex = 0;
@@ -273,7 +273,7 @@
             this.panel9.BackColor = System.Drawing.Color.Transparent;
             this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel9.Location = new System.Drawing.Point(0, 0);
-            this.panel9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel9.Margin = new System.Windows.Forms.Padding(4);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(196, 21);
             this.panel9.TabIndex = 1;
@@ -288,7 +288,7 @@
             this.Top_panel.Controls.Add(this.guna2ControlBox1);
             this.Top_panel.Dock = System.Windows.Forms.DockStyle.Top;
             this.Top_panel.Location = new System.Drawing.Point(196, 0);
-            this.Top_panel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Top_panel.Margin = new System.Windows.Forms.Padding(4);
             this.Top_panel.Name = "Top_panel";
             this.Top_panel.Size = new System.Drawing.Size(818, 41);
             this.Top_panel.TabIndex = 6;
@@ -298,7 +298,7 @@
             this.panel1.Controls.Add(this.guna2ToggleSwitch1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(610, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(108, 41);
             this.panel1.TabIndex = 21;
@@ -310,7 +310,7 @@
             this.guna2ToggleSwitch1.CheckedState.InnerBorderColor = System.Drawing.Color.White;
             this.guna2ToggleSwitch1.CheckedState.InnerColor = System.Drawing.Color.White;
             this.guna2ToggleSwitch1.Location = new System.Drawing.Point(61, 9);
-            this.guna2ToggleSwitch1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.guna2ToggleSwitch1.Margin = new System.Windows.Forms.Padding(4);
             this.guna2ToggleSwitch1.Name = "guna2ToggleSwitch1";
             this.guna2ToggleSwitch1.Size = new System.Drawing.Size(41, 25);
             this.guna2ToggleSwitch1.TabIndex = 8;
@@ -332,7 +332,7 @@
             this.Notifications.ForeColor = System.Drawing.Color.White;
             this.Notifications.Image = global::DebtManagment_PersentationLayer.Properties.Resources.bell_ring__2_;
             this.Notifications.Location = new System.Drawing.Point(718, 0);
-            this.Notifications.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Notifications.Margin = new System.Windows.Forms.Padding(4);
             this.Notifications.Name = "Notifications";
             this.Notifications.Size = new System.Drawing.Size(46, 41);
             this.Notifications.TabIndex = 20;
@@ -350,7 +350,7 @@
             this.LogOut.ForeColor = System.Drawing.Color.White;
             this.LogOut.Image = global::DebtManagment_PersentationLayer.Properties.Resources.logout_icon_151219;
             this.LogOut.Location = new System.Drawing.Point(764, 0);
-            this.LogOut.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.LogOut.Margin = new System.Windows.Forms.Padding(4);
             this.LogOut.Name = "LogOut";
             this.LogOut.PressedColor = System.Drawing.Color.Gray;
             this.LogOut.Size = new System.Drawing.Size(54, 41);
@@ -363,7 +363,7 @@
             this.guna2ControlBox3.FillColor = System.Drawing.Color.Transparent;
             this.guna2ControlBox3.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(75)))), ((int)(((byte)(221)))));
             this.guna2ControlBox3.Location = new System.Drawing.Point(88, 0);
-            this.guna2ControlBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.guna2ControlBox3.Margin = new System.Windows.Forms.Padding(4);
             this.guna2ControlBox3.Name = "guna2ControlBox3";
             this.guna2ControlBox3.Size = new System.Drawing.Size(44, 41);
             this.guna2ControlBox3.TabIndex = 2;
@@ -375,7 +375,7 @@
             this.guna2ControlBox2.FillColor = System.Drawing.Color.Transparent;
             this.guna2ControlBox2.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(75)))), ((int)(((byte)(221)))));
             this.guna2ControlBox2.Location = new System.Drawing.Point(44, 0);
-            this.guna2ControlBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.guna2ControlBox2.Margin = new System.Windows.Forms.Padding(4);
             this.guna2ControlBox2.Name = "guna2ControlBox2";
             this.guna2ControlBox2.Size = new System.Drawing.Size(44, 41);
             this.guna2ControlBox2.TabIndex = 1;
@@ -388,7 +388,7 @@
             this.guna2ControlBox1.HoverState.IconColor = System.Drawing.Color.White;
             this.guna2ControlBox1.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(75)))), ((int)(((byte)(221)))));
             this.guna2ControlBox1.Location = new System.Drawing.Point(0, 0);
-            this.guna2ControlBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.guna2ControlBox1.Margin = new System.Windows.Forms.Padding(4);
             this.guna2ControlBox1.Name = "guna2ControlBox1";
             this.guna2ControlBox1.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(196)))), ((int)(((byte)(43)))), ((int)(((byte)(28)))));
             this.guna2ControlBox1.Size = new System.Drawing.Size(44, 41);
@@ -404,7 +404,7 @@
             this.Logo.ImageFlip = Guna.UI2.WinForms.Enums.FlipOrientation.Horizontal;
             this.Logo.ImageRotate = 0F;
             this.Logo.Location = new System.Drawing.Point(196, 41);
-            this.Logo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Logo.Margin = new System.Windows.Forms.Padding(4);
             this.Logo.Name = "Logo";
             this.Logo.Size = new System.Drawing.Size(818, 658);
             this.Logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -425,7 +425,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 8;
-            this.button1.Text = "button1";
+            this.button1.Text = "Test";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 

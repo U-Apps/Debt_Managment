@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace DebtManagment_DataAccessLayer       //[Database]
@@ -32,11 +33,12 @@ namespace DebtManagment_DataAccessLayer       //[Database]
                     // The record was found
                     isFound = true;
                     int PersonID = (int)reader["PersonID"];
-                    Classification = (int)reader["Classification"];
-                    RemainderAmoun = (int)reader["RemainderAmoun"];
 
                     if (!clsPersonData.GetPersonInfoByID(PersonID, ref Name, ref Email, ref Phone, ref Address))
-                        return false;
+                        return false; // this will fill the Name ,Email, Phone and address
+
+                    Classification = (int)reader["Classification"];
+                    RemainderAmoun = (int)reader["RemainderAmoun"];
 
 
                     //ssn: allows null in database so we should handle null
@@ -149,18 +151,17 @@ namespace DebtManagment_DataAccessLayer       //[Database]
                 return false;
 
 
-            clsPersonData.UpdatePerson(PersonID, Name, Email, Phone, Address);
 
 
             int rowsAffected = 0;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"Update  tblClients  
+            string query = @"
+                            Update  tblClients  
                             set SSN = @SSN, 
                                 Commercial_Registration = @Commercial_Registration, 
-                                PhoneNumber = @Phone, 
                                 Classification = @Classification, 
-                                RemainderAmount = @RemainderAmount,
+                                RemainderAmount = @RemainderAmount
                                 where ClientID = @ClientID";
 
             SqlCommand command = new SqlCommand(query, connection);
@@ -198,6 +199,11 @@ namespace DebtManagment_DataAccessLayer       //[Database]
                 connection.Close();
             }
 
+            if (clsPersonData.UpdatePerson(PersonID, Name, Email, Phone, Address))
+                return false;
+           
+
+
             return (rowsAffected > 0);
         }
 
@@ -212,8 +218,7 @@ namespace DebtManagment_DataAccessLayer       //[Database]
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"Delete tblClient 
-                                where ClienID = @ClienID";
+            string query = @"delete from tblClients where ClientID = @ClientID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -243,6 +248,90 @@ namespace DebtManagment_DataAccessLayer       //[Database]
         }
 
 
+        public static DataTable GetAllClients()
+        {
+
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"SELECT tblClients.ClientID, tblPersons.Name, 
+		                    tblPersons.PhoneNumber,
+		                    tblPersons.Email,
+		                    tblPersons.Address,
+		                    tblClients.SSN, 
+		                    tblClients.Commercial_Registration, 
+		                    tblClients.Classification, 
+		                    tblClients.RemainderAmount
+
+                            FROM     tblClients INNER JOIN
+                                      tblPersons ON tblClients.PersonID = tblPersons.PersonID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+
+                {
+                    dt.Load(reader);
+                }
+
+                reader.Close();
+
+
+            }
+
+            catch (Exception ex)
+            {
+                // Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return dt;
+
+        }
+
+
+        public static bool IsClientExist(int ClientID)
+        {
+            bool isFound = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = "SELECT Found=1 FROM tblClients WHERE ClientID = @ClientID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            
+            command.Parameters.AddWithValue("@ClientID", ClientID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                isFound = reader.HasRows;
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isFound;
+        }
 
 
         static int _GetPersonID_ByClientID(int ClientID)
