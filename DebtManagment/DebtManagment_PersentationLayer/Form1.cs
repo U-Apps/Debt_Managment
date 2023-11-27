@@ -36,7 +36,11 @@ namespace DebtManagment_PersentationLayer
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DebtManagment_BusinessLayer.Class1.test();
+            //DebtManagment_BusinessLayer.Class1.test();
+            //dataGridView1.DataSource = DebtManagment_BusinessLayer.Class1.show();
+            //MessageBox.Show($"total debt for client 8 is {Class1.GetTotalDebt()}");
         }
+
+
     }
 }

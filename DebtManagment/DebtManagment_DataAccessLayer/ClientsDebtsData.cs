@@ -6,6 +6,49 @@ namespace DebtManagment_DataAccessLayer
 {
     public static  class clsClientsDebtsData
     {
+
+
+
+        public static DataTable GetAllClientsDebts()
+        {
+
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"SELECT * FROM ClientsDebts";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+
+                {
+                    dt.Load(reader);
+                }
+
+                reader.Close();
+
+
+            }
+
+            catch (Exception ex)
+            {
+                // Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return dt;
+
+        }
+
         public static int AddNewClientDebt(int UserID, int ClientID, double DebtAmount ,string Material, DateTime DebtDate)
         {
             //this function will return the new debt id if succeeded and -1 if not.
@@ -136,6 +179,45 @@ namespace DebtManagment_DataAccessLayer
 
         }
 
+        public static double GetTotalDebtForClient(int ClientID)
+        {
+
+            double TotalDebtForClient = 0;
+           
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"select TotalDebt = sum(DebtAmount) from ClientsDebts
+                            where ClientID = @ClientID;";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@ClientID", ClientID);
+
+            try
+            {
+                connection.Open();
+                object Result = command.ExecuteScalar();
+
+                if (Result != null && double.TryParse(Result.ToString(), out TotalDebtForClient))
+                {
+                    connection.Close();
+                    return TotalDebtForClient;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                // Console.WriteLine("Error: " + ex.Message);
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return TotalDebtForClient;
+        }
 
 
     }
