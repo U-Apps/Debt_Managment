@@ -17,7 +17,7 @@ namespace DebtManagment_DataAccessLayer
             //this function will return the new user id if succeeded and -1 if not.
             int UserID = -1;
 
-            int PersonID = clsPersonData.AddNewPerson(Name, Email, Phone, Address);
+            int PersonID = clsPersonsData.AddNewPerson(Name, Email, Phone, Address);
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
@@ -98,7 +98,7 @@ namespace DebtManagment_DataAccessLayer
                     Password = (string)reader["Password"];
                     Permissions = (int)reader["Permissions"];
 
-                    if (!clsPersonData.GetPersonInfoByID(PersonID, ref Name, ref Email, ref Phone, ref Address))
+                    if (!clsPersonsData.GetPersonInfoByID(PersonID, ref Name, ref Email, ref Phone, ref Address))
                         return false;
 
 
@@ -109,8 +109,8 @@ namespace DebtManagment_DataAccessLayer
                         SSN = 0;
 
                     //PersonalPhoto: allows null in database so we should handle null
-                    if (reader["PersonalPhoto"] != DBNull.Value)
-                        PersonalPhoto = (string)reader["PersonalPhoto"];
+                    if (reader["PersonalPicture"] != DBNull.Value)
+                        PersonalPhoto = (string)reader["PersonalPicture"];
                     else
                         PersonalPhoto = "";
 
@@ -144,12 +144,19 @@ namespace DebtManagment_DataAccessLayer
             string PersonalPhoto, string Username, string Password, int Permissions)
         {
 
+
+            if (_IsUsernameExsist(Username)) // Updating the Usename requirs checking if the new username exsist already 
+                return false;
+
+
             int PersonID = _GetPersonID_ByUserID(UserID);
             if (PersonID == 0)
                 return false;
 
 
-            clsPersonData.UpdatePerson(PersonID, Name, Email, Phone, Address);
+
+
+            clsPersonsData.UpdatePerson(PersonID, Name, Email, Phone, Address);
 
 
             int rowsAffected = 0;
@@ -223,7 +230,7 @@ namespace DebtManagment_DataAccessLayer
                 connection.Open();
 
                 rowsAffected = command.ExecuteNonQuery();
-                clsPersonData.DeletePerson(PersonID);        //will delete the person record after deleting the user record
+                clsPersonsData.DeletePerson(PersonID);        //will delete the person record after deleting the user record
 
             }
             catch (Exception ex)
@@ -360,5 +367,41 @@ namespace DebtManagment_DataAccessLayer
 
             return PersonID;
         }
+
+        private static bool _IsUsernameExsist(string Username)
+        {
+            bool isFound = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = "SELECT Found=1 FROM tblUsers WHERE Username = @Username";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@Username", Username);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                isFound = reader.HasRows;
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isFound;
+        } 
+
+
     }
 }

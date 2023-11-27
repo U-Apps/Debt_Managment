@@ -16,7 +16,7 @@ namespace DebtManagment_DataAccessLayer
             //this function will return the new supplier id if succeeded and -1 if not.
             int SupplierID = -1;
 
-            int PersonID = clsPersonData.AddNewPerson(Name, Email, Phone, Address);
+            int PersonID = clsPersonsData.AddNewPerson(Name, Email, Phone, Address);
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
@@ -86,7 +86,7 @@ namespace DebtManagment_DataAccessLayer
                     int PersonID = (int)reader["PersonID"];
 
 
-                    if (!clsPersonData.GetPersonInfoByID(PersonID, ref Name, ref Email, ref Phone, ref Address))
+                    if (!clsPersonsData.GetPersonInfoByID(PersonID, ref Name, ref Email, ref Phone, ref Address))
                         return false;
 
                     Commercial_Registration = (int)reader["Commercial_Registration"];
@@ -124,7 +124,7 @@ namespace DebtManagment_DataAccessLayer
                 return false;
 
 
-            clsPersonData.UpdatePerson(PersonID, Name, Email, Phone, Address);
+            clsPersonsData.UpdatePerson(PersonID, Name, Email, Phone, Address);
 
 
             int rowsAffected = 0;
@@ -183,7 +183,7 @@ namespace DebtManagment_DataAccessLayer
                 connection.Open();
 
                 rowsAffected = command.ExecuteNonQuery();
-                clsPersonData.DeletePerson(PersonID);        //will delete the person record after deleting the supplier record
+                clsPersonsData.DeletePerson(PersonID);        //will delete the person record after deleting the supplier record
 
             }
             catch (Exception ex)

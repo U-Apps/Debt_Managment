@@ -34,7 +34,7 @@ namespace DebtManagment_DataAccessLayer       //[Database]
                     isFound = true;
                     int PersonID = (int)reader["PersonID"];
 
-                    if (!clsPersonData.GetPersonInfoByID(PersonID, ref Name, ref Email, ref Phone, ref Address))
+                    if (!clsPersonsData.GetPersonInfoByID(PersonID, ref Name, ref Email, ref Phone, ref Address))
                         return false; // this will fill the Name ,Email, Phone and address
 
                     Classification = (int)reader["Classification"];
@@ -82,7 +82,7 @@ namespace DebtManagment_DataAccessLayer       //[Database]
             //this function will return the new contact id if succeeded and -1 if not.
             int ClientID = -1;
 
-            int PersonID = clsPersonData.AddNewPerson(Name, Email, Phone, Address);
+            int PersonID = clsPersonsData.AddNewPerson(Name, Email, Phone, Address);
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
@@ -199,7 +199,7 @@ namespace DebtManagment_DataAccessLayer       //[Database]
                 connection.Close();
             }
 
-            if (clsPersonData.UpdatePerson(PersonID, Name, Email, Phone, Address))
+            if (clsPersonsData.UpdatePerson(PersonID, Name, Email, Phone, Address))
                 return false;
            
 
@@ -229,7 +229,7 @@ namespace DebtManagment_DataAccessLayer       //[Database]
                 connection.Open();
 
                 rowsAffected = command.ExecuteNonQuery();
-                clsPersonData.DeletePerson(PersonID);        //will delete the person record after deleting the client record
+                clsPersonsData.DeletePerson(PersonID);        //will delete the person record after deleting the client record
 
             }
             catch (Exception ex)
