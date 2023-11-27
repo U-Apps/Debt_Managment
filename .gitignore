@@ -1,2 +1,16 @@
 .*
 !.gitignore
+*.suo
+*.user
+bin/
+obj/
+*.pdb
+*.exe
+*.dll
+*.lib
+*.ncb
+*.sdf
+*.log
+*.bak
+Thumbs.db
+Desktop.ini
