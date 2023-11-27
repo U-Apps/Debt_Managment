@@ -4,68 +4,67 @@ using System.Data.SqlClient;
 
 namespace DebtManagment_DataAccessLayer
 {
-    public static  class clsClientsDebtsData
+    public class clsClientsPaymentsData
     {
 
-        public static DataTable GetAllClientsDebts()
+        public static DataTable GetAllClientsPayments()
+        {
+
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"SELECT * FROM ClientsPayments";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            try
             {
+                connection.Open();
 
-                DataTable dt = new DataTable();
-                SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+                SqlDataReader reader = command.ExecuteReader();
 
-                string query = @"SELECT * FROM ClientsDebts";
+                if (reader.HasRows)
 
-                SqlCommand command = new SqlCommand(query, connection);
-
-                try
                 {
-                    connection.Open();
-
-                    SqlDataReader reader = command.ExecuteReader();
-
-                    if (reader.HasRows)
-
-                    {
-                        dt.Load(reader);
-                    }
-
-                    reader.Close();
-
-
+                    dt.Load(reader);
                 }
 
-                catch (Exception ex)
-                {
-                    // Console.WriteLine("Error: " + ex.Message);
-                }
-                finally
-                {
-                    connection.Close();
-                }
+                reader.Close();
 
-                return dt;
 
             }
 
-        public static int AddNewClientDebt(int UserID, int ClientID, double DebtAmount ,string Material, DateTime DebtDate)
+            catch (Exception ex)
+            {
+                // Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return dt;
+
+        }
+
+        public static int AddNewClientPayment(int UserID, int ClientID, double PayedAmount, DateTime PaymentDate)
         {
-            //this function will return the new debt id if succeeded and -1 if not.
-            int DebtID = -1;
+            //this function will return the new payment id if succeeded and -1 if not.
+            int PaymentID = -1;
 
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"insert into ClientsDebts
-                            values (@UserID,@ClientID,@DebtAmount,@Material,@DebtDate)
+            string query = @"insert into ClientsPayments
+                            values (@UserID,@ClientID,@PayedAmount,@PaymentDate)
                             SELECT SCOPE_IDENTITY();";
 
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@UserID", UserID);
             command.Parameters.AddWithValue("@ClientID", ClientID);
-            command.Parameters.AddWithValue("@DebtAmount", DebtAmount);
-            command.Parameters.AddWithValue("@Material", Material);
-            command.Parameters.AddWithValue("@DebtDate", DebtDate);
+            command.Parameters.AddWithValue("@PayedAmount", PayedAmount);
+            command.Parameters.AddWithValue("@PaymentDate", PaymentDate);
 
 
 
@@ -77,7 +76,7 @@ namespace DebtManagment_DataAccessLayer
 
                 if (result != null && int.TryParse(result.ToString(), out int insertedID))
                 {
-                    DebtID = insertedID;
+                    PaymentID = insertedID;
                 }
             }
 
@@ -92,32 +91,30 @@ namespace DebtManagment_DataAccessLayer
             }
 
 
-            return DebtID;
+            return PaymentID;
         }
 
-        public static bool UpdateClientDebt(int DebtID, int UserID, int ClientID, double DebtAmount, string Material, DateTime DebtDate)
+        public static bool UpdateClientPayment(int PaymentID, int UserID, int ClientID, double PayedAmount, DateTime PaymentDate)
         {
 
             int rowsAffected = 0;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-                string query = @"UPDATE ClientsDebts
+            string query = @"UPDATE ClientsPayments
                                 SET UserID = @UserID,
                                     ClientID  = @ClientID,
-                                    DebtAmount = @DebtAmount,
-                                    Material = @Material,
-                                    DebtDate = @DebtDate
-                                    WHERE DebtID = @DebtID";
+                                    PayedAmount = @PayedAmount,
+                                    PaymentDate = @PaymentDate
+                                    WHERE PaymentID = @PaymentID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
-            command.Parameters.AddWithValue("@DebtID", DebtID);
+            command.Parameters.AddWithValue("@PaymentID", PaymentID);
             command.Parameters.AddWithValue("@UserID", UserID);
             command.Parameters.AddWithValue("@ClientID", ClientID);
-            command.Parameters.AddWithValue("@DebtAmount", DebtAmount);
-            command.Parameters.AddWithValue("@Material", Material);
-            command.Parameters.AddWithValue("@DebtDate", DebtDate);
+            command.Parameters.AddWithValue("@PayedAmount", PayedAmount);
+            command.Parameters.AddWithValue("@PaymentDate", PaymentDate);
 
 
 
@@ -144,18 +141,18 @@ namespace DebtManagment_DataAccessLayer
             return (rowsAffected > 0);
         }
 
-        public static bool DeleteClientDebt(int DebtID)
+        public static bool DeleteClientPayment(int PaymentID)
         {
 
             int rowsAffected = 0;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"delete from ClientsDebts where DebtID = @DebtID";
+            string query = @"delete from ClientsPayments where PaymentID = @PaymentID";
 
             SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@DebtID", DebtID);
+            
+            command.Parameters.AddWithValue("@PaymentID", PaymentID);
 
             try
             {
@@ -166,7 +163,7 @@ namespace DebtManagment_DataAccessLayer
             catch (Exception ex)
             {
                 // Console.WriteLine("Error: " + ex.Message);
-   
+
             }
             finally
             {
@@ -177,15 +174,15 @@ namespace DebtManagment_DataAccessLayer
 
         }
 
-        public static double GetTotalClientDebts(int ClientID)
+        public static double GetTotalClientPayments(int ClientID)
         {
 
-            double TotalDebtForClient = 0;
-           
+            double TotalClientPayments = 0;
+
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"select TotalDebt = sum(DebtAmount) from ClientsDebts
+            string query = @"select TotalPayments = sum(PayedAmount) from ClientsPayments
                             where ClientID = @ClientID;";
 
             SqlCommand command = new SqlCommand(query, connection);
@@ -196,11 +193,11 @@ namespace DebtManagment_DataAccessLayer
             {
                 connection.Open();
                 object Result = command.ExecuteScalar();
-
-                if (Result != null && double.TryParse(Result.ToString(), out TotalDebtForClient))
+                
+                if (Result != null && double.TryParse(Result.ToString(), out TotalClientPayments))
                 {
                     connection.Close();
-                    return TotalDebtForClient;
+                    return TotalClientPayments;
                 }
 
             }
@@ -214,8 +211,9 @@ namespace DebtManagment_DataAccessLayer
                 connection.Close();
             }
 
-            return TotalDebtForClient;
+            return TotalClientPayments;
         }
+
 
 
     }

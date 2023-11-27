@@ -17,18 +17,11 @@ namespace DebtManagment_BusinessLayer      //[Logic]
             //clsClientsDebtsData.AddNewClientDebt(1, 9, 5000, "Cheese and Butter", DateTime.Now);
             //clsClientsDebtsData.UpdateClientDebt(11, 1, 8, 600, "notella", DateTime.Now);
             //clsClientsDebtsData.DeleteClientDebt(8);
-
+           // clsClientsPaymentsData.AddNewClientPayment(1,9,4000,DateTime.Now);
+            //clsClientsPaymentsData.UpdateClientPayment(1, 1, 9, 3000, DateTime.Now);
+            //clsClientsPaymentsData.DeleteClientPayment(1);
+            
         }
-        //static public DataTable show()
-        //{
-        //    DataTable dt = clsClientsDebtsData.GetAllClientsDebts();
-        //    return dt; 
-        //}
-
-        //static public double GetTotalDebt()
-        //{
-        //    return clsClientsDebtsData.GetTotalDebtForClient(9);
-        //}
 
     }
 }
