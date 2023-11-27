@@ -191,7 +191,7 @@ namespace DebtManagment_DataAccessLayer       //[Database]
             catch (Exception ex)
             {
                 //Console.WriteLine("Error: " + ex.Message);
-                return false;
+
             }
 
             finally
