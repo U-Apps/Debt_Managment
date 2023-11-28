@@ -18,11 +18,11 @@ namespace DebtManagment_BusinessLayer
         public List<string> PhoneNumbers { set; get; }
         public string Address { set; get; }
 
-        protected clsPerson(enMode mode, int iD, string fullname, string email, List<string> phoneNumbers, string address)
+        protected clsPerson(enMode mode, int iD, string fullNme, string email, List<string> phoneNumbers, string address)
         {
             Mode = mode;
             ID = iD;
-            FullName = fullname;
+            FullName = fullNme;
             Email = email;
             PhoneNumbers = phoneNumbers;
             Address = address;
@@ -37,4 +37,5 @@ namespace DebtManagment_BusinessLayer
             Address = "";
         }
     }
+
 }

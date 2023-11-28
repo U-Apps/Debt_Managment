@@ -7,8 +7,13 @@ namespace DebtManagment_BusinessLayer      //[Logic]
     {
         static public void test()
         {
-            clsClientData.AddNewClient("ahmed", "sscs@gmail.com", "77342", "Mukkal-addess", 234322342, 0, 1, 8000); 
+
+            //testing
+            //clsClientData.AddNewClient("Saleh Mohammed", "salhbnsmyd3@gmail.com", "77775928", "Mukkal-addess", 987554523, 0, 1, 0);
+            //clsClientData.DeleteClient(7);
+            //clsClientData.UpdateClient(8, "ali naser", "ahmed@gmail.com", "7743543", "Mukkal - aliala", 6565, 0, 1, 0);
+
         }
-        // not implemented yet
+
     }
 }
