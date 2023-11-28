@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DebtManagment_DataAccessLayer
 {
-    public class clsUserData
+    public class clsUser_Data
     {
 
         public static int AddNewUser(string Name, string Email, string Phone, string Address, int SSN,
@@ -17,7 +13,7 @@ namespace DebtManagment_DataAccessLayer
             //this function will return the new user id if succeeded and -1 if not.
             int UserID = -1;
 
-            int PersonID = clsPersonsData.AddNewPerson(Name, Email, Phone, Address);
+            int PersonID = clsPersons_Data.AddNewPerson(Name, Email, Phone, Address);
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
@@ -98,7 +94,7 @@ namespace DebtManagment_DataAccessLayer
                     Password = (string)reader["Password"];
                     Permissions = (int)reader["Permissions"];
 
-                    if (!clsPersonsData.GetPersonInfoByID(PersonID, ref Name, ref Email, ref Phone, ref Address))
+                    if (!clsPersons_Data.GetPersonInfoByID(PersonID, ref Name, ref Email, ref Phone, ref Address))
                         return false;
 
 
@@ -156,7 +152,7 @@ namespace DebtManagment_DataAccessLayer
 
 
 
-            clsPersonsData.UpdatePerson(PersonID, Name, Email, Phone, Address);
+            clsPersons_Data.UpdatePerson(PersonID, Name, Email, Phone, Address);
 
 
             int rowsAffected = 0;
@@ -230,7 +226,7 @@ namespace DebtManagment_DataAccessLayer
                 connection.Open();
 
                 rowsAffected = command.ExecuteNonQuery();
-                clsPersonsData.DeletePerson(PersonID);        //will delete the person record after deleting the user record
+                clsPersons_Data.DeletePerson(PersonID);        //will delete the person record after deleting the user record
 
             }
             catch (Exception ex)
