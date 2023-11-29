@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace DebtManagment_DataAccessLayer
 {
-    internal class PaymentsToSupplier
+    public class PaymentsToSupplier
     {
         public static DataTable GetAllPaymentsToSupplier()
         {
