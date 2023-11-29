@@ -15,25 +15,26 @@ namespace DebtManagment_BusinessLayer
         public string FullName { set; get; }
 
         public string Email { set; get; }
-        public List<string> PhoneNumbers { set; get; }
+        public string PhoneNumber { set; get; }
         public string Address { set; get; }
 
-        protected clsPerson(enMode mode, int iD, string fullNme, string email, List<string> phoneNumbers, string address)
+        protected clsPerson(enMode mode, int iD, string fullNme, string email, string phoneNumber, string address)
         {
             Mode = mode;
             ID = iD;
             FullName = fullNme;
             Email = email;
-            PhoneNumbers = phoneNumbers;
+            PhoneNumber = phoneNumber;
             Address = address;
         }
 
         protected clsPerson()
         {
+            Mode = enMode.AddNew;
             ID = -1;
             FullName = "";
             Email = "";
-            PhoneNumbers = null;
+            PhoneNumber = "";
             Address = "";
         }
     }
