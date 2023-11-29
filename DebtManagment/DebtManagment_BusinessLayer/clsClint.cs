@@ -17,19 +17,19 @@ namespace DebtManagment_BusinessLayer
         public int ClientId { get; set; }
         public int Classification { get; set; }
         public double RemainderAmount { get; set; }
-        public int SSN { get; set; }
-        public int Commercial_Registration { get; set; }
+        public string SSN { get; set; }
+        public string Commercial_Registration { get; set; }
         public clsClint()
 
         {
             ClientId = -1;
-            this.SSN = 0;
-            this.Commercial_Registration = 0;
+            this.SSN = "";
+            this.Commercial_Registration = "";
             Classification = -1;
             RemainderAmount = 0;
             Mode = enMode.AddNew;
         }
-        private clsClint(int clientId , string name, string email, string PhoneNumber, string address, int classification, double remainderAmount, int Commercial_Registration, int SSN) : base(name, email, PhoneNumber, address)
+        private clsClint(int clientId , string name, string email, string PhoneNumber, string address, int classification, double remainderAmount, string Commercial_Registration, string SSN) : base(name, email, PhoneNumber, address)
         {
             this.ClientId = clientId;
             Classification = classification;
@@ -40,7 +40,7 @@ namespace DebtManagment_BusinessLayer
         }
         private bool _Add()
         {
-           if(clsClientData.AddNewClient(FullName, Email, PhoneNumber , Address, SSN,
+           if(clsClient_Data.AddNewClient(FullName, Email, PhoneNumber , Address, SSN,
               Commercial_Registration, Classification, RemainderAmount) != -1)
             {
                 return true;
@@ -50,20 +50,20 @@ namespace DebtManagment_BusinessLayer
 
         public static bool Delete(int ClientId)
         {
-           return clsClientData.DeleteClient(ClientId);
+           return clsClient_Data.DeleteClient(ClientId);
         }
 
         private bool _update()
         {
-            return clsClientData.UpdateClient(this.ClientId, this.FullName, this.Email, this.PhoneNumber, this.Address, this.SSN, this.Commercial_Registration, this.Classification, this.RemainderAmount);
+            return clsClient_Data.UpdateClient(this.ClientId, this.FullName, this.Email, this.PhoneNumber, this.Address, this.SSN, this.Commercial_Registration, this.Classification, this.RemainderAmount);
         }
         public static clsClint Find(int clientId)
         {
-            string FullName="" , Email = "", PhoneNumber = "", Address = "";
-            int SSN=0,Commercial_Registration = 0, Classification = 0;
+            string FullName="" , Email = "", PhoneNumber = "", Address = "", SSN = "", Commercial_Registration ="";
+            int Classification = 0;
             double remainderAmount = 0;
 
-            if (clsClientData.GetClientInfoByID(clientId, ref FullName,ref Email, ref PhoneNumber, ref Address,ref SSN,ref Commercial_Registration,ref Classification,ref remainderAmount))
+            if (clsClient_Data.GetClientInfoByID(clientId, ref FullName,ref Email, ref PhoneNumber, ref Address,ref SSN,ref Commercial_Registration,ref Classification,ref remainderAmount))
 
                 return new clsClint(clientId,FullName, Email, PhoneNumber, Address, Classification,remainderAmount,Commercial_Registration,SSN);
             else
@@ -107,7 +107,7 @@ namespace DebtManagment_BusinessLayer
         }
         public static DataTable getAllClint()
         {
-            return clsClientData.GetAllClients();
+            return clsClient_Data.GetAllClients();
         }
     }
 } 

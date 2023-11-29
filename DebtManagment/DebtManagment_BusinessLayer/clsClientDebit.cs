@@ -1,8 +1,10 @@
 ﻿using DebtManagment_DataAccessLayer;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using static DebtManagment_BusinessLayer.clsPerson;
@@ -11,62 +13,53 @@ namespace DebtManagment_BusinessLayer
 {
     internal class clsClientDebit
     {
-       public string Meterial { get; set; }
-        public int idDebit { get; set; }
+       public string Material { get; set; }
+        public int DebtID { get; set; }
         public int UserID { get; set; }
         public int ClientID { get; set; }
-        public double Amount { get; set; }
-        public DateTime PaymentDate { get; set; }
+        public double DebtAmount { get; set; }
+        public DateTime DebtDate { get; set; }
         enum enMode { AddNew=0, Update=1 }
         enMode Mode = enMode.AddNew;
 
         private clsClientDebit(string Meterial,int idDebit, int userID, int clientID, double payedAmount, DateTime paymentDate, enMode mood)
         {
-            this.Meterial= Meterial;
-            this.idDebit = idDebit;
+            this.Material = Meterial;
+            this.DebtID = idDebit;
             UserID = userID;
             ClientID = clientID;
-            Amount = payedAmount;
-            PaymentDate = paymentDate;
+            DebtAmount = payedAmount;
+            DebtDate = paymentDate;
             this.Mode = enMode.Update;
         }
 
         public clsClientDebit()
         {
-            this.Meterial = "";
-            this.idDebit=-1;
+            this.Material = "";
+            this.DebtID = -1;
             UserID = -1;
             ClientID = -1;
-            Amount = 0;
-            PaymentDate = DateTime.Today;
+            DebtAmount = 0;
+            DebtDate = DateTime.Today;
             this.Mode = enMode.AddNew;
 
         }
 
         private bool _Add()
         {
-            //if (clsClientData.AddNewClient(FullName, Email, PhoneNumber, Address, SSN,
-            //   Commercial_Registration, Classification, RemainderAmount) != -1)
-            //{
-            //    return true;
-            //}
-            //else { return false; }
+            if (clsClientsDebts_Data.AddNewClientDebt(UserID, ClientID, DebtAmount, Material , DebtDate ) != -1)
+            {
+                return true;
+            }
+            else { return false; }
         }
-        //public static bool delelte(int id)
-        //{
-        //    if (isExist(id))
-        //    {
-
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-        //}
+        public static bool delelte(int id)
+        {
+            return clsClientsDebts_Data.DeleteClientDebt(id);
+        }
         private bool _update()
         {
-            //return clsContactDataAccess.UpdateContact(this.ID, this.FirstName, this.LastName, this.Email, this.Phone,
-            //   this.Address, this.DateOfBirth, this.CountryID, this.ImagePath);
+            return clsClientsDebts_Data.UpdateClientDebt(this.DebtID, this.UserID, this.ClientID, this.DebtAmount, this.Material,this.DebtDate);
         }
      
         //public bool search()
@@ -92,9 +85,7 @@ namespace DebtManagment_BusinessLayer
                     }
 
                 case enMode.Update:
-                    break;
-
-                    //return/* _UpdateContact()*/;
+                    return _update();
 
 
 
@@ -103,9 +94,19 @@ namespace DebtManagment_BusinessLayer
 
 
         }
-        //public static DataTable getAllrecords()
-        //{
+        public DataTable GetAllClientsDebts()
+        {
+            return clsClientsDebts_Data.GetAllClientsDebts();
+        }
 
-        //}
+        public static DataTable GetAllDebtsForClient(int ClientID)
+        {
+            return clsClientsDebts_Data.GetAllDebtsForCertainClient(ClientID);
+        }
+        public static double GetTotalDebtsForClient(int ClientID)
+        {
+            return clsClientsDebts_Data.GetTotalDebtsForCertainClient(ClientID);
+        }
+        
     }
 }

@@ -34,7 +34,7 @@ namespace DebtManagment_BusinessLayer
         }
         private bool _Add()
         {
-            if (clsSupplierData.AddNewSupplier(FullName,Email,PhoneNumber,Address,Commercial_Registration)!= -1)
+            if (clsSupplier_Data.AddNewSupplier(FullName,Email,PhoneNumber,Address,Commercial_Registration)!= -1)
             {
                 return true;
             }
@@ -42,17 +42,17 @@ namespace DebtManagment_BusinessLayer
         }
         public static bool Delete(int id)
         {
-            return clsSupplierData.DeleteSupplier(id);
+            return clsSupplier_Data.DeleteSupplier(id);
         }
         private bool _update()
         {
-           return clsSupplierData.UpdateSupplier(this.SupplierId, this.FullName, this.Email, this.PhoneNumber, this.Address, this.Commercial_Registration);
+           return clsSupplier_Data.UpdateSupplier(this.SupplierId, this.FullName, this.Email, this.PhoneNumber, this.Address, this.Commercial_Registration);
         }
         public static clsSupplier Find(int SupplierId)
         {
             string FullName = "", Email = "", PhoneNumber = "", Address = "";
             int Commercial_Registration = 0;
-            if (clsSupplierData.GetSupplierInfoByID(SupplierId, ref FullName, ref Email, ref PhoneNumber, ref Address, ref Commercial_Registration))
+            if (clsSupplier_Data.GetSupplierInfoByID(SupplierId, ref FullName, ref Email, ref PhoneNumber, ref Address, ref Commercial_Registration))
             {
                 return new clsSupplier(SupplierId,Commercial_Registration, FullName, Email, PhoneNumber, Address);
 
@@ -95,7 +95,7 @@ namespace DebtManagment_BusinessLayer
        
         public static DataTable GetAllSupplier()
         {
-            return clsSupplierData.GetAllSuppliers();
+            return clsSupplier_Data.GetAllSuppliers();
         }
     }
 }

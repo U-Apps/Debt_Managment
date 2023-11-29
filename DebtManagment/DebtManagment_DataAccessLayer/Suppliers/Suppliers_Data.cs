@@ -1,22 +1,77 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DebtManagment_DataAccessLayer
 {
-    public class clsSupplierData
+    public static class clsSupplier_Data
     {
+
+        public static bool GetSupplierInfoByID(int SupplierID, ref string Name,
+        ref string Email, ref string Phone, ref string Address,
+           ref int Commercial_Registration)
+        {
+            bool isFound = false;
+
+
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = "SELECT * FROM tblSuppliers WHERE SupplierID = @SupplierID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@SupplierID", SupplierID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    // The record was found
+                    isFound = true;
+                    int PersonID = (int)reader["PersonID"];
+
+
+                    if (!clsPersons_Data.GetPersonInfoByID(PersonID, ref Name, ref Email, ref Phone, ref Address))
+                        return false;
+
+                    Commercial_Registration = (int)reader["Commercial_Registration"];
+
+                }
+                else
+                {
+                    // The record was not found
+                    isFound = false;
+                }
+
+                reader.Close();
+
+
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isFound;
+        }
+
+
         public static int AddNewSupplier(string Name, string Email, string Phone, string Address,
            int Commercial_Registration)
         {
             //this function will return the new supplier id if succeeded and -1 if not.
             int SupplierID = -1;
 
-            int PersonID = clsPersonData.AddNewPerson(Name, Email, Phone, Address);
+            int PersonID = clsPersons_Data.AddNewPerson(Name, Email, Phone, Address);
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
@@ -58,62 +113,6 @@ namespace DebtManagment_DataAccessLayer
             return SupplierID;
         }
 
-        public static bool GetSupplierInfoByID(int SupplierID, ref string Name,
-        ref string Email, ref string Phone, ref string Address,
-           ref int Commercial_Registration)
-        {
-            bool isFound = false;
-
-
-
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = "SELECT * FROM tblSuppliers WHERE SupplierID = @SupplierID";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@SupplierID", SupplierID);
-
-            try
-            {
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.Read())
-                {
-                    // The record was found
-                    isFound = true;
-                    int PersonID = (int)reader["PersonID"];
-
-
-                    if (!clsPersonData.GetPersonInfoByID(PersonID, ref Name, ref Email, ref Phone, ref Address))
-                        return false;
-
-                    Commercial_Registration = (int)reader["Commercial_Registration"];
-                   
-                }
-                else
-                {
-                    // The record was not found
-                    isFound = false;
-                }
-
-                reader.Close();
-
-
-            }
-            catch (Exception ex)
-            {
-                //Console.WriteLine("Error: " + ex.Message);
-                isFound = false;
-            }
-            finally
-            {
-                connection.Close();
-            }
-
-            return isFound;
-        }
 
         public static bool UpdateSupplier(int SupplierID, string Name, string Email, string Phone, string Address,
             int Commercial_Registration)
@@ -124,7 +123,7 @@ namespace DebtManagment_DataAccessLayer
                 return false;
 
 
-            clsPersonData.UpdatePerson(PersonID, Name, Email, Phone, Address);
+            clsPersons_Data.UpdatePerson(PersonID, Name, Email, Phone, Address);
 
 
             int rowsAffected = 0;
@@ -160,6 +159,7 @@ namespace DebtManagment_DataAccessLayer
             return (rowsAffected > 0);
         }
 
+
         public static bool DeleteSupplier(int SupplierID)
         {
             int PersonID = _GetPersonID_BySupplierID(SupplierID);
@@ -183,7 +183,7 @@ namespace DebtManagment_DataAccessLayer
                 connection.Open();
 
                 rowsAffected = command.ExecuteNonQuery();
-                clsPersonData.DeletePerson(PersonID);        //will delete the person record after deleting the supplier record
+                clsPersons_Data.DeletePerson(PersonID);        //will delete the person record after deleting the supplier record
 
             }
             catch (Exception ex)
@@ -316,5 +316,6 @@ namespace DebtManagment_DataAccessLayer
 
             return PersonID;
         }
+
     }
 }

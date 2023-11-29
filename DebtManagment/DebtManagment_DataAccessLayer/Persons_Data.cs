@@ -3,13 +3,26 @@ using System.Data.SqlClient;
 
 namespace DebtManagment_DataAccessLayer
 {
-    internal class clsPersonData
+    internal static class clsPersons_Data
     { 
         public static int AddNewPerson(string Name,
             string Email, string Phone, string Address)
         {
+            Name = Name.Trim();
+            Email = Email.Trim();
+            Phone = Phone.Trim();
+            Address = Address.Trim();
+
             //this function will return the new contact id if succeeded and -1 if not.
             int PersonID = -1;
+
+
+
+             // check if person already exists return true and update the personID or return false
+            if (_IsPersonExists(ref PersonID, Name))
+                return PersonID;
+
+
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
@@ -114,6 +127,8 @@ namespace DebtManagment_DataAccessLayer
 
             int rowsAffected = 0;
 
+            
+
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
             string query = @"delete from tblPersons where PersonID = @PersonID";
@@ -206,6 +221,42 @@ namespace DebtManagment_DataAccessLayer
             return isFound;
         }
 
+
+        private static bool _IsPersonExists(ref int PersonID, string Name)
+        {
+            bool isFound = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = "SELECT PersonID FROM tblPersons WHERE Name = @Name";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@Name", Name);
+
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+
+                if (result != null && int.TryParse(result.ToString(), out PersonID))
+                {
+                    isFound = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isFound;
+        }
 
     }
 }
