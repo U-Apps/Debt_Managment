@@ -329,6 +329,46 @@ namespace DebtManagment_DataAccessLayer
             return isFound;
         }
 
+
+
+        public static bool IsUserExist(string Username, string Password)
+        {
+            bool isFound = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = "SELECT Found=1 FROM tblUsers WHERE Username = @Username and Password = @Password";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@Username", Username);
+            command.Parameters.AddWithValue("@Password", Password);
+
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                isFound = reader.HasRows;
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isFound;
+        }
+
+
+
         static int _GetPersonID_ByUserID(int UserID)
         {
             int PersonID = 0;
