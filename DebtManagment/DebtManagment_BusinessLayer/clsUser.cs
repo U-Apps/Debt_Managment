@@ -52,7 +52,7 @@ namespace DebtManagment_BusinessLayer      //[Logic]
         {
             // call DataAccess Layer
 
-            this.ID = clsUserData.AddNewUser(this.FullName, this.Email, this.PhoneNumbers, this.SNN, this.ImagePath, this.UserName, this.Password,this.Password, this.Permissions);
+            this.ID = clsUser_Data.AddNewUser(this.FullName, this.Email, this.PhoneNumber, this.SNN, this.ImagePath, this.UserName, this.Password,this.Password, this.Permissions);
 
             return (this.ID != -1);
         }

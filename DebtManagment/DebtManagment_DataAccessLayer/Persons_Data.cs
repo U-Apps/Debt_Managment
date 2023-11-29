@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 
 namespace DebtManagment_DataAccessLayer
 {
-    internal class clsPersonData
+    internal static class clsPersons_Data
     { 
         public static int AddNewPerson(string Name,
             string Email, string Phone, string Address)

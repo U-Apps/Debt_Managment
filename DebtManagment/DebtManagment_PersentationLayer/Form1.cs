@@ -36,7 +36,9 @@ namespace DebtManagment_PersentationLayer
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DebtManagment_BusinessLayer.Class1.test();
+
         }
+
+
     }
 }
