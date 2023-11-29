@@ -7,7 +7,7 @@ namespace DebtManagment_DataAccessLayer
     public class clsUser_Data
     {
 
-        public static int AddNewUser(string Name, string Email, string Phone, string Address, int SSN,
+        public static int AddNewUser(string Name, string Email, string Phone, string Address, string SSN,
             string PersonalPhoto, string Username, string Password, int Permissions)
         {
             //this function will return the new user id if succeeded and -1 if not.
@@ -66,7 +66,7 @@ namespace DebtManagment_DataAccessLayer
         }
 
         public static bool GetUserInfoByID(int UserID, ref string Name, ref string Email, ref string Phone, ref string Address,
-            ref int SSN, ref string PersonalPhoto, ref string Username, ref string Password, ref int Permissions)
+            ref string SSN, ref string PersonalPhoto, ref string Username, ref string Password, ref int Permissions)
         {
             bool isFound = false;
 
@@ -100,9 +100,9 @@ namespace DebtManagment_DataAccessLayer
 
                     //ssn: allows null in database so we should handle null
                     if (reader["SSN"] != DBNull.Value)
-                        SSN = (int)reader["SSN"];
+                        SSN = (string)reader["SSN"];
                     else
-                        SSN = 0;
+                        SSN = "";
 
                     //PersonalPhoto: allows null in database so we should handle null
                     if (reader["PersonalPicture"] != DBNull.Value)
@@ -136,12 +136,12 @@ namespace DebtManagment_DataAccessLayer
             return isFound;
         }
 
-        public static bool UpdateUser(int UserID,string Name, string Email, string Phone, string Address, int SSN,
+        public static bool UpdateUser(int UserID,string Name, string Email, string Phone, string Address, string SSN,
             string PersonalPhoto, string Username, string Password, int Permissions)
         {
 
 
-            if (_IsUsernameExsist(Username)) // Updating the Usename requirs checking if the new username exsist already 
+            if (_IsUserExsist(Username)) // Updating the Usename requirs checking if the new username exsist already 
                 return false;
 
 
@@ -172,7 +172,7 @@ namespace DebtManagment_DataAccessLayer
             command.Parameters.AddWithValue("@Password", Password);
             command.Parameters.AddWithValue("@Permissions", Permissions);
 
-            if (SSN != 0 && SSN != null)
+            if (SSN != "" && SSN != null)
                 command.Parameters.AddWithValue("@SSN", SSN);
             else
                 command.Parameters.AddWithValue("@SSN", System.DBNull.Value);
