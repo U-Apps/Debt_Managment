@@ -11,7 +11,7 @@ namespace DebtManagment_BusinessLayer
         public enum enMode { AddNew = 0, Update = 1 };
         public enMode Mode = enMode.AddNew;
 
-        public int ID { set; get; }
+        public int ID { private set; get; }
         public string FullName { set; get; }
 
         public string Email { set; get; }
