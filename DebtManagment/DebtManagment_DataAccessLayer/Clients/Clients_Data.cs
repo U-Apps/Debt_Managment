@@ -8,8 +8,8 @@ namespace DebtManagment_DataAccessLayer
     {
 
         public static bool GetClientInfoByID(int ClientID, ref string Name,
-        ref string Email, ref string Phone, ref string Address,ref int SSN,
-           ref int Commercial_Registration,ref int Classification, ref double RemainderAmoun)
+        ref string Email, ref string Phone, ref string Address,ref string SSN,
+           ref string Commercial_Registration,ref int Classification, ref double RemainderAmoun)
         {
             bool isFound = false;
 
@@ -43,15 +43,15 @@ namespace DebtManagment_DataAccessLayer
 
                     //ssn: allows null in database so we should handle null
                     if (reader["SSN"] != DBNull.Value)
-                        SSN = (int)reader["SSN"];
+                        SSN = (string)reader["SSN"];
                     else
-                        SSN = 0;
+                        SSN = "";
 
 
                     if (reader["Commercial_Registration"] != DBNull.Value)
-                        Commercial_Registration = (int)reader["Commercial_Registration"];
+                        Commercial_Registration = (string)reader["Commercial_Registration"];
                     else
-                        Commercial_Registration = 0;
+                        Commercial_Registration = "";
                 }
                 else
                 {
@@ -76,8 +76,8 @@ namespace DebtManagment_DataAccessLayer
             return isFound;
         }
 
-        public static int AddNewClient(string Name, string Email, string Phone, string Address,int SSN,
-            int Commercial_Registration,int Classification,double RemainderAmount)
+        public static int AddNewClient(string Name, string Email, string Phone, string Address,string SSN,
+            string Commercial_Registration,int Classification,double RemainderAmount)
         {
             //this function will return the new contact id if succeeded and -1 if not.
             int ClientID = -1;
@@ -101,13 +101,13 @@ namespace DebtManagment_DataAccessLayer
             command.Parameters.AddWithValue("@RemainderAmount", RemainderAmount);
 
 
-            if (SSN != 0)
+            if (SSN != "")
                 command.Parameters.AddWithValue("@SSN", SSN);
             else
                 command.Parameters.AddWithValue("@SSN", System.DBNull.Value);
 
 
-            if (Commercial_Registration != 0)
+            if (Commercial_Registration !="")
                 command.Parameters.AddWithValue("@Commercial_Registration", Commercial_Registration);
             else
                 command.Parameters.AddWithValue("@Commercial_Registration", System.DBNull.Value);
@@ -142,8 +142,8 @@ namespace DebtManagment_DataAccessLayer
         }
 
 
-        public static bool UpdateClient(int ClientID,string Name, string Email, string Phone, string Address, int SSN,
-            int Commercial_Registration, int Classification, double RemainderAmount)
+        public static bool UpdateClient(int ClientID,string Name, string Email, string Phone, string Address, string SSN,
+            string Commercial_Registration, int Classification, double RemainderAmount)
         {
 
             int PersonID = _GetPersonID_ByClientID(ClientID);
@@ -171,13 +171,13 @@ namespace DebtManagment_DataAccessLayer
             command.Parameters.AddWithValue("@RemainderAmount", RemainderAmount);
 
 
-            if (SSN != 0 && SSN != null)
+            if (SSN != "" && SSN != null)
                 command.Parameters.AddWithValue("@SSN", SSN);
             else
                 command.Parameters.AddWithValue("@SSN", System.DBNull.Value);
 
 
-            if (Commercial_Registration != 0 && Commercial_Registration != null)
+            if (Commercial_Registration != "" && Commercial_Registration != null)
                 command.Parameters.AddWithValue("@Commercial_Registration", Commercial_Registration);
             else
                 command.Parameters.AddWithValue("@Commercial_Registration", System.DBNull.Value);
