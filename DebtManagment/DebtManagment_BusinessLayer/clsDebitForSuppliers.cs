@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
+using DebtManagment_DataAccessLayer;
 
 namespace DebtManagment_BusinessLayer
 {
     class clsDebitForSuppliers
     {
-        public int DebitID { get; set; }
-        public int UserID { get; set; }
+        public int DebitID { get; private set; }
+        public int UserID { get; private set; }
         public int SupplierID { get; set; }
         public double Amount { get; set; }
         public string Material { get; set; }
-        public DateTime PaymentDate { get; set; }
+        public DateTime DebitDate { get; set; }
         enum enMode { AddNew = 0, Update = 1 }
         enMode Mode = enMode.AddNew;
 
@@ -24,7 +26,7 @@ namespace DebtManagment_BusinessLayer
             this.SupplierID = clientID;
             this.Amount = payedAmount;
             this.Material = material;
-            this.PaymentDate = paymentDate;
+            this.DebitDate = paymentDate;
             this.Mode = enMode.Update;
         }
 
@@ -35,37 +37,24 @@ namespace DebtManagment_BusinessLayer
             SupplierID = -1;
             Amount = 0;
             this.Material = "";
-            PaymentDate = DateTime.Today;
+            DebitDate = DateTime.Today;
             this.Mode = enMode.AddNew;
 
         }
 
-        private bool _Add()
+        private bool _AddNewDebit()
         {
-            return true;
-            //if (clsClientData.AddNewClient(FullName, Email, PhoneNumber, Address, SSN,
-            //   Commercial_Registration, Classification, RemainderAmount) != -1)
-            //{
-            //    return true;
-            //}
-            //else { return false; }
-        }
-        //public static bool delelte(int id)
-        //{
-        //    if (isExist(id))
-        //    {
+            this.DebitID = clsDebtsToSuppliers.AddNewSupplierDebt(ApplicationContext.CurrentUser.ID, this.SupplierID, this.Amount, this.Material, this.DebitDate);
 
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-        //}
-        private bool _update()
+            return (this.DebitID != -1);
+        }
+        public static bool DeleteDebit(int id)
         {
-            return true;
-            //return clsContactDataAccess.UpdateContact(this.ID, this.FirstName, this.LastName, this.Email, this.Phone,
-            //   this.Address, this.DateOfBirth, this.CountryID, this.ImagePath);
+            return clsDebtsToSuppliers.DeleteSupplierDebt(id);
+        }
+        private bool _updateDebit()
+        {
+            return clsDebtsToSuppliers.UpdateSupplierDebt(this.DebitID, this.UserID, this.SupplierID, this.Amount, this.Material, this.DebitDate);
         }
 
         //public bool search()
@@ -79,7 +68,7 @@ namespace DebtManagment_BusinessLayer
             switch (Mode)
             {
                 case enMode.AddNew:
-                    if (_Add())
+                    if (_AddNewDebit())
                     {
 
                         Mode = enMode.Update;
@@ -91,20 +80,21 @@ namespace DebtManagment_BusinessLayer
                     }
 
                 case enMode.Update:
-                    break;
-
-                    //return/* _UpdateContact()*/;
-
-
+                    return _updateDebit();
 
             }
             return false;
 
 
         }
-        //public static DataTable getAllRecords()
-        //{
+        public static DataTable GetAllDebitsForCertainSupplier(int supplierID)
+        {
+            return clsDebtsToSuppliers.GetAllDebtsToCertainSupplier(supplierID);
+        }
 
-        //}
+        public static double GetTotalDebtsToCertainSupplier(int supplierID)
+        {
+            return clsDebtsToSuppliers.GetTotalDebtsToCertainSupplier(supplierID);
+        }
     }
 }
