@@ -6,36 +6,36 @@ using System.Threading.Tasks;
 
 namespace DebtManagment_BusinessLayer
 {
-    class clsDebitForSuppliers
+    class clsDebitToSuppliers
     {
         public int DebitID { get; set; }
         public int UserID { get; set; }
         public int SupplierID { get; set; }
         public double Amount { get; set; }
         public string Material { get; set; }
-        public DateTime PaymentDate { get; set; }
+        public DateTime DebtDate { get; set; }
         enum enMode { AddNew = 0, Update = 1 }
         enMode Mode = enMode.AddNew;
 
-        private clsDebitForSuppliers(int debitID, int userID, int clientID, double payedAmount, string material, DateTime paymentDate, enMode mood)
+        private clsDebitToSuppliers(int debitID, int userID, int clientID, double payedAmount, string material, DateTime paymentDate, enMode mood)
         {
             this.DebitID = debitID;
             this.UserID = userID;
             this.SupplierID = clientID;
             this.Amount = payedAmount;
             this.Material = material;
-            this.PaymentDate = paymentDate;
+            this.DebtDate = paymentDate;
             this.Mode = enMode.Update;
         }
 
-        public clsDebitForSuppliers()
+        public clsDebitToSuppliers()
         {
             this.DebitID = -1;
             UserID = -1;
             SupplierID = -1;
             Amount = 0;
             this.Material = "";
-            PaymentDate = DateTime.Today;
+            DebtDate = DateTime.Today;
             this.Mode = enMode.AddNew;
 
         }

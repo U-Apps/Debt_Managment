@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using DebtManagment_DataAccessLayer; // refernecing the database Layer ,,,,
 namespace DebtManagment_BusinessLayer      //[Logic]
 {
-    public class clsUser:clsPerson
+    public class clsUser : clsPerson
     {
         public string UserName { get; set; }
         public string Password { get; set; }
