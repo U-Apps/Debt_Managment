@@ -136,6 +136,80 @@ namespace DebtManagment_DataAccessLayer
             return isFound;
         }
 
+
+        public static bool GetUserInfoByUsernameAndPassword(ref int UserID, ref string Name, ref string Email, ref string Phone,
+            ref string Address,ref string SSN, ref string PersonalPhoto, string Username, string Password, ref int Permissions)
+        {
+            bool isFound = false;
+
+
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = "SELECT * FROM tblUsers WHERE Username = @Username and Password = @Password";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@Username", Username);
+            command.Parameters.AddWithValue("@Password", Password);
+
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    // The record was found
+                    isFound = true;
+                    int PersonID = (int)reader["PersonID"];
+                    UserID = (int)reader["UserID"];
+                    Permissions = (int)reader["Permissions"];
+
+                    if (!clsPersons_Data.GetPersonInfoByID(PersonID, ref Name, ref Email, ref Phone, ref Address))
+                        return false;
+
+
+                    //ssn: allows null in database so we should handle null
+                    if (reader["SSN"] != DBNull.Value)
+                        SSN = (string)reader["SSN"];
+                    else
+                        SSN = "";
+
+                    //PersonalPhoto: allows null in database so we should handle null
+                    if (reader["PersonalPicture"] != DBNull.Value)
+                        PersonalPhoto = (string)reader["PersonalPicture"];
+                    else
+                        PersonalPhoto = "";
+
+
+
+                }
+                else
+                {
+                    // The record was not found
+                    isFound = false;
+                }
+
+                reader.Close();
+
+
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isFound;
+        }
+
+
         public static bool UpdateUser(int UserID,string Name, string Email, string Phone, string Address, string SSN,
             string PersonalPhoto, string Username, string Password, int Permissions)
         {
@@ -329,41 +403,41 @@ namespace DebtManagment_DataAccessLayer
             return isFound;
         }
 
-        public static bool IsUserExist(string Username, string Password)
-        {
-            bool isFound = false;
+        //public static bool IsUserExist(string Username, string Password)
+        //{
+        //    bool isFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+        //    SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT Found=1 FROM tblUsers WHERE Username = @Username and Password = @Password";
+        //    string query = "SELECT Found=1 FROM tblUsers WHERE Username = @Username and Password = @Password";
 
-            SqlCommand command = new SqlCommand(query, connection);
+        //    SqlCommand command = new SqlCommand(query, connection);
 
-            command.Parameters.AddWithValue("@Username", Username);
-            command.Parameters.AddWithValue("@Password", Password);
+        //    command.Parameters.AddWithValue("@Username", Username);
+        //    command.Parameters.AddWithValue("@Password", Password);
 
 
-            try
-            {
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
+        //    try
+        //    {
+        //        connection.Open();
+        //        SqlDataReader reader = command.ExecuteReader();
 
-                isFound = reader.HasRows;
+        //        isFound = reader.HasRows;
 
-                reader.Close();
-            }
-            catch (Exception ex)
-            {
-                //Console.WriteLine("Error: " + ex.Message);
-                isFound = false;
-            }
-            finally
-            {
-                connection.Close();
-            }
+        //        reader.Close();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //Console.WriteLine("Error: " + ex.Message);
+        //        isFound = false;
+        //    }
+        //    finally
+        //    {
+        //        connection.Close();
+        //    }
 
-            return isFound;
-        }
+        //    return isFound;
+        //}
 
         private static bool _IsUserExsist(string Username)
         {
