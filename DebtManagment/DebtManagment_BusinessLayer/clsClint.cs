@@ -22,21 +22,21 @@ namespace DebtManagment_BusinessLayer
         public clsClint()
 
         {
-            ClientId = -1;
+          this.ClientId = -1;
             this.SSN = "";
             this.Commercial_Registration = "";
             Classification = -1;
             RemainderAmount = 0;
             Mode = enMode.AddNew;
         }
-        private clsClint(int clientId , string name, string email, string PhoneNumber, string address, int classification, double remainderAmount, string Commercial_Registration, string SSN) : base(name, email, PhoneNumber, address)
+        private clsClint(int clientId , string name, string email, string PhoneNumber, string address, int classification, double remainderAmount, string Commercial_Registration, string SSN,enMode mode) : base(mode, clientId, name,  email, PhoneNumber,  address)
         {
             this.ClientId = clientId;
             Classification = classification;
             RemainderAmount = remainderAmount;
             this.Commercial_Registration = Commercial_Registration;
             this.SSN = SSN;
-            this.Mode = enMode.Update;
+            this.Mode = mode;
         }
         private bool _Add()
         {
@@ -63,7 +63,7 @@ namespace DebtManagment_BusinessLayer
 
             if (clsClient_Data.GetClientInfoByID(clientId, ref FullName,ref Email, ref PhoneNumber, ref Address,ref SSN,ref Commercial_Registration,ref Classification,ref remainderAmount))
 
-                return new clsClint(clientId,FullName, Email, PhoneNumber, Address, Classification,remainderAmount,Commercial_Registration,SSN);
+                return new clsClint(clientId,FullName, Email, PhoneNumber, Address, Classification,remainderAmount,Commercial_Registration,SSN,enMode.Update);
             else
                 return null;
         }
