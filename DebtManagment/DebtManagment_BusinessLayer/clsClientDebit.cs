@@ -15,7 +15,7 @@ namespace DebtManagment_BusinessLayer
     {
        public string Material { get; set; }
         public int DebtID { get; set; }
-        public int UserID { get; set; }
+        public int UserID { get; private set; }
         public int ClientID { get; set; }
         public double DebtAmount { get; set; }
         public DateTime DebtDate { get; set; }
@@ -47,11 +47,10 @@ namespace DebtManagment_BusinessLayer
 
         private bool _Add()
         {
-            if (clsClientsDebts_Data.AddNewClientDebt(UserID, ClientID, DebtAmount, Material , DebtDate ) != -1)
-            {
-                return true;
-            }
-            else { return false; }
+            //problem of UserID************
+            this.ClientID = clsClientsDebts_Data.AddNewClientDebt(UserID, ClientID, DebtAmount, Material, DebtDate);
+            return this.ClientID != -1;
+           
         }
         public static bool delelte(int id)
         {
@@ -59,6 +58,7 @@ namespace DebtManagment_BusinessLayer
         }
         private bool _update()
         {
+            //problem of UserID************
             return clsClientsDebts_Data.UpdateClientDebt(this.DebtID, this.UserID, this.ClientID, this.DebtAmount, this.Material,this.DebtDate);
         }
      

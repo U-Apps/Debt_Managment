@@ -40,12 +40,10 @@ namespace DebtManagment_BusinessLayer
         }
         private bool _Add()
         {
-           if(clsClient_Data.AddNewClient(FullName, Email, PhoneNumber , Address, SSN,
-              Commercial_Registration, Classification, RemainderAmount) != -1)
-            {
-                return true;
-            }
-           else { return false; }
+            this.ClientId = clsClient_Data.AddNewClient(FullName, Email, PhoneNumber, Address, SSN,
+               Commercial_Registration, Classification, RemainderAmount);
+            return this.ClientId != -1;
+          
         }
 
         public static bool Delete(int ClientId)
@@ -77,7 +75,7 @@ namespace DebtManagment_BusinessLayer
         //}
 
 
-        public override bool Save()
+        public bool Save()
         {
 
 

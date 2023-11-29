@@ -34,11 +34,8 @@ namespace DebtManagment_BusinessLayer
         }
         private bool _Add()
         {
-            if (clsSupplier_Data.AddNewSupplier(FullName,Email,PhoneNumber,Address,Commercial_Registration)!= -1)
-            {
-                return true;
-            }
-            else { return false; }
+            this.SupplierId = clsSupplier_Data.AddNewSupplier(FullName, Email, PhoneNumber, Address, Commercial_Registration);
+            return this.SupplierId != -1;
         }
         public static bool Delete(int id)
         {
@@ -64,7 +61,7 @@ namespace DebtManagment_BusinessLayer
         //{
         
         //}
-        public override bool Save()
+        public bool Save()
         {
 
 
