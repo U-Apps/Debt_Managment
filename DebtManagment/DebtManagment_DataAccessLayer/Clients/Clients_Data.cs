@@ -151,8 +151,7 @@ namespace DebtManagment_DataAccessLayer
         }
 
 
-        public static bool UpdateClient(int ClientID,string Name, string Email, string Phone, string Address, string SSN,
-            string Commercial_Registration, int Classification, double RemainderAmount)
+        public static bool UpdateClient(int ClientID,string Name, string Email, string Phone, string Address, string SSN, double RemainderAmount)
         {
 
             int PersonID = _GetPersonID_ByClientID(ClientID);
@@ -268,8 +267,6 @@ namespace DebtManagment_DataAccessLayer
 		                    tblPersons.Email,
 		                    tblPersons.Address,
 		                    tblClients.SSN, 
-		                    tblClients.Commercial_Registration, 
-		                    tblClients.Classification, 
 		                    tblClients.RemainderAmount
 
                             FROM     tblClients INNER JOIN
