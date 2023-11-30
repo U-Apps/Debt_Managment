@@ -52,6 +52,7 @@
     <Compile Include="clsSupplier.cs" />
     <Compile Include="clsUser.cs" />
     <Compile Include="enUserPermissions.cs" />
+    <Compile Include="PaymentToSupplierRecord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

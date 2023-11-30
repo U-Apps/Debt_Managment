@@ -48,7 +48,7 @@ namespace DebtManagment_BusinessLayer      //[Logic]
         {
             //call DataAccess Layer 
 
-            return clsUser_Data.UpdateUser(this.ID, this.FullName, this.Email, this.PhoneNumber, this.Address, this.SSN, this.ImagePath, this.UserName, this.Password, this.Permissions);
+            return clsUser_Data.UpdateUser(this.ID, this.FullName, this.Email, this.PhoneNumber, this.Address, this.SSN, this.ImagePath, this.Password, this.Permissions);
 
         }
 
