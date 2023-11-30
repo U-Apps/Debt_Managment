@@ -44,9 +44,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationContext.cs" />
+    <Compile Include="clsClientDebit.cs" />
+    <Compile Include="clsClint.cs" />
     <Compile Include="clsDebitForSuppliers.cs" />
     <Compile Include="clsPerson.cs" />
+    <Compile Include="clsSupplier.cs" />
     <Compile Include="clsUser.cs" />
+    <Compile Include="enUserPermissions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

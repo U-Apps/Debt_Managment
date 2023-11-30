@@ -13,13 +13,13 @@ namespace DebtManagment_DataAccessLayer
             Phone = Phone.Trim();
             Address = Address.Trim();
 
-            //this function will return the new contact id if succeeded and -1 if not.
+            //this function will return the new person id if succeeded and -1 if not.
             int PersonID = -1;
 
 
 
              // check if person already exists return true and update the personID or return false
-            if (_IsPersonExists(ref PersonID, Name))
+            if (_IsPersonExists(ref PersonID, Name, Phone, Address))
                 return PersonID;
 
 
@@ -75,6 +75,7 @@ namespace DebtManagment_DataAccessLayer
             return PersonID;
         }
 
+
         public static bool UpdatePerson(int PersonID, string Name,
             string Email, string Phone, string Address)
         {
@@ -121,6 +122,7 @@ namespace DebtManagment_DataAccessLayer
 
             return (rowsAffected > 0);
         }
+
 
         public static bool DeletePerson(int PersonID)
         {
@@ -183,7 +185,6 @@ namespace DebtManagment_DataAccessLayer
                     isFound = true;
 
                     Name = (string)reader["Name"];
-                    Email = (string)reader["Email"];
                     Phone = (string)reader["Phone"];
                     Address = (string)reader["Address"];
 
@@ -222,17 +223,20 @@ namespace DebtManagment_DataAccessLayer
         }
 
 
-        private static bool _IsPersonExists(ref int PersonID, string Name)
+        private static bool _IsPersonExists(ref int PersonID, string Name, string Phone, string Address)
         {
             bool isFound = false;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT PersonID FROM tblPersons WHERE Name = @Name";
+            string query = "SELECT PersonID FROM tblPersons WHERE Name = @Name and PhoneNumber = @Phone and Address = @Address";
 
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@Name", Name);
+            command.Parameters.AddWithValue("@Phone", Phone);
+            command.Parameters.AddWithValue("@Address", Address);
+
 
             try
             {
