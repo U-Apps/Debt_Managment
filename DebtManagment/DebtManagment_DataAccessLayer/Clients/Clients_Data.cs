@@ -17,7 +17,9 @@ namespace DebtManagment_DataAccessLayer
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT * FROM tblClients WHERE ClientID = @ClientID";
+            string query = @"SELECT tblPersons.*, tblClients.*
+                             FROM     tblClients INNER JOIN
+                        tblPersons ON tblClients.PersonID = tblPersons.PersonID";
 
             SqlCommand command = new SqlCommand(query, connection);
             
@@ -34,14 +36,21 @@ namespace DebtManagment_DataAccessLayer
                     isFound = true;
                     int PersonID = (int)reader["PersonID"];
 
-                    if (!clsPersons_Data.GetPersonInfoByID(PersonID, ref Name, ref Email, ref Phone, ref Address))
-                        return false; // this will fill the Name ,Email, Phone and address
-
+                    Name = (string)reader["Name"];
+                    Phone = (string)reader["PhoneNumber"];
+                    Address = (string)reader["Address"];
                     Classification = (int)reader["Classification"];
                     RemainderAmoun = (int)reader["RemainderAmoun"];
 
 
                     //ssn: allows null in database so we should handle null
+
+                    if (reader["Email"] != DBNull.Value)
+                        Email = (string)reader["Email"];
+                    else
+                        Email = "";
+
+
                     if (reader["SSN"] != DBNull.Value)
                         SSN = (string)reader["SSN"];
                     else
@@ -79,7 +88,7 @@ namespace DebtManagment_DataAccessLayer
         public static int AddNewClient(string Name, string Email, string Phone, string Address,string SSN,
             string Commercial_Registration,int Classification,double RemainderAmount)
         {
-            //this function will return the new contact id if succeeded and -1 if not.
+            //this function will return the new client id if succeeded and -1 if not.
             int ClientID = -1;
 
             int PersonID = clsPersons_Data.AddNewPerson(Name, Email, Phone, Address);
@@ -210,7 +219,7 @@ namespace DebtManagment_DataAccessLayer
         public static bool DeleteClient(int ClientID)
         {
             int PersonID = _GetPersonID_ByClientID(ClientID);
-            if (PersonID == 0)
+            if (PersonID == -1)
                 return false;
 
 
@@ -336,7 +345,7 @@ namespace DebtManagment_DataAccessLayer
 
         static int _GetPersonID_ByClientID(int ClientID)
         {
-            int PersonID = 0;
+            int PersonID = -1;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 

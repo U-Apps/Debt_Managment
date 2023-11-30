@@ -17,7 +17,9 @@ namespace DebtManagment_DataAccessLayer
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT * FROM tblSuppliers WHERE SupplierID = @SupplierID";
+            string query = @"SELECT tblSuppliers.*, tblPersons.*
+FROM     tblSuppliers INNER JOIN
+                  tblPersons ON tblSuppliers.PersonID = tblPersons.PersonID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -33,12 +35,19 @@ namespace DebtManagment_DataAccessLayer
                     // The record was found
                     isFound = true;
                     int PersonID = (int)reader["PersonID"];
-
-
-                    if (!clsPersons_Data.GetPersonInfoByID(PersonID, ref Name, ref Email, ref Phone, ref Address))
-                        return false;
-
+                    Name = (string)reader["Name"];
+                    Phone = (string)reader["PhoneNumber"];
+                    Address = (string)reader["Address"];
                     Commercial_Registration = (int)reader["Commercial_Registration"];
+
+                    if (reader["Email"] != DBNull.Value)
+                        Email = (string)reader["Email"];
+                    else
+                        Email = "";
+
+
+
+
 
                 }
                 else
@@ -119,7 +128,7 @@ namespace DebtManagment_DataAccessLayer
         {
 
             int PersonID = _GetPersonID_BySupplierID(SupplierID);
-            if (PersonID == 0)
+            if (PersonID == -1)
                 return false;
 
 
@@ -163,7 +172,7 @@ namespace DebtManagment_DataAccessLayer
         public static bool DeleteSupplier(int SupplierID)
         {
             int PersonID = _GetPersonID_BySupplierID(SupplierID);
-            if (PersonID == 0)
+            if (PersonID == -1)
                 return false;
 
 
@@ -284,7 +293,7 @@ namespace DebtManagment_DataAccessLayer
 
         static int _GetPersonID_BySupplierID(int SupplierID)
         {
-            int PersonID = 0;
+            int PersonID = -1;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 

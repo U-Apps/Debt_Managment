@@ -25,16 +25,16 @@ namespace DebtManagment_DataAccessLayer
 
             command.Parameters.AddWithValue("@PersonID", PersonID);
             command.Parameters.AddWithValue("@SSN", SSN);
+            command.Parameters.AddWithValue("@Username", Username);
+            command.Parameters.AddWithValue("@Password", Password);
+            command.Parameters.AddWithValue("@Permissions", Permissions);
+
 
 
             if (PersonalPhoto != "")
                 command.Parameters.AddWithValue("@PersonalPhoto", PersonalPhoto);
             else
                 command.Parameters.AddWithValue("@PersonalPhoto", System.DBNull.Value);
-
-            command.Parameters.AddWithValue("@Username", Username);
-            command.Parameters.AddWithValue("@Password", Password);
-            command.Parameters.AddWithValue("@Permissions", Permissions);
 
 
 
@@ -74,7 +74,9 @@ namespace DebtManagment_DataAccessLayer
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT * FROM tblUsers WHERE UserID = @UserID";
+            string query =  @"SELECT tblUsers.*, tblPersons.*
+                            FROM tblUsers INNER JOIN
+                            tblPersons ON tblUsers.PersonID = tblPersons.PersonID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -90,19 +92,20 @@ namespace DebtManagment_DataAccessLayer
                     // The record was found
                     isFound = true;
                     int PersonID = (int)reader["PersonID"];
+                    Name = (string)reader["Name"];
+                    Phone = (string)reader["PhoneNumber"];
+                    Address = (string)reader["Address"];
+                    if (reader["Email"] != DBNull.Value)
+                        Email = (string)reader["Email"];
+                    else
+                        Email = "";
                     Username = (string)reader["Username"];
                     Password = (string)reader["Password"];
                     Permissions = (int)reader["Permissions"];
-
-                    if (!clsPersons_Data.GetPersonInfoByID(PersonID, ref Name, ref Email, ref Phone, ref Address))
-                        return false;
+                    SSN = (string)reader["SSN"];
 
 
-                    //ssn: allows null in database so we should handle null
-                    if (reader["SSN"] != DBNull.Value)
-                        SSN = (string)reader["SSN"];
-                    else
-                        SSN = "";
+
 
                     //PersonalPhoto: allows null in database so we should handle null
                     if (reader["PersonalPicture"] != DBNull.Value)
@@ -146,7 +149,9 @@ namespace DebtManagment_DataAccessLayer
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT * FROM tblUsers WHERE Username = @Username and Password = @Password";
+            string query = @"SELECT tblUsers.*, tblPersons.*
+                            FROM tblUsers INNER JOIN
+                            tblPersons ON tblUsers.PersonID = tblPersons.PersonID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -164,18 +169,19 @@ namespace DebtManagment_DataAccessLayer
                     // The record was found
                     isFound = true;
                     int PersonID = (int)reader["PersonID"];
+                    Name = (string)reader["Name"];
+                    Phone = (string)reader["PhoneNumber"];
+                    Address = (string)reader["Address"];
                     UserID = (int)reader["UserID"];
                     Permissions = (int)reader["Permissions"];
-
-                    if (!clsPersons_Data.GetPersonInfoByID(PersonID, ref Name, ref Email, ref Phone, ref Address))
-                        return false;
+                    SSN = (string)reader["SSN"];
 
 
-                    //ssn: allows null in database so we should handle null
-                    if (reader["SSN"] != DBNull.Value)
-                        SSN = (string)reader["SSN"];
+                    if (reader["Email"] != DBNull.Value)
+                        Email = (string)reader["Email"];
                     else
-                        SSN = "";
+                        Email = "";
+
 
                     //PersonalPhoto: allows null in database so we should handle null
                     if (reader["PersonalPicture"] != DBNull.Value)
@@ -220,7 +226,7 @@ namespace DebtManagment_DataAccessLayer
 
 
             int PersonID = _GetPersonID_ByUserID(UserID);
-            if (PersonID == 0)
+            if (PersonID == -1)
                 return false;
 
 
@@ -245,11 +251,9 @@ namespace DebtManagment_DataAccessLayer
             command.Parameters.AddWithValue("@Username", Username);
             command.Parameters.AddWithValue("@Password", Password);
             command.Parameters.AddWithValue("@Permissions", Permissions);
+            command.Parameters.AddWithValue("@SSN", SSN);
 
-            if (SSN != "" && SSN != null)
-                command.Parameters.AddWithValue("@SSN", SSN);
-            else
-                command.Parameters.AddWithValue("@SSN", System.DBNull.Value);
+
 
             if (PersonalPhoto != "" && PersonalPhoto != null)
                 command.Parameters.AddWithValue("@PersonalPhoto", PersonalPhoto);
@@ -280,7 +284,7 @@ namespace DebtManagment_DataAccessLayer
         public static bool DeleteUser(int UserID)
         {
             int PersonID = _GetPersonID_ByUserID(UserID);
-            if (PersonID == 0)
+            if (PersonID == -1)
                 return false;
 
 
@@ -475,7 +479,7 @@ namespace DebtManagment_DataAccessLayer
 
         private static int _GetPersonID_ByUserID(int UserID)
         {
-            int PersonID = 0;
+            int PersonID = -1;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
