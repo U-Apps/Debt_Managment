@@ -174,6 +174,52 @@ namespace DebtManagment_DataAccessLayer
 
         }
 
+
+        public static DataTable GetAllClientPayments(int ClientID)
+        {
+
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"SELECT ClientsPayments.PaymentID, ClientsPayments.UserID, ClientsPayments.ClientID, tblPersons.Name, ClientsPayments.PayedAmount, ClientsPayments.PaymentDate
+                    FROM     ClientsPayments INNER JOIN
+                  tblClients ON ClientsPayments.ClientID = tblClients.ClientID INNER JOIN
+                  tblPersons ON tblClients.PersonID = tblPersons.PersonID
+                    WHERE tblClients.ClientID = @ClientID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+
+                {
+                    dt.Load(reader);
+                }
+
+                reader.Close();
+
+
+            }
+
+            catch (Exception ex)
+            {
+                // Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return dt;
+
+        }
+
+
         public static double GetTotalPaymentsForCertainClient(int ClientID)
         {
 
