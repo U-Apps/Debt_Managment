@@ -93,7 +93,8 @@ namespace DebtManagment_DataAccessLayer
 
             string query = @"SELECT tblUsers.*, tblPersons.*
                             FROM tblUsers INNER JOIN
-                            tblPersons ON tblUsers.PersonID = tblPersons.PersonID";
+                            tblPersons ON tblUsers.PersonID = tblPersons.PersonID
+							where tblUsers.Username = Username and tblUsers.Password = Password;";
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -403,61 +404,61 @@ namespace DebtManagment_DataAccessLayer
             return isFound;
         }
 
-        public static bool IsUserExist(string Username, string Password,ref int UserID, ref string Name, ref string Email,ref string Phone,
-            ref string Address,ref string SSN,
-            ref string PersonalPhoto, ref int Permissions)
-        {
-            bool isFound = false;
+      //  public static bool IsUserExist(string Username, string Password,ref int UserID, ref string Name, ref string Email,ref string Phone,
+      //      ref string Address,ref string SSN,
+      //      ref string PersonalPhoto, ref int Permissions)
+      //  {
+      //      bool isFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+      //      SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"SELECT tblUsers.*, tblPersons.*
-                FROM     tblUsers INNER JOIN
-                  tblPersons ON tblUsers.PersonID = tblPersons.PersonID
-				  where tblUsers.Username = @Username and tblUsers.Password = @Password";
+      //      string query = @"SELECT tblUsers.*, tblPersons.*
+      //          FROM     tblUsers INNER JOIN
+      //            tblPersons ON tblUsers.PersonID = tblPersons.PersonID
+				  //where tblUsers.Username = @Username and tblUsers.Password = @Password";
 
-            SqlCommand command = new SqlCommand(query, connection);
+      //      SqlCommand command = new SqlCommand(query, connection);
 
-            command.Parameters.AddWithValue("@Username", Username);
-            command.Parameters.AddWithValue("@Password", Password);
+      //      command.Parameters.AddWithValue("@Username", Username);
+      //      command.Parameters.AddWithValue("@Password", Password);
 
 
-            try
-            {
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
+      //      try
+      //      {
+      //          connection.Open();
+      //          SqlDataReader reader = command.ExecuteReader();
 
-                if (reader.HasRows)
-                {
-                    isFound = true;
-                    UserID = (int)reader["UserID"]; 
-                    Name = (string)reader["Name"];
-                    Phone = (string)reader["PhoneNumber"];
-                    Address = (string)reader["Address"];
-                    SSN = (string)reader["SSN"];
-                    Permissions = (int)reader["Permissions"];
-                    Email = (string)reader["Email"];
+      //          if (reader.HasRows)
+      //          {
+      //              isFound = true;
+      //              UserID = (int)reader["UserID"]; 
+      //              Name = (string)reader["Name"];
+      //              Phone = (string)reader["PhoneNumber"];
+      //              Address = (string)reader["Address"];
+      //              SSN = (string)reader["SSN"];
+      //              Permissions = (int)reader["Permissions"];
+      //              Email = (string)reader["Email"];
 
-                    if (reader["PersonalPicture"] != DBNull.Value)
-                        PersonalPhoto = (string)reader["PersonalPicture"];
-                    else
-                        PersonalPhoto = "";
-                }
+      //              if (reader["PersonalPicture"] != DBNull.Value)
+      //                  PersonalPhoto = (string)reader["PersonalPicture"];
+      //              else
+      //                  PersonalPhoto = "";
+      //          }
 
-                reader.Close();
-            }
-            catch (Exception ex)
-            {
-                //Console.WriteLine("Error: " + ex.Message);
-                isFound = false;
-            }
-            finally
-            {
-                connection.Close();
-            }
+      //          reader.Close();
+      //      }
+      //      catch (Exception ex)
+      //      {
+      //          //Console.WriteLine("Error: " + ex.Message);
+      //          isFound = false;
+      //      }
+      //      finally
+      //      {
+      //          connection.Close();
+      //      }
 
-            return isFound;
-        }
+      //      return isFound;
+      //  }
 
 
         private static int _GetPersonID_ByUserID(int UserID)

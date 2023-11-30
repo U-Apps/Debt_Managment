@@ -19,7 +19,8 @@ namespace DebtManagment_DataAccessLayer
 
             string query = @"SELECT tblPersons.*, tblClients.*
                              FROM     tblClients INNER JOIN
-                        tblPersons ON tblClients.PersonID = tblPersons.PersonID";
+                        tblPersons ON tblClients.PersonID = tblPersons.PersonID
+                        where tblClients.ClientID = @ClientID;";
 
             SqlCommand command = new SqlCommand(query, connection);
             
@@ -151,7 +152,7 @@ namespace DebtManagment_DataAccessLayer
         }
 
 
-        public static bool UpdateClient(int ClientID,string Name, string Email, string Phone, string Address, string SSN, double RemainderAmount)
+        public static bool UpdateClient(int ClientID,string Name, string Email, string Phone, string Address, double RemainderAmount)
         {
 
             int PersonID = _GetPersonID_ByClientID(ClientID);
@@ -175,20 +176,8 @@ namespace DebtManagment_DataAccessLayer
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@ClientID", ClientID);
-            command.Parameters.AddWithValue("@Classification", Classification);
             command.Parameters.AddWithValue("@RemainderAmount", RemainderAmount);
 
-
-            if (SSN != "" && SSN != null)
-                command.Parameters.AddWithValue("@SSN", SSN);
-            else
-                command.Parameters.AddWithValue("@SSN", System.DBNull.Value);
-
-
-            if (Commercial_Registration != "" && Commercial_Registration != null)
-                command.Parameters.AddWithValue("@Commercial_Registration", Commercial_Registration);
-            else
-                command.Parameters.AddWithValue("@Commercial_Registration", System.DBNull.Value);
 
             try
             {

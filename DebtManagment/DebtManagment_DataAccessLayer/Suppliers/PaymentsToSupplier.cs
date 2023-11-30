@@ -8,16 +8,17 @@ namespace DebtManagment_DataAccessLayer
     public static  class PaymentsToSupplier
 
     {
-        public static DataTable GetAllPaymentsToSupplier()
+        public static DataTable GetAllPaymentsToSuppliers()
         {
 
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"SELECT PaymentsForSupliers.ID, PaymentsForSupliers.UserID, PaymentsForSupliers.SuplierID, tblPersons.Name, PaymentsForSupliers.PayedAmount, PaymentsForSupliers.PaymentDate
-                    FROM     PaymentsForSupliers INNER JOIN
-                  tblSuppliers ON PaymentsForSupliers.SuplierID = tblSuppliers.SupplierID INNER JOIN
-                  tblPersons ON tblSuppliers.PersonID = tblPersons.PersonID";
+            string query = @"SELECT PaymentsToSuppliers.ID, PaymentsToSuppliers.UserID, tblSuppliers.SupplierID, tblPersons.Name, PaymentsToSuppliers.PayedAmount, PaymentsToSuppliers.PaymentDate
+                    FROM     PaymentsToSuppliers INNER JOIN
+                  tblSuppliers ON PaymentsToSuppliers.SupplierID = tblSuppliers.SupplierID INNER JOIN
+                  tblPersons ON tblSuppliers.PersonID = tblPersons.PersonID INNER JOIN
+                  tblUsers ON PaymentsToSuppliers.UserID = tblUsers.UserID AND tblPersons.PersonID = tblUsers.PersonID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -57,10 +58,12 @@ namespace DebtManagment_DataAccessLayer
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"SELECT PaymentsForSupliers.ID, PaymentsForSupliers.UserID, PaymentsForSupliers.SuplierID, tblPersons.Name, PaymentsForSupliers.PayedAmount, PaymentsForSupliers.PaymentDate
-                    FROM     PaymentsForSupliers INNER JOIN
-                  tblSuppliers ON PaymentsForSupliers.SuplierID = tblSuppliers.SupplierID INNER JOIN
-                  tblPersons ON tblSuppliers.PersonID = tblPersons.PersonID where SupplierID = @SupplierID";
+            string query = @"SELECT PaymentsToSuppliers.ID, PaymentsToSuppliers.UserID, tblSuppliers.SupplierID, tblPersons.Name, PaymentsToSuppliers.PayedAmount, PaymentsToSuppliers.PaymentDate
+                FROM     PaymentsToSuppliers INNER JOIN
+                  tblSuppliers ON PaymentsToSuppliers.SupplierID = tblSuppliers.SupplierID INNER JOIN
+                  tblPersons ON tblSuppliers.PersonID = tblPersons.PersonID INNER JOIN
+                  tblUsers ON PaymentsToSuppliers.UserID = tblUsers.UserID AND tblPersons.PersonID = tblUsers.PersonID
+				  where tblSuppliers.SupplierID = @SupplierID";
 
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@SupplierID", SupplierID);
@@ -104,7 +107,7 @@ namespace DebtManagment_DataAccessLayer
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"insert into PaymentsForSupliers
+            string query = @"insert into PaymentsToSuppliers
                             values (@UserID,@SupplierID,@PayedAmount,@PaymentDate)
                             SELECT SCOPE_IDENTITY();";
 
@@ -150,7 +153,7 @@ namespace DebtManagment_DataAccessLayer
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"UPDATE PaymentsForSupliers
+            string query = @"UPDATE PaymentsToSuppliers
                                 SET PayedAmount = @PayedAmount,
                                     WHERE ID = @PaymentID";
 
@@ -192,7 +195,7 @@ namespace DebtManagment_DataAccessLayer
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"delete from PaymentsForSupliers where ID = @PaymentID";
+            string query = @"delete from PaymentsToSuppliers where ID = @PaymentID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -226,8 +229,8 @@ namespace DebtManagment_DataAccessLayer
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"select TotalPayments = sum(PayedAmount) from PaymentsForSupliers
-                            where SuplierID = @SupplierID;";
+            string query = @"select TotalPayments = sum(PayedAmount) from PaymentsToSuppliers
+                            where SupplierID = @SupplierID;";
 
             SqlCommand command = new SqlCommand(query, connection);
 
