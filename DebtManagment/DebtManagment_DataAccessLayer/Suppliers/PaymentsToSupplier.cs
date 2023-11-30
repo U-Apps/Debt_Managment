@@ -5,7 +5,11 @@ using System.Data.SqlClient;
 
 namespace DebtManagment_DataAccessLayer
 {
+<<<<<<< Updated upstream
     public static class PaymentsToSupplier
+=======
+    public static  class PaymentsToSupplier
+>>>>>>> Stashed changes
     {
         public static DataTable GetAllPaymentsToSupplier()
         {

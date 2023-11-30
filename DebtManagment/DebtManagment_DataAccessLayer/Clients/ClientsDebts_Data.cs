@@ -13,7 +13,10 @@ namespace DebtManagment_DataAccessLayer
                 DataTable dt = new DataTable();
                 SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-                string query = @"SELECT * FROM ClientsDebts";
+                string query = @"SELECT ClientsDebts.DebtID, ClientsDebts.UserID, tblClients.ClientID, tblPersons.Name as Client_Name, ClientsDebts.DebtAmount, ClientsDebts.Material, ClientsDebts.DebtDate
+                    FROM     ClientsDebts INNER JOIN
+                  tblClients ON ClientsDebts.ClientID = tblClients.ClientID INNER JOIN
+                  tblPersons ON tblClients.PersonID = tblPersons.PersonID";
 
                 SqlCommand command = new SqlCommand(query, connection);
 
@@ -95,7 +98,7 @@ namespace DebtManagment_DataAccessLayer
             return DebtID;
         }
 
-        public static bool UpdateClientDebt(int DebtID, int UserID, int ClientID, double DebtAmount, string Material, DateTime DebtDate)
+        public static bool UpdateClientDebt(int DebtID,  double DebtAmount, string Material )
         {
 
             int rowsAffected = 0;
@@ -113,11 +116,8 @@ namespace DebtManagment_DataAccessLayer
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@DebtID", DebtID);
-            command.Parameters.AddWithValue("@UserID", UserID);
-            command.Parameters.AddWithValue("@ClientID", ClientID);
             command.Parameters.AddWithValue("@DebtAmount", DebtAmount);
             command.Parameters.AddWithValue("@Material", Material);
-            command.Parameters.AddWithValue("@DebtDate", DebtDate);
 
 
 
@@ -184,7 +184,11 @@ namespace DebtManagment_DataAccessLayer
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"SELECT * FROM ClientsDebts WHERE ClientID = @ClientID";
+            string query = @"SELECT ClientsDebts.DebtID, ClientsDebts.UserID, ClientsDebts.ClientID, tblPersons.Name, ClientsDebts.DebtAmount, ClientsDebts.Material, ClientsDebts.DebtDate
+                FROM     ClientsDebts INNER JOIN
+                  tblClients ON ClientsDebts.ClientID = tblClients.ClientID INNER JOIN
+                  tblPersons ON tblClients.PersonID = tblPersons.PersonID
+				  Where tblClients.ClientID = 8";
 
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@ClientID", ClientID);
