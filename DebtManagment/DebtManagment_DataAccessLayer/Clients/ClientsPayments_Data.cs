@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace DebtManagment_DataAccessLayer
 {
-    public class clsClientsPayments_Data
+    public static class clsClientsPayments_Data
     {
 
         public static DataTable GetAllClientsPayments()

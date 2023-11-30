@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DebtManagment_BusinessLayer
 {
@@ -13,7 +9,6 @@ namespace DebtManagment_BusinessLayer
 
         public int ID { private set; get; }
         public string FullName { set; get; }
-
         public string Email { set; get; }
         public string PhoneNumber { set; get; }
         public string Address { set; get; }
