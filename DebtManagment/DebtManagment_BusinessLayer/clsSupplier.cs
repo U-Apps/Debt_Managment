@@ -23,11 +23,11 @@ namespace DebtManagment_BusinessLayer
             Mode = enMode.AddNew;
 
         }
-        private clsSupplier(int SupplierId,int Commercial_registration, string name, string email, string PhoneNumber, string address) : base(name, email, PhoneNumber, address)
+        private clsSupplier(int SupplierId,int Commercial_registration, string name, string email, string PhoneNumber, string address,enMode mood) : base(mood,SupplierId,name, email, PhoneNumber, address)
         {
             this.ID = SupplierId;
             this.Commercial_Registration = Commercial_Registration;
-            Mode = enMode.Update;
+            Mode = mood;
 
 
 
@@ -49,9 +49,10 @@ namespace DebtManagment_BusinessLayer
         {
             string FullName = "", Email = "", PhoneNumber = "", Address = "";
             int Commercial_Registration = 0;
+            enMode mode = enMode.Update;
             if (clsSupplier_Data.GetSupplierInfoByID(SupplierId, ref FullName, ref Email, ref PhoneNumber, ref Address, ref Commercial_Registration))
             {
-                return new clsSupplier(SupplierId,Commercial_Registration, FullName, Email, PhoneNumber, Address);
+                return new clsSupplier(SupplierId,Commercial_Registration, FullName, Email, PhoneNumber, Address,mode);
 
             }
             else

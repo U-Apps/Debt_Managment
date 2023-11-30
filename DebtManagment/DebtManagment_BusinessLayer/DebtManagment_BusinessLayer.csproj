@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationContext.cs" />
+    <Compile Include="ClientPaymentstRecord.cs" />
     <Compile Include="clsClientDebit.cs" />
     <Compile Include="clsClint.cs" />
     <Compile Include="clsDebitForSuppliers.cs" />
