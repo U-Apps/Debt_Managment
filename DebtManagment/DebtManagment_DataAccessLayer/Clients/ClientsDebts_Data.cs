@@ -50,7 +50,7 @@ namespace DebtManagment_DataAccessLayer
 
             }
 
-        public static int AddNewClientDebt(int UserID, int ClientID, double DebtAmount ,string Material, DateTime DebtDate)
+        public static int AddNewClientDebt(int UserID, int ClientID, double DebtAmount ,string Material)
         {
             //this function will return the new debt id if succeeded and -1 if not.
             int DebtID = -1;
@@ -68,7 +68,7 @@ namespace DebtManagment_DataAccessLayer
             command.Parameters.AddWithValue("@ClientID", ClientID);
             command.Parameters.AddWithValue("@DebtAmount", DebtAmount);
             command.Parameters.AddWithValue("@Material", Material);
-            command.Parameters.AddWithValue("@DebtDate", DebtDate);
+            command.Parameters.AddWithValue("@DebtDate", DateTime.Now);
 
 
 
@@ -188,7 +188,7 @@ namespace DebtManagment_DataAccessLayer
                 FROM     ClientsDebts INNER JOIN
                   tblClients ON ClientsDebts.ClientID = tblClients.ClientID INNER JOIN
                   tblPersons ON tblClients.PersonID = tblPersons.PersonID
-				  Where tblClients.ClientID = 8";
+				  Where tblClients.ClientID = @tblClients.ClientID";
 
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@ClientID", ClientID);

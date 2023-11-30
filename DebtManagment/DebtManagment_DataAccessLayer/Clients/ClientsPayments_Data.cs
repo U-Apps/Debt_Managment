@@ -105,9 +105,7 @@ namespace DebtManagment_DataAccessLayer
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
             string query = @"UPDATE ClientsPayments
-                                SET UserID = @UserID,
-                                    ClientID  = @ClientID,
-                                    PayedAmount = @PayedAmount,
+                                SET PayedAmount = @PayedAmount,
                                     PaymentDate = @PaymentDate
                                     WHERE PaymentID = @PaymentID";
 
@@ -128,8 +126,7 @@ namespace DebtManagment_DataAccessLayer
             catch (Exception ex)
             {
                 //Console.WriteLine("Error: " + ex.Message);
-                connection.Close();
-                return false;
+
             }
 
             finally
