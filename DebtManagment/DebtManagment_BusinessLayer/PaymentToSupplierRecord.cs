@@ -82,9 +82,9 @@ namespace DebtManagment_BusinessLayer
         {
             return PaymentsToSupplier.GetAllPaymentsToCertainSupplier(id);
         }
-        public DataTable GetAllPaymentsToSupplier()
+        public DataTable GetAllPaymentsToSupplier(int id)
         {
-            return PaymentsToSupplier.GetAllPaymentsToSupplier();
+            return PaymentsToSupplier.GetAllPaymentsToCertainSupplier(id);
         }
         public static double GetTotalPaymentsForCertainClient(int supplierID)
         {
