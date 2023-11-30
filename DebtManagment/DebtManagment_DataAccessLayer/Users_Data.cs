@@ -7,64 +7,6 @@ namespace DebtManagment_DataAccessLayer
     public class clsUser_Data
     {
 
-        public static int AddNewUser(string Name, string Email, string Phone, string Address, string SSN,
-            string PersonalPhoto, string Username, string Password, int Permissions)
-        {
-            //this function will return the new user id if succeeded and -1 if not.
-            int UserID = -1;
-
-            int PersonID = clsPersons_Data.AddNewPerson(Name, Email, Phone, Address);
-
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"INSERT INTO tblUsers
-                            values (@PersonID,@SSN,@PersonalPhoto,@Username,@Password,@Permissions)
-                                SELECT SCOPE_IDENTITY();";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@PersonID", PersonID);
-            command.Parameters.AddWithValue("@SSN", SSN);
-            command.Parameters.AddWithValue("@Username", Username);
-            command.Parameters.AddWithValue("@Password", Password);
-            command.Parameters.AddWithValue("@Permissions", Permissions);
-
-
-
-            if (PersonalPhoto != "")
-                command.Parameters.AddWithValue("@PersonalPhoto", PersonalPhoto);
-            else
-                command.Parameters.AddWithValue("@PersonalPhoto", System.DBNull.Value);
-
-
-
-            try
-            {
-                connection.Open();
-
-                object result = command.ExecuteScalar();
-
-                if (result != null && int.TryParse(result.ToString(), out int insertedID))
-                {
-                    UserID = insertedID;
-                }
-            }
-
-            catch (Exception ex)
-            {
-                //Console.WriteLine("Error: " + ex.Message);
-                return UserID;
-            }
-
-            finally
-            {
-                connection.Close();
-            }
-
-
-            return UserID;
-        }
-
         public static bool GetUserInfoByID(int UserID, ref string Name, ref string Email, ref string Phone, ref string Address,
             ref string SSN, ref string PersonalPhoto, ref string Username, ref string Password, ref int Permissions)
         {
@@ -216,13 +158,69 @@ namespace DebtManagment_DataAccessLayer
         }
 
 
-        public static bool UpdateUser(int UserID,string Name, string Email, string Phone, string Address, string SSN,
+
+        public static int AddNewUser(string Name, string Email, string Phone, string Address, string SSN,
             string PersonalPhoto, string Username, string Password, int Permissions)
         {
+            //this function will return the new user id if succeeded and -1 if not.
+            int UserID = -1;
+
+            int PersonID = clsPersons_Data.AddNewPerson(Name, Email, Phone, Address);
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"INSERT INTO tblUsers
+                            values (@PersonID,@SSN,@PersonalPhoto,@Username,@Password,@Permissions)
+                                SELECT SCOPE_IDENTITY();";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+            command.Parameters.AddWithValue("@SSN", SSN);
+            command.Parameters.AddWithValue("@Username", Username);
+            command.Parameters.AddWithValue("@Password", Password);
+            command.Parameters.AddWithValue("@Permissions", Permissions);
 
 
-            if (_IsUserExsist(Username)) // Updating the Usename requirs checking if the new username exsist already 
-                return false;
+
+            if (PersonalPhoto != "")
+                command.Parameters.AddWithValue("@PersonalPhoto", PersonalPhoto);
+            else
+                command.Parameters.AddWithValue("@PersonalPhoto", System.DBNull.Value);
+
+
+
+            try
+            {
+                connection.Open();
+
+                object result = command.ExecuteScalar();
+
+                if (result != null && int.TryParse(result.ToString(), out int insertedID))
+                {
+                    UserID = insertedID;
+                }
+            }
+
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+                return UserID;
+            }
+
+            finally
+            {
+                connection.Close();
+            }
+
+
+            return UserID;
+        }
+
+
+        public static bool UpdateUser(int UserID,string Name, string Email, string Phone, string Address, string SSN,
+            string PersonalPhoto, string Password, int Permissions)
+        {
 
 
             int PersonID = _GetPersonID_ByUserID(UserID);
@@ -241,14 +239,12 @@ namespace DebtManagment_DataAccessLayer
             string query = @"Update  tblUsers  
                             set  SSN=@SSN,
                                  PersonalPhoto = @PersonalPhoto ,
-                                 Username=@Username,
                                  Password=@Password,
                                  Permissions=@Permissions; ";
 
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@UserID", UserID);
-            command.Parameters.AddWithValue("@Username", Username);
             command.Parameters.AddWithValue("@Password", Password);
             command.Parameters.AddWithValue("@Permissions", Permissions);
             command.Parameters.AddWithValue("@SSN", SSN);
@@ -407,60 +403,46 @@ namespace DebtManagment_DataAccessLayer
             return isFound;
         }
 
-        //public static bool IsUserExist(string Username, string Password)
-        //{
-        //    bool isFound = false;
-
-        //    SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-        //    string query = "SELECT Found=1 FROM tblUsers WHERE Username = @Username and Password = @Password";
-
-        //    SqlCommand command = new SqlCommand(query, connection);
-
-        //    command.Parameters.AddWithValue("@Username", Username);
-        //    command.Parameters.AddWithValue("@Password", Password);
-
-
-        //    try
-        //    {
-        //        connection.Open();
-        //        SqlDataReader reader = command.ExecuteReader();
-
-        //        isFound = reader.HasRows;
-
-        //        reader.Close();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        //Console.WriteLine("Error: " + ex.Message);
-        //        isFound = false;
-        //    }
-        //    finally
-        //    {
-        //        connection.Close();
-        //    }
-
-        //    return isFound;
-        //}
-
-        private static bool _IsUserExsist(string Username)
+        public static bool IsUserExist(string Username, string Password,ref int UserID, ref string Name, ref string Email,ref string Phone,
+            ref string Address,ref string SSN,
+            ref string PersonalPhoto, ref int Permissions)
         {
             bool isFound = false;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT Found=1 FROM tblUsers WHERE Username = @Username";
+            string query = @"SELECT tblUsers.*, tblPersons.*
+                FROM     tblUsers INNER JOIN
+                  tblPersons ON tblUsers.PersonID = tblPersons.PersonID
+				  where tblUsers.Username = @Username and tblUsers.Password = @Password";
 
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@Username", Username);
+            command.Parameters.AddWithValue("@Password", Password);
+
 
             try
             {
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
 
-                isFound = reader.HasRows;
+                if (reader.HasRows)
+                {
+                    isFound = true;
+                    UserID = (int)reader["UserID"]; 
+                    Name = (string)reader["Name"];
+                    Phone = (string)reader["PhoneNumber"];
+                    Address = (string)reader["Address"];
+                    SSN = (string)reader["SSN"];
+                    Permissions = (int)reader["Permissions"];
+                    Email = (string)reader["Email"];
+
+                    if (reader["PersonalPicture"] != DBNull.Value)
+                        PersonalPhoto = (string)reader["PersonalPicture"];
+                    else
+                        PersonalPhoto = "";
+                }
 
                 reader.Close();
             }
@@ -475,7 +457,8 @@ namespace DebtManagment_DataAccessLayer
             }
 
             return isFound;
-        } 
+        }
+
 
         private static int _GetPersonID_ByUserID(int UserID)
         {
