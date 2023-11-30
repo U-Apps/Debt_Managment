@@ -14,7 +14,6 @@ namespace DebtManagment_BusinessLayer
 {
     public class clsClint : clsPerson
     {
-        public int ClientId { get; set; }
         public int Classification { get; set; }
         public double RemainderAmount { get; set; }
         public string SSN { get; set; }
@@ -22,7 +21,7 @@ namespace DebtManagment_BusinessLayer
         public clsClint()
 
         {
-          this.ClientId = -1;
+            this.ID = -1;
             this.SSN = "";
             this.Commercial_Registration = "";
             Classification = -1;
@@ -31,7 +30,7 @@ namespace DebtManagment_BusinessLayer
         }
         private clsClint(int clientId , string name, string email, string PhoneNumber, string address, int classification, double remainderAmount, string Commercial_Registration, string SSN,enMode mode) : base(mode, clientId, name,  email, PhoneNumber,  address)
         {
-            this.ClientId = clientId;
+            this.ID = clientId;
             Classification = classification;
             RemainderAmount = remainderAmount;
             this.Commercial_Registration = Commercial_Registration;
@@ -40,9 +39,9 @@ namespace DebtManagment_BusinessLayer
         }
         private bool _Add()
         {
-            this.ClientId = clsClient_Data.AddNewClient(FullName, Email, PhoneNumber, Address, SSN,
+            this.ID = clsClient_Data.AddNewClient(FullName, Email, PhoneNumber, Address, SSN,
                Commercial_Registration, Classification, RemainderAmount);
-            return this.ClientId != -1;
+            return this.ID != -1;
           
         }
 
@@ -53,7 +52,7 @@ namespace DebtManagment_BusinessLayer
 
         private bool _update()
         {
-            return clsClient_Data.UpdateClient(this.ClientId, this.FullName, this.Email, this.PhoneNumber, this.Address, this.SSN, this.Commercial_Registration, this.Classification, this.RemainderAmount);
+            return clsClient_Data.UpdateClient(this.ID, this.FullName, this.Email, this.PhoneNumber, this.Address, this.SSN, this.Commercial_Registration, this.Classification, this.RemainderAmount);
         }
         public static clsClint Find(int clientId)
         {

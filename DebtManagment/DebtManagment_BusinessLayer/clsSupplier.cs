@@ -12,20 +12,20 @@ namespace DebtManagment_BusinessLayer
 {
     internal class clsSupplier : clsPerson
     {
-        public int SupplierId { set; get; } 
+        
         public int Commercial_Registration { get; set; }
 
         public clsSupplier()
 
         {
-            SupplierId = -1;
+            ID = -1;
             this.Commercial_Registration=0;
             Mode = enMode.AddNew;
 
         }
         private clsSupplier(int SupplierId,int Commercial_registration, string name, string email, string PhoneNumber, string address) : base(name, email, PhoneNumber, address)
         {
-            this.SupplierId = SupplierId;
+            this.ID = SupplierId;
             this.Commercial_Registration = Commercial_Registration;
             Mode = enMode.Update;
 
@@ -34,8 +34,8 @@ namespace DebtManagment_BusinessLayer
         }
         private bool _Add()
         {
-            this.SupplierId = clsSupplier_Data.AddNewSupplier(FullName, Email, PhoneNumber, Address, Commercial_Registration);
-            return this.SupplierId != -1;
+            this.ID = clsSupplier_Data.AddNewSupplier(FullName, Email, PhoneNumber, Address, Commercial_Registration);
+            return this.ID != -1;
         }
         public static bool Delete(int id)
         {
@@ -43,7 +43,7 @@ namespace DebtManagment_BusinessLayer
         }
         private bool _update()
         {
-           return clsSupplier_Data.UpdateSupplier(this.SupplierId, this.FullName, this.Email, this.PhoneNumber, this.Address, this.Commercial_Registration);
+           return clsSupplier_Data.UpdateSupplier(this.ID, this.FullName, this.Email, this.PhoneNumber, this.Address, this.Commercial_Registration);
         }
         public static clsSupplier Find(int SupplierId)
         {

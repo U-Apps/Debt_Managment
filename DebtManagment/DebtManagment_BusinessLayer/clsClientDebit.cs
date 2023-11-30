@@ -14,7 +14,7 @@ namespace DebtManagment_BusinessLayer
     internal class clsClientDebit
     {
        public string Material { get; set; }
-        public int DebtID { get; set; }
+        public int DebtID { get; private set; }
         public int UserID { get; private set; }
         public int ClientID { get; set; }
         public double DebtAmount { get; set; }
