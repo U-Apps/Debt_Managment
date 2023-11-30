@@ -47,7 +47,7 @@ namespace DebtManagment_DataAccessLayer
 
         }
 
-        public static int AddNewSupplierDebt(int UserID, int SupplierID, double DebtAmount, string Material, DateTime DebtDate)
+        public static int AddNewSupplierDebt(int UserID, int SupplierID, double DebtAmount, string Material)
         {
             //this function will return the new debt id if succeeded and -1 if not.
             int DebtID = -1;
@@ -65,7 +65,7 @@ namespace DebtManagment_DataAccessLayer
             command.Parameters.AddWithValue("@SupplierID", SupplierID);
             command.Parameters.AddWithValue("@Material", Material);
             command.Parameters.AddWithValue("@DebtAmount", DebtAmount);
-            command.Parameters.AddWithValue("@DebtDate", DebtDate);
+            command.Parameters.AddWithValue("@DebtDate", DateTime.Now);
 
 
 
@@ -128,7 +128,7 @@ namespace DebtManagment_DataAccessLayer
 
         }
 
-        public static bool UpdateSupplierDebt(int DebtID, int UserID, int SupplierID, double DebtAmount, string Material, DateTime DebtDate)
+        public static bool UpdateSupplierDebt(int DebtID, int UserID, int SupplierID, double DebtAmount, string Material)
         {
 
             int rowsAffected = 0;
@@ -136,21 +136,15 @@ namespace DebtManagment_DataAccessLayer
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
             string query = @"UPDATE DebtsToSuppliers
-
-                             SET UserID = @UserID,
-                                 SupplierID  = @SupplierID,
-                                 Material = @Material,
-                                 DebtAmount = @DebtAmount,
-                                 DebtDate = @DebtDate   WHERE DebtID = @DebtID";
+                             SET Material = @Material,
+                                 DebtAmount = @DebtAmount WHERE DebtID = @DebtID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@DebtID", DebtID);
-            command.Parameters.AddWithValue("@UserID", UserID);
-            command.Parameters.AddWithValue("@SupplierID", SupplierID);
             command.Parameters.AddWithValue("@Material", Material);
             command.Parameters.AddWithValue("@DebtAmount", DebtAmount);
-            command.Parameters.AddWithValue("@DebtDate", DebtDate);
+
 
 
 
