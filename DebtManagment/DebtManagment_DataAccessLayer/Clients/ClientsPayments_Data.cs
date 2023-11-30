@@ -13,7 +13,10 @@ namespace DebtManagment_DataAccessLayer
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"SELECT * FROM ClientsPayments";
+            string query = @"SELECT ClientsPayments.PaymentID, ClientsPayments.UserID, ClientsPayments.ClientID, tblPersons.Name, ClientsPayments.PayedAmount, ClientsPayments.PaymentDate
+                    FROM     ClientsPayments INNER JOIN
+                  tblClients ON ClientsPayments.ClientID = tblClients.ClientID INNER JOIN
+                  tblPersons ON tblClients.PersonID = tblPersons.PersonID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -47,7 +50,7 @@ namespace DebtManagment_DataAccessLayer
 
         }
 
-        public static int AddNewClientPayment(int UserID, int ClientID, double PayedAmount, DateTime PaymentDate)
+        public static int AddNewClientPayment(int UserID, int ClientID, double PayedAmount)
         {
             //this function will return the new payment id if succeeded and -1 if not.
             int PaymentID = -1;
@@ -64,7 +67,7 @@ namespace DebtManagment_DataAccessLayer
             command.Parameters.AddWithValue("@UserID", UserID);
             command.Parameters.AddWithValue("@ClientID", ClientID);
             command.Parameters.AddWithValue("@PayedAmount", PayedAmount);
-            command.Parameters.AddWithValue("@PaymentDate", PaymentDate);
+            command.Parameters.AddWithValue("@PaymentDate", DateTime.Now);
 
 
 
@@ -94,7 +97,7 @@ namespace DebtManagment_DataAccessLayer
             return PaymentID;
         }
 
-        public static bool UpdateClientPayment(int PaymentID, int UserID, int ClientID, double PayedAmount, DateTime PaymentDate)
+        public static bool UpdateClientPayment(int PaymentID, double PayedAmount)
         {
 
             int rowsAffected = 0;
@@ -111,10 +114,7 @@ namespace DebtManagment_DataAccessLayer
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@PaymentID", PaymentID);
-            command.Parameters.AddWithValue("@UserID", UserID);
-            command.Parameters.AddWithValue("@ClientID", ClientID);
             command.Parameters.AddWithValue("@PayedAmount", PayedAmount);
-            command.Parameters.AddWithValue("@PaymentDate", PaymentDate);
 
 
 
@@ -198,6 +198,10 @@ namespace DebtManagment_DataAccessLayer
                 {
                     connection.Close();
                     return TotalClientPayments;
+                }
+                else
+                {
+                    TotalClientPayments = 0;
                 }
 
             }
