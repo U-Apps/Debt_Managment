@@ -5,11 +5,8 @@ using System.Data.SqlClient;
 
 namespace DebtManagment_DataAccessLayer
 {
-<<<<<<< Updated upstream
-    public static class PaymentsToSupplier
-=======
     public static  class PaymentsToSupplier
->>>>>>> Stashed changes
+
     {
         public static DataTable GetAllPaymentsToSupplier()
         {
@@ -17,9 +14,57 @@ namespace DebtManagment_DataAccessLayer
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"SELECT * FROM PaymentsForSupliers";
+            string query = @"SELECT PaymentsForSupliers.ID, PaymentsForSupliers.UserID, PaymentsForSupliers.SuplierID, tblPersons.Name, PaymentsForSupliers.PayedAmount, PaymentsForSupliers.PaymentDate
+                    FROM     PaymentsForSupliers INNER JOIN
+                  tblSuppliers ON PaymentsForSupliers.SuplierID = tblSuppliers.SupplierID INNER JOIN
+                  tblPersons ON tblSuppliers.PersonID = tblPersons.PersonID";
 
             SqlCommand command = new SqlCommand(query, connection);
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+
+                {
+                    dt.Load(reader);
+                }
+
+                reader.Close();
+
+
+            }
+
+            catch (Exception ex)
+            {
+                // Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return dt;
+
+        }
+
+        public static DataTable GetAllPaymentsToCertainSupplier(int SupplierID)
+        {
+
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"SELECT PaymentsForSupliers.ID, PaymentsForSupliers.UserID, PaymentsForSupliers.SuplierID, tblPersons.Name, PaymentsForSupliers.PayedAmount, PaymentsForSupliers.PaymentDate
+                    FROM     PaymentsForSupliers INNER JOIN
+                  tblSuppliers ON PaymentsForSupliers.SuplierID = tblSuppliers.SupplierID INNER JOIN
+                  tblPersons ON tblSuppliers.PersonID = tblPersons.PersonID where SupplierID = @SupplierID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@SupplierID", SupplierID);
+
 
             try
             {
@@ -98,7 +143,7 @@ namespace DebtManagment_DataAccessLayer
             return PaymentID;
         }
 
-        public static bool UpdatePaymentToSupplier(int PaymentID, int UserID, int SupplierID, double PayedAmount, DateTime PaymentDate)
+        public static bool UpdatePaymentToSupplier(int PaymentID, double PayedAmount)
         {
 
             int rowsAffected = 0;
@@ -106,19 +151,14 @@ namespace DebtManagment_DataAccessLayer
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
             string query = @"UPDATE PaymentsForSupliers
-                                SET UserID = @UserID,
-                                    SuplierID  = @SupplierID,
-                                    PayedAmount = @PayedAmount,
-                                    PaymentDate = @PaymentDate
+                                SET PayedAmount = @PayedAmount,
                                     WHERE ID = @PaymentID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@PaymentID", PaymentID);
-            command.Parameters.AddWithValue("@UserID", UserID);
-            command.Parameters.AddWithValue("@SupplierID", SupplierID);
             command.Parameters.AddWithValue("@PayedAmount", PayedAmount);
-            command.Parameters.AddWithValue("@PaymentDate", PaymentDate);
+
 
 
 

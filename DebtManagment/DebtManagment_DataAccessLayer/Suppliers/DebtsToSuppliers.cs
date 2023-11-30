@@ -13,7 +13,10 @@ namespace DebtManagment_DataAccessLayer
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"SELECT * FROM DebtsToSuppliers";
+            string query = @"SELECT DebtsToSuppliers.ID, DebtsToSuppliers.UserID, tblSuppliers.SupplierID, tblPersons.Name as Supplier_Name, DebtsToSuppliers.AmountOFDebt, DebtsToSuppliers.Material, DebtsToSuppliers.DateOfDebt
+                    FROM     DebtsToSuppliers INNER JOIN
+                  tblSuppliers ON DebtsToSuppliers.SupplierID = tblSuppliers.SupplierID INNER JOIN
+                  tblPersons ON tblSuppliers.PersonID = tblPersons.PersonID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -128,7 +131,7 @@ namespace DebtManagment_DataAccessLayer
 
         }
 
-        public static bool UpdateSupplierDebt(int DebtID, int UserID, int SupplierID, double DebtAmount, string Material)
+        public static bool UpdateSupplierDebt(int DebtID, double DebtAmount, string Material)
         {
 
             int rowsAffected = 0;
@@ -178,7 +181,10 @@ namespace DebtManagment_DataAccessLayer
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"SELECT * FROM DebtsToSuppliers WHERE SupplierID = @SupplierID";
+            string query = @"SELECT DebtsToSuppliers.ID, DebtsToSuppliers.UserID, tblSuppliers.SupplierID, tblPersons.Name as Supplier_Name, DebtsToSuppliers.AmountOFDebt, DebtsToSuppliers.Material, DebtsToSuppliers.DateOfDebt
+                    FROM     DebtsToSuppliers INNER JOIN
+                  tblSuppliers ON DebtsToSuppliers.SupplierID = tblSuppliers.SupplierID INNER JOIN
+                  tblPersons ON tblSuppliers.PersonID = tblPersons.PersonID WHERE SupplierID = @SupplierID";
 
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@SupplierID", SupplierID);
