@@ -161,66 +161,6 @@ namespace DebtManagment_DataAccessLayer
 
         }
 
-        public static bool GetPersonInfoByID(int PersonID, ref string Name,
-                ref string Email, ref string Phone, ref string Address)
-        {
-            bool isFound = false;
-
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = "SELECT * FROM tblPersons WHERE PersonID = @PersonID";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@PersonID", PersonID);
-
-            try
-            {
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-
-                if (reader.Read())
-                {
-                    // The record was found
-                    isFound = true;
-
-                    Name = (string)reader["Name"];
-                    Phone = (string)reader["Phone"];
-                    Address = (string)reader["Address"];
-
-                    //ImagePath: allows null in database so we should handle null
-                    if (reader["Email"] != DBNull.Value)
-                    {
-                        Email = (string)reader["Email"];
-                    }
-                    else
-                    {
-                        Email = "";
-                    }
-
-                }
-                else
-                {
-                    // The record was not found
-                    isFound = false;
-                }
-
-                reader.Close();
-
-
-            }
-            catch (Exception ex)
-            {
-                //Console.WriteLine("Error: " + ex.Message);
-                isFound = false;
-            }
-            finally
-            {
-                connection.Close();
-            }
-
-            return isFound;
-        }
 
 
         private static bool _IsPersonExists(ref int PersonID, string Name, string Phone, string Address)
