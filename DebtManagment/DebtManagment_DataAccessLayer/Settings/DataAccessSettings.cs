@@ -13,7 +13,7 @@ namespace DebtManagment_DataAccessLayer
             get
             {
                 // return $"Server={Server};Database=Debt_Managment_DB;User Id={User_ID};Password={Password};";
-                 return $"Server={Server};Database=Debt_Managment_DB; Integrated Security =True;";
+                 return $"Server=.;Database=Debt_Managment_DB; Integrated Security =True;";
 
             }
         }
