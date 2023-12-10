@@ -50,7 +50,7 @@ namespace DebtManagment_PersentationLayer
                 Notification frmNotify = new Notification("done");
                 frmNotify.Show();
                 this.Hide();
-                DebtManagment_BusinessLayer.ApplicationContext.CurrentUser = clsUser.FindUserByUsernameAndPassword(txt_adminUserName.Text, txt_AdminPassword.Text);
+               // DebtManagment_BusinessLayer.ApplicationContext.CurrentUser = clsUser.FindUserByUsernameAndPassword(txt_adminUserName.Text, txt_AdminPassword.Text);
             }
             else
             {

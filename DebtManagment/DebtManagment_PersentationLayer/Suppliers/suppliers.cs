@@ -24,8 +24,8 @@ namespace DebtManagment_PersentationLayer
 
         private void viewRecord_Click(object sender, EventArgs e)
         {
-            int SupID = (int)DGV_suppliers.CurrentRow.Cells[0].Value;
-            if (SupID!=null)
+            int SupID = GetId();
+            if (SupID!=-1)
             {
                 ShowRecorder.frmShowRecordSupp show_RecorderSupp = new ShowRecorder.frmShowRecordSupp(SupID);
                 show_RecorderSupp.Show();
@@ -124,7 +124,8 @@ namespace DebtManagment_PersentationLayer
                 MessageBox.Show("ليس لديك الصلاحية لهذه العملية", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            int SupID = (int)DGV_suppliers.CurrentRow.Cells[0].Value;
+
+            int SupID = GetId();
             if (clsSupplier.Delete(SupID))
             {
 
@@ -143,12 +144,27 @@ namespace DebtManagment_PersentationLayer
                 MessageBox.Show("ليس لديك الصلاحية لهذه العملية", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            int SuppID = (int)DGV_suppliers.CurrentRow.Cells[0].Value;
-            clsSupplier newSupplierID = clsSupplier.Find(SuppID);
 
-            Suppliers.frmAddSupplier frmaddSupplier = new Suppliers.frmAddSupplier(newSupplierID.ID);
-            frmaddSupplier.ShowDialog();
-            _Update();
+            int SuppID = GetId();
+            if (SuppID!=-1)
+            {
+                clsSupplier newSupplierID = clsSupplier.Find(SuppID);
+
+                Suppliers.frmAddSupplier frmaddSupplier = new Suppliers.frmAddSupplier(newSupplierID.ID);
+                frmaddSupplier.ShowDialog();
+                _Update();
+            }
+           
+        }
+
+        private int GetId()
+        {
+            if (DGV_suppliers.Rows.Count == 0)
+            {
+                MessageBox.Show("لا يوجد عملاء ","خطأ",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return -1;
+            }
+            return (int)DGV_suppliers.CurrentRow.Cells[0].Value;
         }
     }
 }

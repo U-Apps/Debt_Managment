@@ -29,7 +29,7 @@ namespace DebtManagment_PersentationLayer
         private void viewRecord_Click(object sender, EventArgs e)
         {
             int ClntID = (int)DGV_coustomers.CurrentRow.Cells[0].Value;
-            if (ClntID != null)
+            if (ClntID != -1)
             {
                 show_recorder_client show_Recorder = new show_recorder_client( ClntID);
                 show_Recorder.Show();
@@ -45,7 +45,7 @@ namespace DebtManagment_PersentationLayer
                 MessageBox.Show("ليس لديك الصلاحية لهذه العملية", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            int ClntID = (int)DGV_coustomers.CurrentRow.Cells[0].Value;
+            int ClntID = GetId();
             if (clsClint.Delete(ClntID))
             {
                 new Notification("تم الحذف بنجاح").Show();
@@ -62,12 +62,16 @@ namespace DebtManagment_PersentationLayer
                 MessageBox.Show("ليس لديك الصلاحية لهذه العملية", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            int ClntID = (int)DGV_coustomers.CurrentRow.Cells[0].Value;
-            clsClint newClient = clsClint.Find(ClntID);
+            int ClntID = GetId();
+            if (ClntID!=-1)
+            {
+                clsClint newClient = clsClint.Find(ClntID);
 
-            Clients.frmAddClient addClient = new Clients.frmAddClient(newClient.ID);
-            addClient.ShowDialog();
-            DGV_coustomers.DataSource = clsClint.getAllClints();
+                Clients.frmAddClient addClient = new Clients.frmAddClient(newClient.ID);
+                addClient.ShowDialog();
+                DGV_coustomers.DataSource = clsClint.getAllClints();
+            }
+           
         }
 
         private void update_Click(object sender, EventArgs e)
@@ -90,6 +94,16 @@ namespace DebtManagment_PersentationLayer
         {
             DGV_coustomers.DataSource = clsClint.getAllClints();
 
+        }
+
+        private int GetId()
+        {
+            if (DGV_coustomers.Rows.Count == 0)
+            {
+                MessageBox.Show("لا يوجد عملاء ", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            return (int)DGV_coustomers.CurrentRow.Cells[0].Value;
         }
     }
 }

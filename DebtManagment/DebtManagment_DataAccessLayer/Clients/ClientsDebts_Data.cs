@@ -13,7 +13,7 @@ namespace DebtManagment_DataAccessLayer
                 DataTable dt = new DataTable();
                 SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-                string query = @"SELECT ClientsDebts.DebtID, ClientsDebts.UserID, tblClients.ClientID, tblPersons.Name as Client_Name, ClientsDebts.DebtAmount, ClientsDebts.Material, ClientsDebts.DebtDate
+                string query = @"SELECT ClientsDebts.DebtID , ClientsDebts.UserID, tblClients.ClientID, tblPersons.Name as Client_Name, ClientsDebts.DebtAmount, ClientsDebts.Material, ClientsDebts.DebtDate
                     FROM     ClientsDebts INNER JOIN
                   tblClients ON ClientsDebts.ClientID = tblClients.ClientID INNER JOIN
                   tblPersons ON tblClients.PersonID = tblPersons.PersonID";

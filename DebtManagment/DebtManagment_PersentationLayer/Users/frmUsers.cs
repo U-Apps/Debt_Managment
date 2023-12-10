@@ -37,12 +37,15 @@ namespace DebtManagment_PersentationLayer
                 MessageBox.Show("ليس لديك الصلاحية لهذه العملية", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            int UserID = (int) DGV_Users.CurrentRow.Cells[0].Value;
-            MessageBox.Show(UserID.ToString());
-            Users.frmAddUpdateUser frmAddUpdateUser = new Users.frmAddUpdateUser(UserID);
-            frmAddUpdateUser.ShowDialog();
+            int UserID = GetId();
+            if (UserID !=-1)
+            {
+                Users.frmAddUpdateUser frmAddUpdateUser = new Users.frmAddUpdateUser(UserID);
+                frmAddUpdateUser.ShowDialog();
 
-            _UpdateDGV();
+                _UpdateDGV();
+            }
+           
 
         }
 
@@ -64,7 +67,7 @@ namespace DebtManagment_PersentationLayer
                 MessageBox.Show("ليس لديك الصلاحية لهذه العملية", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            int UserID = (int) DGV_Users.CurrentRow.Cells[0].Value;
+            int UserID = GetId();
             if (clsUser.DeleteUser(UserID))
             {
                 new Notification("تم الحذف بنجاح").Show();
@@ -84,6 +87,16 @@ namespace DebtManagment_PersentationLayer
         private void frmUsers_Load(object sender, EventArgs e)
         {
             _UpdateDGV();    
+        }
+
+        private int GetId()
+        {
+            if (DGV_Users.Rows.Count == 0)
+            {
+                MessageBox.Show("لا يوجد عملاء ", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            return (int)DGV_Users.CurrentRow.Cells[0].Value;
         }
     }
 }

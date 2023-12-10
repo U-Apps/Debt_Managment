@@ -215,11 +215,11 @@ FROM     tblSuppliers INNER JOIN
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"SELECT tblSuppliers.SupplierID, tblPersons.Name, 
-		                    tblPersons.PhoneNumber,
-		                    tblPersons.Email,
-		                    tblPersons.Address,
-		                    tblSuppliers.Commercial_Registration
+            string query = @"SELECT tblSuppliers.SupplierID as م , tblPersons.Name as الاسم, 
+		                    tblPersons.PhoneNumber as 'رقم الجوال',
+		                    tblPersons.Email as الايميل ,
+		                    tblPersons.Address as العنوان ,
+		                    tblSuppliers.Commercial_Registration as 'السجل التحاري'
 
                             FROM     tblSuppliers INNER JOIN
                                       tblPersons ON tblSuppliers.PersonID = tblPersons.PersonID;";
