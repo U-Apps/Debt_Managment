@@ -45,6 +45,7 @@ namespace DebtManagment_PersentationLayer
             if (_Login(txt_adminUserName.Text, txt_AdminPassword.Text))
             {
                 MainMenu frmMain = new MainMenu();
+                ResetInputs();
                 frmMain.Show();
                 Notification frmNotify = new Notification("done");
                 frmNotify.Show();
@@ -55,9 +56,19 @@ namespace DebtManagment_PersentationLayer
             {
                 lblwrng.Text = "اسم المستخدم او كلمة المرور خاطئة";
                 lblwrng.Visible = true;
+                ResetInputs();
                 return;
             }
            
+        }
+
+        private void ResetInputs()
+        {
+            txt_adminUserName.Clear();
+            txt_AdminPassword.Clear();
+            txt_adminUserName.Focus();
+            lblwrng.Text = "";
+
         }
 
         private void chk_remmoberPassword_CheckedChanged(object sender, EventArgs e)
