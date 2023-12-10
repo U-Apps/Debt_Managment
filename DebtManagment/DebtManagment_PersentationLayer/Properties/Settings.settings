@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DebtManagment_PersentationLayer.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Campany_Name" Type="System.String" Scope="User">
+      <Value Profile="(Default)">U Apps</Value>
+    </Setting>
+    <Setting Name="Campany_Des" Type="System.String" Scope="User">
+      <Value Profile="(Default)">U Apps for programming tech solutions</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

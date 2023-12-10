@@ -1,0 +1,576 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A87A953C-71FB-45AE-918B-0EB8C145D36F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>DebtManagment_PersentationLayer</RootNamespace>
+    <AssemblyName>DebtManagment_PersentationLayer</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>DebtManagment_PersentationLayer.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Guna.UI2, Version=2.0.4.4, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Guna.UI2.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutUs\AHMED.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AboutUs\AHMED.Designer.cs">
+      <DependentUpon>AHMED.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AboutUs\FAROOQ.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AboutUs\FAROOQ.Designer.cs">
+      <DependentUpon>FAROOQ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AboutUs\FASIL.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AboutUs\FASIL.Designer.cs">
+      <DependentUpon>FASIL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AboutUs\MOHAMMED.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AboutUs\MOHAMMED.Designer.cs">
+      <DependentUpon>MOHAMMED.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AboutUs\SALAH.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AboutUs\SALAH.Designer.cs">
+      <DependentUpon>SALAH.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AboutUs\YAMANI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AboutUs\YAMANI.Designer.cs">
+      <DependentUpon>YAMANI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AboutUs\YOSEF.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AboutUs\YOSEF.Designer.cs">
+      <DependentUpon>YOSEF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Analysis\analysis.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Analysis\analysis.Designer.cs">
+      <DependentUpon>analysis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clients\Client.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Clients\Client.Designer.cs">
+      <DependentUpon>Client.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Clients\frmAddClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Clients\frmAddClient.Designer.cs">
+      <DependentUpon>frmAddClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainMenu\MainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainMenu\MainMenu.Designer.cs">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login\frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings\setting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Settings\setting.Designer.cs">
+      <DependentUpon>setting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MoveForm.cs" />
+    <Compile Include="Notification\Notification.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Notification\Notification.designer.cs">
+      <DependentUpon>Notification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShowRecorder\frmAddDebtCl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowRecorder\frmAddDebtCl.Designer.cs">
+      <DependentUpon>frmAddDebtCl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShowRecorder\frmAddPaymentCl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowRecorder\frmAddPaymentCl.Designer.cs">
+      <DependentUpon>frmAddPaymentCl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShowRecorder\frmAddPaymentSP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowRecorder\frmAddPaymentSP.Designer.cs">
+      <DependentUpon>frmAddPaymentSP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShowRecorder\frmAddUpdateSP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowRecorder\frmAddUpdateSP.Designer.cs">
+      <DependentUpon>frmAddUpdateSP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShowRecorder\frmShowRecordSupp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowRecorder\frmShowRecordSupp.Designer.cs">
+      <DependentUpon>frmShowRecordSupp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShowRecorder\show_recorder_client.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowRecorder\show_recorder_client.Designer.cs">
+      <DependentUpon>show_recorder_client.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Suppliers\frmAddSupplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Suppliers\frmAddSupplier.Designer.cs">
+      <DependentUpon>frmAddSupplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Suppliers\suppliers.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Suppliers\suppliers.Designer.cs">
+      <DependentUpon>suppliers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\frmAddUpdateUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\frmAddUpdateUser.Designer.cs">
+      <DependentUpon>frmAddUpdateUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\frmUsers.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Users\frmUsers.Designer.cs">
+      <DependentUpon>frmUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AboutUs\Us_about.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AboutUs\Us_about.Designer.cs">
+      <DependentUpon>Us_about.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Currency\Us_currency.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Currency\Us_currency.Designer.cs">
+      <DependentUpon>Us_currency.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DB\US_DB.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DB\US_DB.Designer.cs">
+      <DependentUpon>US_DB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="General\Us_generl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="General\Us_generl.Designer.cs">
+      <DependentUpon>Us_generl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home\US_home.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Home\US_home.Designer.cs">
+      <DependentUpon>US_home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NotificationsSettings\Us_notifaction.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NotificationsSettings\Us_notifaction.Designer.cs">
+      <DependentUpon>Us_notifaction.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AboutUs\AHMED.resx">
+      <DependentUpon>AHMED.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AboutUs\FAROOQ.resx">
+      <DependentUpon>FAROOQ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AboutUs\FASIL.resx">
+      <DependentUpon>FASIL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AboutUs\MOHAMMED.resx">
+      <DependentUpon>MOHAMMED.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AboutUs\SALAH.resx">
+      <DependentUpon>SALAH.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AboutUs\YAMANI.resx">
+      <DependentUpon>YAMANI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AboutUs\YOSEF.resx">
+      <DependentUpon>YOSEF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Analysis\analysis.resx">
+      <DependentUpon>analysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Clients\Client.resx">
+      <DependentUpon>Client.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Clients\frmAddClient.resx">
+      <DependentUpon>frmAddClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainMenu\MainMenu.resx">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Notification\Notification.resx">
+      <DependentUpon>Notification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Settings\setting.resx">
+      <DependentUpon>setting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShowRecorder\frmAddDebtCl.resx">
+      <DependentUpon>frmAddDebtCl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShowRecorder\frmAddPaymentCl.resx">
+      <DependentUpon>frmAddPaymentCl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShowRecorder\frmAddPaymentSP.resx">
+      <DependentUpon>frmAddPaymentSP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShowRecorder\frmAddUpdateSP.resx">
+      <DependentUpon>frmAddUpdateSP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShowRecorder\frmShowRecordSupp.resx">
+      <DependentUpon>frmShowRecordSupp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShowRecorder\show_recorder_client.resx">
+      <DependentUpon>show_recorder_client.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Suppliers\frmAddSupplier.resx">
+      <DependentUpon>frmAddSupplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Suppliers\suppliers.resx">
+      <DependentUpon>suppliers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\frmAddUpdateUser.resx">
+      <DependentUpon>frmAddUpdateUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\frmUsers.resx">
+      <DependentUpon>frmUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AboutUs\Us_about.resx">
+      <DependentUpon>Us_about.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Currency\Us_currency.resx">
+      <DependentUpon>Us_currency.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DB\US_DB.resx">
+      <DependentUpon>US_DB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="General\Us_generl.resx">
+      <DependentUpon>Us_generl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home\US_home.resx">
+      <DependentUpon>US_home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NotificationsSettings\Us_notifaction.resx">
+      <DependentUpon>Us_notifaction.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ProjectConfigrations\App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DebtManagment_BusinessLayer\DebtManagment_BusinessLayer.csproj">
+      <Project>{11ec4bda-b5a2-4832-aa1f-9b58a61cb217}</Project>
+      <Name>DebtManagment_BusinessLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\studying.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\people %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\team %283%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\competitor-analysis.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\checkmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sign-out.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logout_icon_151219.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bell-ring %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1700669496388.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit-info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\criminal-record.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-button1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-button2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit-info1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loop1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\criminal-record1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home-button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\supplier.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\customer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\team.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\customer1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\money-loss.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\borrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\about.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\money-loss1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tb.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tb1.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tbb.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Tiny people with huge fine document flat vector illustration [Converted].png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\transfer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gear %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\padlock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\users.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\coustmers.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info_squared_White_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info_squared_Black50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Users_White_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Users_Black50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\analytics_White50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\analytics_black50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\supplier_white_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\supplier_black50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\client_black50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\debtClient_White50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\debtCl_Black50px.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
