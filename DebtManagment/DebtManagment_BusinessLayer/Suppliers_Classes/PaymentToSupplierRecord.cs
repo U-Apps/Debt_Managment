@@ -17,7 +17,7 @@ namespace DebtManagment_BusinessLayer
         public PaymentToSupplierRecord()
         {
             this.recordPaymentID = 0;
-            this.UserId = 0;
+            this.UserId = DebtManagment_BusinessLayer.ApplicationContext.CurrentUser.ID;
             this.SupplierID = 0;
             this.PayedAmount = 0;
             this.PaymentDate = DateTime.Now;

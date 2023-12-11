@@ -25,7 +25,7 @@ namespace DebtManagment_PersentationLayer
 
             DebtManagment_BusinessLayer.ApplicationContext.CampanyName = Properties.Settings.Default.Campany_Name;
             DebtManagment_BusinessLayer.ApplicationContext.CampanyDes = Properties.Settings.Default.Campany_Des;
-            DebtManagment_BusinessLayer.ApplicationContext.CampanyLogo = Image.FromStream(ms);
+        //    DebtManagment_BusinessLayer.ApplicationContext.CampanyLogo = Image.FromStream(ms);
 
         }
         private void US_home_Load(object sender, EventArgs e)

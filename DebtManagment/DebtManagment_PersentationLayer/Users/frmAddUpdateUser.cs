@@ -64,8 +64,8 @@ namespace DebtManagment_PersentationLayer.Users
             }
             else
             {
-                _imageData=new byte[] {};
-                pictureBox1.Image = null;
+               // _imageData= _User.ImgaeData;
+                pictureBox1.Image =  null;
             }
 
 
