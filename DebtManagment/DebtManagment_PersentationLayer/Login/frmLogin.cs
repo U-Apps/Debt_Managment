@@ -11,14 +11,14 @@ using System.Windows.Forms;
 
 namespace DebtManagment_PersentationLayer
 {
-    public partial class Perfect : Form
+    public partial class frmLogin : Form
     {
-        public Perfect()
+        public frmLogin()
         {
             InitializeComponent();
             fPerfect = this;
         }
-        public static Perfect fPerfect { get; set; }
+        public static frmLogin fPerfect { get; set; }
 
         bool _Login(string Username,string Password)
         {

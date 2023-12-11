@@ -243,7 +243,7 @@ namespace DebtManagment_DataAccessLayer
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"select ClientsPayments.PaymentID ,PayedAmount as 'Payed Amount' , PaymentDate as 'Payment Date'  from ClientsPayments
+            string query = @"select ClientsPayments.PaymentID as م,PayedAmount as 'المبلغ المدفوع' , PaymentDate as 'تاريخ الدفع'  from ClientsPayments
                     WHERE ClientID = @ClientID";
 
             SqlCommand command = new SqlCommand(query, connection);

@@ -95,7 +95,7 @@ namespace DebtManagment_PersentationLayer
 
         private void LogOut_Click(object sender, EventArgs e)
         {
-            Perfect.fPerfect.Show();
+            frmLogin.fPerfect.Show();
             this.Close();
         }
 
@@ -167,7 +167,7 @@ namespace DebtManagment_PersentationLayer
 
         private void btnMainMenuClose_Click(object sender, EventArgs e)
         {
-            Perfect.fPerfect.Close();
+            frmLogin.fPerfect.Close();
         }
 
         private void BodyPanel_Paint(object sender, PaintEventArgs e)

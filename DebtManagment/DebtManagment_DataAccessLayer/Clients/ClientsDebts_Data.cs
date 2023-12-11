@@ -182,7 +182,7 @@ namespace DebtManagment_DataAccessLayer
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"SELECT ClientsDebts.DebtID, ClientsDebts.DebtAmount, ClientsDebts.Material, ClientsDebts.DebtDate
+            string query = @"SELECT ClientsDebts.DebtID as م, ClientsDebts.DebtAmount as المبلغ, ClientsDebts.Material as المادة, ClientsDebts.DebtDate as التاريخ
                 FROM   ClientsDebts  where ClientID = @ClientID";
 
             SqlCommand command = new SqlCommand(query, connection);

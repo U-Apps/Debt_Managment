@@ -63,19 +63,27 @@ namespace DebtManagment_PersentationLayer
 
         private void btn_modify_dept_Click(object sender, EventArgs e)
         {
-            int ClientDebtID = (int)DataGridView_dept.CurrentRow.Cells[0].Value;
-            ShowRecorder.frmAddUpdateDebt frmUpdateDebt = new ShowRecorder.frmAddUpdateDebt(ClientDebtID,_Client.ID);
-            frmUpdateDebt.ShowDialog();
+            int ClientDebtID = GetDebtId();
+            if (ClientDebtID != -1)
+            {
+                ShowRecorder.frmAddUpdateDebt frmUpdateDebt = new ShowRecorder.frmAddUpdateDebt(ClientDebtID, _Client.ID);
+                frmUpdateDebt.ShowDialog();
 
-            _updateDebts();
+                _updateDebts();
+            }
+          
         
         }
 
         private void btn_delete_dept_Click(object sender, EventArgs e)
         {
-            int ClientDebtID = (int)DataGridView_dept.CurrentRow.Cells[0].Value;
-            clsClientDebit.delelte(ClientDebtID);
-            _updateDebts();
+            int ClientDebtID = GetDebtId();
+            if (ClientDebtID != 1)
+            {
+                clsClientDebit.delelte(ClientDebtID);
+                _updateDebts();
+            }
+           
 
         }
 
@@ -91,20 +99,48 @@ namespace DebtManagment_PersentationLayer
 
         private void btn_delete_paying_Click(object sender, EventArgs e)
         {
-            int ClientpaymentID = (int)DataGridView_paying.CurrentRow.Cells[0].Value;
-            ClientPaymentstRecord.Delete(ClientpaymentID);
+            int ClientpaymentID = GetPayId();
+            if (ClientpaymentID != 1)
+            {
+                ClientPaymentstRecord.Delete(ClientpaymentID);
 
-            _updatePayments();
+                _updatePayments();
+            }
+           
         }
 
         private void btn_modify_paying_Click(object sender, EventArgs e)
         {
            
-            int ClientpaymentID = (int)DataGridView_paying.CurrentRow.Cells[0].Value;
-            ShowRecorder.frmAddUpdatePayment frmUpdatePayment = new ShowRecorder.frmAddUpdatePayment(ClientpaymentID, _Client.ID);
-            frmUpdatePayment.ShowDialog();
+            int ClientpaymentID = GetPayId();
+            if (ClientpaymentID != 1)
+            {
+                ShowRecorder.frmAddUpdatePayment frmUpdatePayment = new ShowRecorder.frmAddUpdatePayment(ClientpaymentID, _Client.ID);
+                frmUpdatePayment.ShowDialog();
 
-            _updatePayments();
+                _updatePayments();
+            }
+          
+        }
+
+        private int GetDebtId()
+        {
+            if (DataGridView_dept.Rows.Count == 0)
+            {
+                MessageBox.Show("لا يوجد ديون ", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            return (int)DataGridView_dept.CurrentRow.Cells[0].Value;
+        }
+
+        private int GetPayId()
+        {
+            if (DataGridView_paying.Rows.Count == 0)
+            {
+                MessageBox.Show("لا يوجد تسديدات ", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            return (int)DataGridView_paying.CurrentRow.Cells[0].Value;
         }
     }
 }

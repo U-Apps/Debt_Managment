@@ -14,7 +14,7 @@ namespace DebtManagment_PersentationLayer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Perfect());
+            Application.Run(new frmLogin());
 
         }
     }
