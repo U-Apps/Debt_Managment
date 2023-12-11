@@ -153,7 +153,7 @@ namespace DebtManagment_BusinessLayer      //[Logic]
 
         public void RemovePermisson(enUserPermissions OperationPermission)
         {
-            if (OperationPermission.HasFlag((enUserPermissions)Permissions))
+            if (((enUserPermissions)Permissions).HasFlag(OperationPermission))
                 this.Permissions -= (int)OperationPermission;
         }
     }
