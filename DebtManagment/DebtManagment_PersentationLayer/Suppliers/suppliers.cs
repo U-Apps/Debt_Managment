@@ -161,7 +161,7 @@ namespace DebtManagment_PersentationLayer
         {
             if (DGV_suppliers.Rows.Count == 0)
             {
-                MessageBox.Show("لا يوجد عملاء ","خطأ",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show(" لا يوجد موردين ","خطأ",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 return -1;
             }
             return (int)DGV_suppliers.CurrentRow.Cells[0].Value;

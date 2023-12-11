@@ -10,8 +10,7 @@ namespace DebtManagment_BusinessLayer
     {
         public int DebtID { get; private set; }
         public string Material { get; set; }
-        // public int UserID { get; private set; }
-        public int UserID = DebtManagment_BusinessLayer.ApplicationContext.CurrentUser.ID;
+        public int UserID { get; set; }
         public int ClientID { get; set; }
         public double DebtAmount { get; set; }
         public DateTime DebtDate { get; set; }
@@ -33,7 +32,7 @@ namespace DebtManagment_BusinessLayer
         {
             this.Material = "";
             this.DebtID = -1;
-            UserID = -1;
+            this.UserID = DebtManagment_BusinessLayer.ApplicationContext.CurrentUser.ID;
             ClientID = -1;
             DebtAmount = 0;
             DebtDate = DateTime.Now;

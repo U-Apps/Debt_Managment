@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using Guna;                        // Guna UI frame work, [ U should include the Guna.UI.dll in ur PersentationLayer\References]
 using DebtManagment_BusinessLayer; // refernecing the Business layer ....
 using System.Drawing;
+
 namespace DebtManagment_PersentationLayer
 {
     public partial class MainMenu : Form
@@ -94,7 +95,7 @@ namespace DebtManagment_PersentationLayer
 
         private void LogOut_Click(object sender, EventArgs e)
         {
-            Perfect.fPerfect.Show();
+            frmLogin.fPerfect.Show();
             this.Close();
         }
 
@@ -166,7 +167,7 @@ namespace DebtManagment_PersentationLayer
 
         private void btnMainMenuClose_Click(object sender, EventArgs e)
         {
-            Perfect.fPerfect.Close();
+            frmLogin.fPerfect.Close();
         }
 
         private void BodyPanel_Paint(object sender, PaintEventArgs e)

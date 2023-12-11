@@ -9,7 +9,7 @@ namespace DebtManagment_BusinessLayer
     public class ClientPaymentstRecord
     {
         int recordPaymentID { set; get; }
-        public int UserId = ApplicationContext.CurrentUser.ID;
+        public int UserId { set; get; }
         public int ClientID { set; get; }
         public double PayedAmount { set; get; }
         public DateTime PaymentDate {  set; get; }
@@ -19,6 +19,7 @@ namespace DebtManagment_BusinessLayer
         public ClientPaymentstRecord()
         {
             this.recordPaymentID = -1;
+            UserId = ApplicationContext.CurrentUser.ID;
             this.ClientID = 0;
             this.PayedAmount = 0;
             this.PaymentDate = DateTime.Now;

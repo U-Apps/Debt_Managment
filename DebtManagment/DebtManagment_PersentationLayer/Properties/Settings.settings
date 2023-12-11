@@ -8,5 +8,8 @@
     <Setting Name="Campany_Des" Type="System.String" Scope="User">
       <Value Profile="(Default)">U Apps for programming tech solutions</Value>
     </Setting>
+    <Setting Name="Logo" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

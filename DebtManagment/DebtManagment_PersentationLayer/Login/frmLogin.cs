@@ -11,14 +11,14 @@ using System.Windows.Forms;
 
 namespace DebtManagment_PersentationLayer
 {
-    public partial class Perfect : Form
+    public partial class frmLogin : Form
     {
-        public Perfect()
+        public frmLogin()
         {
             InitializeComponent();
             fPerfect = this;
         }
-        public static Perfect fPerfect { get; set; }
+        public static frmLogin fPerfect { get; set; }
 
         bool _Login(string Username,string Password)
         {
@@ -50,7 +50,6 @@ namespace DebtManagment_PersentationLayer
                 Notification frmNotify = new Notification("تم التسجيل بنجاح");
                 frmNotify.Show();
                 this.Hide();
-               // DebtManagment_BusinessLayer.ApplicationContext.CurrentUser = clsUser.FindUserByUsernameAndPassword(txt_adminUserName.Text, txt_AdminPassword.Text);
             }
             else
             {

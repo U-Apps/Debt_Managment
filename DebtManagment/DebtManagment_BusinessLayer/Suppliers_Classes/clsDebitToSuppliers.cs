@@ -30,7 +30,7 @@ namespace DebtManagment_BusinessLayer
         public clsDebitToSuppliers()
         {
             this.DebitID = -1;
-            UserID = -1;
+            this.UserID = DebtManagment_BusinessLayer.ApplicationContext.CurrentUser.ID;
             SupplierID = -1;
             Amount = 0;
             this.Material = "";

@@ -53,36 +53,52 @@ namespace DebtManagment_PersentationLayer.ShowRecorder
 
         private void btn_delete_dept_Click(object sender, System.EventArgs e)
         {
-            int SuppID = (int)DataGridView_dept.CurrentRow.Cells[0].Value;
-            clsDebitToSuppliers.delelte(SuppID);
-            _updateDebts();
+            int SuppID = GetDebtId();
+            if (SuppID != -1)
+            {
+                clsDebitToSuppliers.delelte(SuppID);
+                _updateDebts();
+            }
+           
         }
 
         private void btn_modify_dept_Click(object sender, System.EventArgs e)
         {
-            int SuppDebtID = (int)DataGridView_dept.CurrentRow.Cells[0].Value;
-            ShowRecorder.frmAddUpdateSP frmUpdateDebt = new ShowRecorder.frmAddUpdateSP(SuppDebtID, _Supplier.ID);
-            frmUpdateDebt.ShowDialog();
+            int SuppDebtID = GetDebtId();
+            if (SuppDebtID != -1)
+            {
+                ShowRecorder.frmAddUpdateSP frmUpdateDebt = new ShowRecorder.frmAddUpdateSP(SuppDebtID, _Supplier.ID);
+                frmUpdateDebt.ShowDialog();
 
-            _updateDebts();
+                _updateDebts();
+            }
+          
         }
 
         private void btn_delete_paying_Click(object sender, System.EventArgs e)
         {
-            int SupplierPaymentID = (int)DataGridView_paying.CurrentRow.Cells[0].Value;
-            PaymentToSupplierRecord.Delete(SupplierPaymentID);
+            int SupplierPaymentID = GetPayId();
+            if (SupplierPaymentID != -1)
+            {
+                PaymentToSupplierRecord.Delete(SupplierPaymentID);
 
-            _updatePayments();
+                _updatePayments();
+            }
+          
         }
 
         private void btn_modify_paying_Click(object sender, System.EventArgs e)
         {
-            int SupplierPaymentID = (int)DataGridView_paying.CurrentRow.Cells[0].Value;
-            ShowRecorder.frmAddPaymentSP frmUpdatePayment = new ShowRecorder.frmAddPaymentSP(SupplierPaymentID, _Supplier.ID);
-            frmUpdatePayment.ShowDialog();
+            int SupplierPaymentID = GetPayId();
+            if (SupplierPaymentID != -1)
+            {
+                ShowRecorder.frmAddPaymentSP frmUpdatePayment = new ShowRecorder.frmAddPaymentSP(SupplierPaymentID, _Supplier.ID);
+                frmUpdatePayment.ShowDialog();
 
-            _updatePayments();
+                _updatePayments();
+            }
         }
+           
 
         private void btn_add_paying_Click(object sender, System.EventArgs e)
         {
@@ -90,6 +106,26 @@ namespace DebtManagment_PersentationLayer.ShowRecorder
             frmAddPayment.ShowDialog();
 
             _updatePayments();
+        }
+
+        private int GetDebtId()
+        {
+            if (DataGridView_dept.Rows.Count == 0)
+            {
+                MessageBox.Show("لا يوجد ديون ", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            return (int)DataGridView_dept.CurrentRow.Cells[0].Value;
+        }
+
+        private int GetPayId()
+        {
+            if (DataGridView_paying.Rows.Count == 0)
+            {
+                MessageBox.Show("لا يوجد تسديدات ", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            return (int)DataGridView_paying.CurrentRow.Cells[0].Value;
         }
     }
 }

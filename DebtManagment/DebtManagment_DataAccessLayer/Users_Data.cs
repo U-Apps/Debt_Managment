@@ -327,7 +327,7 @@ namespace DebtManagment_DataAccessLayer
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"SELECT tblUsers.UserID as م, tblPersons.Name as الاسم, tblPersons.PhoneNumber 'رقم الجوال', tblPersons.Email as الايميل, tblUsers.SSN as 'الرقم الوطني', tblUsers.PersonalPicture as الصورة, tblUsers.Username as 'اسم المستخدم', tblUsers.Password as 'كلمة المرور'
+            string query = @"SELECT tblUsers.UserID as م, tblPersons.Name as الاسم, tblPersons.PhoneNumber 'رقم الجوال', tblPersons.Email as الايميل, tblUsers.SSN as 'الرقم الوطني',  tblUsers.Username as 'اسم المستخدم', tblUsers.Password as 'كلمة المرور'
                         FROM     tblUsers INNER JOIN
                   tblPersons ON tblUsers.PersonID = tblPersons.PersonID";
 

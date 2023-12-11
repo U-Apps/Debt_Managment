@@ -51,8 +51,8 @@
     <Compile Include="Suppliers_Classes\clsDebitToSuppliers.cs" />
     <Compile Include="clsPerson.cs" />
     <Compile Include="Suppliers_Classes\clsSupplier.cs" />
-    <Compile Include="clsUser.cs" />
-    <Compile Include="enUserPermissions.cs" />
+    <Compile Include="User_Classes\clsUser.cs" />
+    <Compile Include="User_Classes\enUserPermissions.cs" />
     <Compile Include="Suppliers_Classes\PaymentToSupplierRecord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
