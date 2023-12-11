@@ -140,7 +140,8 @@ namespace DebtManagment_BusinessLayer      //[Logic]
             //    return true;
             //else
             //    return false;
-            return OperationPermission.HasFlag((enUserPermissions)Permissions);
+            //return OperationPermission.HasFlag((enUserPermissions)Permissions);
+            return ((enUserPermissions)Permissions).HasFlag(OperationPermission);
 
         }
 
