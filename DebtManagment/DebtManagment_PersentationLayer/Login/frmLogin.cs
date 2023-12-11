@@ -47,7 +47,7 @@ namespace DebtManagment_PersentationLayer
                 MainMenu frmMain = new MainMenu();
                 ResetInputs();
                 frmMain.Show();
-                Notification frmNotify = new Notification("done");
+                Notification frmNotify = new Notification("تم التسجيل بنجاح");
                 frmNotify.Show();
                 this.Hide();
                // DebtManagment_BusinessLayer.ApplicationContext.CurrentUser = clsUser.FindUserByUsernameAndPassword(txt_adminUserName.Text, txt_AdminPassword.Text);
@@ -56,6 +56,8 @@ namespace DebtManagment_PersentationLayer
             {
                 lblwrng.Text = "اسم المستخدم او كلمة المرور خاطئة";
                 lblwrng.Visible = true;
+                txt_adminUserName.BorderColor = Color.Red;
+                txt_AdminPassword.BorderColor = Color.Red;
                 ResetInputs();
                 return;
             }
@@ -67,7 +69,7 @@ namespace DebtManagment_PersentationLayer
             txt_adminUserName.Clear();
             txt_AdminPassword.Clear();
             txt_adminUserName.Focus();
-            lblwrng.Text = "";
+            //lblwrng.Text = "";
 
         }
 

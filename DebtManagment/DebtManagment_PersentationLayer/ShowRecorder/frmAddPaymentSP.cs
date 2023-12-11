@@ -69,7 +69,10 @@ namespace DebtManagment_PersentationLayer.ShowRecorder
         {
             if (txtAmountOfMoney.Text == "")
             {
-                MessageBox.Show("please fill all fields");
+                //MessageBox.Show("please fill all fields");
+
+                txtAmountOfMoney.BorderColor = Color.Red;
+                txtAmountOfMoney.PlaceholderText = "قم بتعبئة الحقل ";
                 return;
             }
             if (double.TryParse(txtAmountOfMoney.Text, out double amount))
@@ -78,7 +81,10 @@ namespace DebtManagment_PersentationLayer.ShowRecorder
             }
             else
             {
-                new Notification("قيمة السعر غير صحيحة").Show();
+                //new Notification("قيمة السعر غير صحيحة").Show();
+
+                txtAmountOfMoney.Clear();
+                txtAmountOfMoney.PlaceholderText = "قيمة السعر غير صحيحة";
                 return;
             }
 
@@ -87,11 +93,11 @@ namespace DebtManagment_PersentationLayer.ShowRecorder
 
             if (_SupplierPayment.Save())
             {
-                MessageBox.Show("changes saved succusfully");
+                MessageBox.Show("تمت العملية بنجاح");
             }
             else
             {
-                MessageBox.Show("Error Occur");
+                MessageBox.Show("حدوث خطاء في العملية");
             }
 
             this.Close();

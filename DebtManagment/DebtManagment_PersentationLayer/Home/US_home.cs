@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace DebtManagment_PersentationLayer
 {
     public partial class US_home : UserControl
@@ -19,7 +20,7 @@ namespace DebtManagment_PersentationLayer
 
         private void US_home_Load(object sender, EventArgs e)
         {
-
+            TheTime.Text = DateTime.Now.ToString();
         }
 
         private void users1_Load(object sender, EventArgs e)

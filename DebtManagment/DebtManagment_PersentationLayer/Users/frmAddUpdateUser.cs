@@ -97,16 +97,84 @@ namespace DebtManagment_PersentationLayer.Users
             string SSN = txtSSN.Text.Trim();
             string Address = txtUserAddress.Text.Trim();
 
-            if (!(clsValidatePatterns.IsMatch(clsValidatePatterns.FullNamPatterne, ref name) &&
-                clsValidatePatterns.IsMatch(clsValidatePatterns.PhoneNumberPattern, ref PhoneNumber) &&
-                clsValidatePatterns.IsMatch(clsValidatePatterns.EmailPattern, ref Email) &&
-                clsValidatePatterns.IsMatch(clsValidatePatterns.AddressPattern, ref Address) &&
-                clsValidatePatterns.IsMatch(clsValidatePatterns.IdentityNumberPattern, ref SSN)
-                ))
+            //if (!(clsValidatePatterns.IsMatch(clsValidatePatterns.FullNamPatterne, ref name) &&
+            //    clsValidatePatterns.IsMatch(clsValidatePatterns.PhoneNumberPattern, ref PhoneNumber) &&
+            //    clsValidatePatterns.IsMatch(clsValidatePatterns.EmailPattern, ref Email) &&
+            //    clsValidatePatterns.IsMatch(clsValidatePatterns.AddressPattern, ref Address) &&
+            //    clsValidatePatterns.IsMatch(clsValidatePatterns.IdentityNumberPattern, ref SSN)
+            //    ))
+            //{
+            //    new Notification("أحد الحقول خاطئة").Show();
+            //    return;
+            //}
+
+
+
+            if (!clsValidatePatterns.IsMatch(clsValidatePatterns.FullNamPatterne, ref name))
             {
-                new Notification("أحد الحقول خاطئة").Show();
+
+                txtUserFullName.BorderColor = Color.Red;
+                txtUserFullName.Clear();
+                txtUserFullName.PlaceholderText = "خطا في الادخال";
+
+
                 return;
             }
+            else txtUserFullName.BorderColor = Color.White;
+
+            if (!clsValidatePatterns.IsMatch(clsValidatePatterns.PhoneNumberPattern, ref PhoneNumber))
+            {
+
+                txtPhoneNumber.BorderColor = Color.Red;
+                txtPhoneNumber.Clear();
+                txtPhoneNumber.PlaceholderText = "خطا في الادخال";
+
+
+                return;
+            }
+            else txtPhoneNumber.BorderColor = Color.White;
+
+            if (!clsValidatePatterns.IsMatch(clsValidatePatterns.EmailPattern, ref Email))
+            {
+
+                txtUserEmail.BorderColor = Color.Red;
+                txtUserEmail.Clear();
+                txtUserEmail.PlaceholderText = "خطا في الادخال";
+
+
+                return;
+            }
+            else txtUserEmail.BorderColor = Color.White;
+
+
+
+            if (!clsValidatePatterns.IsMatch(clsValidatePatterns.AddressPattern, ref Address))
+            {
+
+                txtUserAddress.BorderColor = Color.Red;
+                txtUserAddress.Clear();
+                txtUserAddress.PlaceholderText = "خطا في الادخال";
+
+
+                return;
+            }
+
+
+            if (!clsValidatePatterns.IsMatch(clsValidatePatterns.IdentityNumberPattern, ref SSN))
+            {
+
+                txtSSN.BorderColor = Color.Red;
+                txtSSN.Clear();
+                txtSSN.PlaceholderText = "خطا في الادخال";
+
+
+                return;
+            }
+            else txtSSN.BorderColor = Color.White;
+
+
+
+
             _User.FullName = name;
             _User.PhoneNumber = PhoneNumber;
             _User.Email = Email;

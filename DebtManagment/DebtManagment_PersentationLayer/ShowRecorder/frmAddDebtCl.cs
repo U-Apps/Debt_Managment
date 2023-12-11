@@ -34,7 +34,14 @@ namespace DebtManagment_PersentationLayer.ShowRecorder
             
             if (txtMateraicl.Text == "" || txtPrice.Text == "")
             {
-                new Notification("يرجى تعبئة جميع الحقول").Show();
+                //new Notification("يرجى تعبئة جميع الحقول").Show();
+
+                txtMateraicl.BorderColor = System.Drawing.Color.Red;
+                txtPrice.BorderColor = System.Drawing.Color.Red;
+                txtMateraicl.PlaceholderText = "الحقل فاضي";
+                txtPrice.PlaceholderText = "الحقل فاضي";
+                
+
                 return;
             }
             if (double.TryParse(txtPrice.Text , out double amount))
@@ -43,7 +50,9 @@ namespace DebtManagment_PersentationLayer.ShowRecorder
             }
             else
             {
-                new Notification("قيمة السعر غير صحيحة").Show();
+                //new Notification("قيمة السعر غير صحيحة").Show();
+                txtPrice.Clear();
+                txtPrice.PlaceholderText = "قمية السعر غير صحيحة";
                 return;
             }
                 _ClientDebt.Material = txtMateraicl.Text;
@@ -53,11 +62,11 @@ namespace DebtManagment_PersentationLayer.ShowRecorder
 
             if (_ClientDebt.Save())
             {
-                MessageBox.Show("debt added succesfully");
+                MessageBox.Show("تمت الاضافه بنجاح");
             }
             else
             {
-                MessageBox.Show("faild to add debt");
+                MessageBox.Show("فشلت الاضافه ");
 
             }
 

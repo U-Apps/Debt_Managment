@@ -52,23 +52,23 @@
             this.money_P.Controls.Add(this.txtAmountOfMoney);
             this.money_P.Dock = System.Windows.Forms.DockStyle.Fill;
             this.money_P.Location = new System.Drawing.Point(0, 0);
-            this.money_P.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.money_P.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.money_P.Name = "money_P";
-            this.money_P.Size = new System.Drawing.Size(548, 205);
+            this.money_P.Size = new System.Drawing.Size(365, 140);
             this.money_P.TabIndex = 9;
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.SystemColors.Window;
+            this.button2.BackColor = System.Drawing.Color.Transparent;
             this.button2.BackgroundImage = global::DebtManagment_PersentationLayer.Properties.Resources.delete;
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.ForeColor = System.Drawing.Color.Transparent;
             this.button2.Location = new System.Drawing.Point(-1, 0);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(53, 39);
+            this.button2.Size = new System.Drawing.Size(35, 27);
             this.button2.TabIndex = 10;
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -83,10 +83,10 @@
             this.btn_close.FillColor = System.Drawing.Color.White;
             this.btn_close.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btn_close.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(41)))), ((int)(((byte)(123)))));
-            this.btn_close.Location = new System.Drawing.Point(181, 138);
-            this.btn_close.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn_close.Location = new System.Drawing.Point(121, 94);
+            this.btn_close.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.btn_close.Name = "btn_close";
-            this.btn_close.Size = new System.Drawing.Size(135, 33);
+            this.btn_close.Size = new System.Drawing.Size(90, 23);
             this.btn_close.TabIndex = 7;
             this.btn_close.Text = "اغلاق";
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
@@ -101,10 +101,10 @@
             this.add_money_toTable.FillColor = System.Drawing.Color.White;
             this.add_money_toTable.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.add_money_toTable.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(41)))), ((int)(((byte)(123)))));
-            this.add_money_toTable.Location = new System.Drawing.Point(336, 138);
-            this.add_money_toTable.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.add_money_toTable.Location = new System.Drawing.Point(224, 94);
+            this.add_money_toTable.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.add_money_toTable.Name = "add_money_toTable";
-            this.add_money_toTable.Size = new System.Drawing.Size(135, 33);
+            this.add_money_toTable.Size = new System.Drawing.Size(90, 23);
             this.add_money_toTable.TabIndex = 5;
             this.add_money_toTable.Text = "اضافة";
             this.add_money_toTable.Click += new System.EventHandler(this.add_money_toTable_Click);
@@ -113,9 +113,10 @@
             // 
             this.label10.AutoSize = true;
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(404, 1);
+            this.label10.Location = new System.Drawing.Point(277, 7);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(93, 19);
+            this.label10.Size = new System.Drawing.Size(64, 13);
             this.label10.TabIndex = 4;
             this.label10.Text = "ادخال الدفعه";
             // 
@@ -124,9 +125,10 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(293, 36);
+            this.label11.Location = new System.Drawing.Point(195, 25);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(177, 25);
+            this.label11.Size = new System.Drawing.Size(115, 17);
             this.label11.TabIndex = 3;
             this.label11.Text = "ادخل المبلغ المراد دفعه ";
             // 
@@ -143,14 +145,14 @@
             this.txtAmountOfMoney.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAmountOfMoney.ForeColor = System.Drawing.Color.Black;
             this.txtAmountOfMoney.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtAmountOfMoney.Location = new System.Drawing.Point(71, 65);
-            this.txtAmountOfMoney.Margin = new System.Windows.Forms.Padding(9, 8, 9, 8);
+            this.txtAmountOfMoney.Location = new System.Drawing.Point(47, 44);
+            this.txtAmountOfMoney.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.txtAmountOfMoney.Multiline = true;
             this.txtAmountOfMoney.Name = "txtAmountOfMoney";
             this.txtAmountOfMoney.PasswordChar = '\0';
             this.txtAmountOfMoney.PlaceholderText = "";
             this.txtAmountOfMoney.SelectedText = "";
-            this.txtAmountOfMoney.Size = new System.Drawing.Size(401, 62);
+            this.txtAmountOfMoney.Size = new System.Drawing.Size(267, 42);
             this.txtAmountOfMoney.TabIndex = 2;
             // 
             // EliSupp
@@ -166,12 +168,11 @@
             // 
             // frmAddPaymentSP
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(548, 205);
+            this.ClientSize = new System.Drawing.Size(365, 140);
             this.Controls.Add(this.money_P);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmAddPaymentSP";
             this.Text = "frmAddPaymentSP";
             this.Load += new System.EventHandler(this.frmAddPaymentSP_Load);

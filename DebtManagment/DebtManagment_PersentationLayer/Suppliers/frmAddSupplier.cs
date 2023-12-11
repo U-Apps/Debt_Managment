@@ -53,37 +53,93 @@ namespace DebtManagment_PersentationLayer.Suppliers
             //    return;
             //}
 
-            string ErrorMsg ="";
-            if(!clsValidatePatterns.IsMatch(clsValidatePatterns.FullNamPatterne,ref name))
+            //string ErrorMsg ="";
+            //if(!clsValidatePatterns.IsMatch(clsValidatePatterns.FullNamPatterne,ref name))
+            //{
+            //    ErrorMsg = $"{lblSupplierName.Text} is Incorrect formate!";
+            //    new Notification(ErrorMsg).Show();
+            //    return;
+            //}
+            //if (!clsValidatePatterns.IsMatch(clsValidatePatterns.PhoneNumberPattern, ref PhoneNumber))
+            //{
+            //    ErrorMsg = $"{lblPhone.Text} is Incorrect formate";
+            //    new Notification(ErrorMsg).Show();
+            //    return;
+            //}
+            //if (!clsValidatePatterns.IsMatch(clsValidatePatterns.AddressPattern, ref Address))
+            //{
+            //    ErrorMsg = $"{lblAddress.Text} is Incorrect formate!";
+            //    new Notification(ErrorMsg).Show();
+            //    return;
+            //}
+            //if (!clsValidatePatterns.IsMatch(clsValidatePatterns.EmailPattern, ref Email))
+            //{
+            //    ErrorMsg = $"{lblEmail.Text} is Incorrect formate!";
+            //    new Notification(ErrorMsg).Show();
+            //    return;
+            //}
+            //if (!clsValidatePatterns.IsMatch(clsValidatePatterns.IdentityNumberPattern, ref Commercial_Registration))
+            //{
+            //    ErrorMsg = $"{lblCommercial.Text} is Incorrect formate!";
+            //    new Notification(ErrorMsg).Show();
+            //    return;
+            //}
+
+            if (!clsValidatePatterns.IsMatch(clsValidatePatterns.FullNamPatterne, ref name))
             {
-                ErrorMsg = $"{lblSupplierName.Text} is Incorrect formate!";
-                new Notification(ErrorMsg).Show();
+                //ErrorMsg = $"{lblSupplierName.Text} is Incorrect formate!";
+                txt_SuppliersName.BorderColor = Color.Red;
+                txt_SuppliersName.Clear();
+                txt_SuppliersName.PlaceholderText = "خطا في الادخال";
+
+
+                //new Notification(ErrorMsg).Show();
                 return;
             }
+            else txt_SuppliersName.BorderColor = Color.White;
             if (!clsValidatePatterns.IsMatch(clsValidatePatterns.PhoneNumberPattern, ref PhoneNumber))
             {
-                ErrorMsg = $"{lblPhone.Text} is Incorrect formate";
-                new Notification(ErrorMsg).Show();
+                //ErrorMsg = $"{lblPhone.Text} is Incorrect formate";
+                txt_SuppliersPhone.BorderColor = Color.Red;
+                txt_SuppliersPhone.Clear();
+                txt_SuppliersPhone.PlaceholderText = "خطا في الادخال";
+
+
                 return;
             }
+            else txt_SuppliersPhone.BorderColor = Color.White;
+
             if (!clsValidatePatterns.IsMatch(clsValidatePatterns.AddressPattern, ref Address))
             {
-                ErrorMsg = $"{lblAddress.Text} is Incorrect formate!";
-                new Notification(ErrorMsg).Show();
+                //ErrorMsg = $"{lblAddress.Text} is Incorrect formate!";
+                txt_SuppliersAdress.BorderColor = Color.Red;
+                txt_SuppliersAdress.Clear();
+                txt_SuppliersAdress.PlaceholderText = "خطا في الادخال";
+
+                //new Notification(ErrorMsg).Show();
                 return;
             }
+            txt_SuppliersAdress.BorderColor = Color.White;
             if (!clsValidatePatterns.IsMatch(clsValidatePatterns.EmailPattern, ref Email))
             {
-                ErrorMsg = $"{lblEmail.Text} is Incorrect formate!";
-                new Notification(ErrorMsg).Show();
+                //ErrorMsg = $"{lblEmail.Text} is Incorrect formate!";
+                txt_SuppliersEmail.BorderColor = Color.Red;
+                txt_SuppliersEmail.Clear();
+                txt_SuppliersEmail.PlaceholderText = "خطا في الادخال";
+                //new Notification(ErrorMsg).Show();
                 return;
             }
+            else txt_SuppliersEmail.BorderColor = Color.White;
             if (!clsValidatePatterns.IsMatch(clsValidatePatterns.IdentityNumberPattern, ref Commercial_Registration))
             {
-                ErrorMsg = $"{lblCommercial.Text} is Incorrect formate!";
-                new Notification(ErrorMsg).Show();
+                //ErrorMsg = $"{lblCommercial.Text} is Incorrect formate!";
+                txt_SuppliersCommecial.BorderColor = Color.Red;
+                txt_SuppliersCommecial.Clear();
+                txt_SuppliersCommecial.PlaceholderText = "خطا في الادخال";
+                //new Notification(ErrorMsg).Show();
                 return;
             }
+            else txt_SuppliersCommecial.BorderColor = Color.White;
 
 
 

@@ -39,15 +39,61 @@ namespace DebtManagment_PersentationLayer.Clients
             string Address = txt_CoustmerAdress.Text.Trim();
            string SSN = txt_SSN.Text.Trim();
             string Commercial_Registration = txt_commecial.Text.Trim();
-            if (!(clsValidatePatterns.IsMatch(clsValidatePatterns.FullNamPatterne, ref name) &&
-                clsValidatePatterns.IsMatch(clsValidatePatterns.PhoneNumberPattern, ref PhoneNumber)  &&
-                clsValidatePatterns.IsMatch(clsValidatePatterns.EmailPattern, ref Email) &&
-                clsValidatePatterns.IsMatch(clsValidatePatterns.AddressPattern, ref Address)
-                ))
+            //if (!(clsValidatePatterns.IsMatch(clsValidatePatterns.FullNamPatterne, ref name) &&
+            //    clsValidatePatterns.IsMatch(clsValidatePatterns.PhoneNumberPattern, ref PhoneNumber)  &&
+            //    clsValidatePatterns.IsMatch(clsValidatePatterns.EmailPattern, ref Email) &&
+            //    clsValidatePatterns.IsMatch(clsValidatePatterns.AddressPattern, ref Address)
+            //    ))
+            //{
+            //    new Notification("أحد الحقول خاطئة").Show();
+            //    return;
+            //}
+
+            if (!(clsValidatePatterns.IsMatch(clsValidatePatterns.FullNamPatterne, ref name)))
             {
-                new Notification("أحد الحقول خاطئة").Show();
+
+
+                txt_CoustmerName.BorderColor = Color.Red;
+                txt_CoustmerName.Clear();
+                txt_CoustmerName.PlaceholderText = "خطا في الادخال";
                 return;
             }
+            else txt_CoustmerName.BorderColor = Color.White;
+
+            if (!(clsValidatePatterns.IsMatch(clsValidatePatterns.PhoneNumberPattern, ref PhoneNumber)))
+            {
+
+                txt_CustomerPhone.BorderColor = Color.Red;
+                txt_CoustmerName.Clear();
+                txt_CoustmerName.PlaceholderText = "خطا في الادخال";
+                return;
+            }
+            else txt_CustomerPhone.BorderColor = Color.White;
+
+
+            if (!(clsValidatePatterns.IsMatch(clsValidatePatterns.EmailPattern, ref Email)))
+            {
+
+                txt_CoustmerEmail.BorderColor = Color.Red;
+                txt_CoustmerEmail.Clear();
+                txt_CoustmerEmail.PlaceholderText = "خطا في الادخال";
+                return;
+            }
+            txt_CoustmerEmail.BorderColor = Color.White;
+
+
+
+            if (!(clsValidatePatterns.IsMatch(clsValidatePatterns.AddressPattern, ref Address)))
+            {
+
+                txt_CoustmerAdress.BorderColor = Color.Red;
+                txt_CoustmerAdress.Clear();
+                txt_CoustmerAdress.PlaceholderText = "خطا في الادخال";
+                return;
+            }
+            txt_CoustmerAdress.BorderColor = Color.White;
+
+
 
 
             _Client.FullName = txt_CoustmerName.Text;
@@ -59,8 +105,14 @@ namespace DebtManagment_PersentationLayer.Clients
             {
                 if(!clsValidatePatterns.IsMatch(clsValidatePatterns.IdentityNumberPattern, ref SSN))
                 {
-                    new Notification("SSN خاطئ").Show();
+                    //new Notification("SSN خاطئ").Show();
+
+
+                   txt_SSN.BorderColor = Color.Red;
+                    txt_SSN.Clear();
+                    txt_SSN.PlaceholderText = "خطا في الادخال";
                 }
+                txt_SSN.BorderColor = Color.White;
                 _Client.Classification = 1;
                 _Client.SSN = txt_SSN.Text;
                 _Client.Commercial_Registration = "";
@@ -70,8 +122,14 @@ namespace DebtManagment_PersentationLayer.Clients
             {
                 if (!clsValidatePatterns.IsMatch(clsValidatePatterns.IdentityNumberPattern, ref Commercial_Registration))
                 {
-                    new Notification("Commercial_Registration خاطئ").Show();
+                    //new Notification("Commercial_Registration خاطئ").Show();
+
+                    txt_commecial.BorderColor = Color.Red;
+                    txt_commecial.Clear();
+                    txt_commecial.PlaceholderText = "خطا في الادخال";
+
                 }
+                txt_commecial.BorderColor = Color.White;
                 _Client.Classification = 2;
                 _Client.Commercial_Registration = txt_commecial.Text;
                 _Client.SSN = "";
