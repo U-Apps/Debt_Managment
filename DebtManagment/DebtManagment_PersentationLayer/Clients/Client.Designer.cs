@@ -47,6 +47,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.DGV_coustomers = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_coustomers)).BeginInit();
@@ -57,9 +59,9 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1104, 50);
+            this.panel1.Size = new System.Drawing.Size(946, 41);
             this.panel1.TabIndex = 2;
             // 
             // label1
@@ -67,9 +69,9 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1104, 50);
+            this.label1.Size = new System.Drawing.Size(946, 41);
             this.label1.TabIndex = 1;
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -84,10 +86,10 @@
             this.panel3.Controls.Add(this.panel5);
             this.panel3.Controls.Add(this.panel4);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 658);
-            this.panel3.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.panel3.Location = new System.Drawing.Point(0, 534);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1104, 98);
+            this.panel3.Size = new System.Drawing.Size(946, 80);
             this.panel3.TabIndex = 4;
             // 
             // add
@@ -103,10 +105,10 @@
             this.add.ForeColor = System.Drawing.Color.Black;
             this.add.Image = global::DebtManagment_PersentationLayer.Properties.Resources.add_button2;
             this.add.ImageSize = new System.Drawing.Size(30, 30);
-            this.add.Location = new System.Drawing.Point(892, 0);
-            this.add.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.add.Location = new System.Drawing.Point(764, 0);
+            this.add.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.add.Name = "add";
-            this.add.Size = new System.Drawing.Size(172, 98);
+            this.add.Size = new System.Drawing.Size(148, 80);
             this.add.TabIndex = 6;
             this.add.Text = "إضافة";
             this.add.Tile = true;
@@ -125,10 +127,10 @@
             this.delete.ForeColor = System.Drawing.Color.Black;
             this.delete.Image = global::DebtManagment_PersentationLayer.Properties.Resources.user1;
             this.delete.ImageSize = new System.Drawing.Size(30, 30);
-            this.delete.Location = new System.Drawing.Point(726, 0);
-            this.delete.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.delete.Location = new System.Drawing.Point(622, 0);
+            this.delete.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.delete.Name = "delete";
-            this.delete.Size = new System.Drawing.Size(166, 98);
+            this.delete.Size = new System.Drawing.Size(142, 80);
             this.delete.TabIndex = 5;
             this.delete.Text = "حذف";
             this.delete.Tile = true;
@@ -147,10 +149,10 @@
             this.edit.ForeColor = System.Drawing.Color.Black;
             this.edit.Image = global::DebtManagment_PersentationLayer.Properties.Resources.edit_info1;
             this.edit.ImageSize = new System.Drawing.Size(30, 30);
-            this.edit.Location = new System.Drawing.Point(572, 0);
-            this.edit.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.edit.Location = new System.Drawing.Point(490, 0);
+            this.edit.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.edit.Name = "edit";
-            this.edit.Size = new System.Drawing.Size(154, 98);
+            this.edit.Size = new System.Drawing.Size(132, 80);
             this.edit.TabIndex = 4;
             this.edit.Text = "تعديل";
             this.edit.Tile = true;
@@ -169,13 +171,14 @@
             this.print.ForeColor = System.Drawing.Color.Black;
             this.print.Image = global::DebtManagment_PersentationLayer.Properties.Resources.printer1;
             this.print.ImageSize = new System.Drawing.Size(30, 30);
-            this.print.Location = new System.Drawing.Point(406, 0);
-            this.print.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.print.Location = new System.Drawing.Point(348, 0);
+            this.print.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.print.Name = "print";
-            this.print.Size = new System.Drawing.Size(166, 98);
+            this.print.Size = new System.Drawing.Size(142, 80);
             this.print.TabIndex = 3;
             this.print.Text = "طباعة";
             this.print.Tile = true;
+            this.print.Click += new System.EventHandler(this.print_Click);
             // 
             // update
             // 
@@ -190,10 +193,10 @@
             this.update.ForeColor = System.Drawing.Color.Black;
             this.update.Image = global::DebtManagment_PersentationLayer.Properties.Resources.loop1;
             this.update.ImageSize = new System.Drawing.Size(30, 30);
-            this.update.Location = new System.Drawing.Point(259, 0);
-            this.update.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.update.Location = new System.Drawing.Point(222, 0);
+            this.update.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.update.Name = "update";
-            this.update.Size = new System.Drawing.Size(147, 98);
+            this.update.Size = new System.Drawing.Size(126, 80);
             this.update.TabIndex = 2;
             this.update.Text = "تحديث";
             this.update.Tile = true;
@@ -212,10 +215,10 @@
             this.viewRecord.ForeColor = System.Drawing.Color.Black;
             this.viewRecord.Image = global::DebtManagment_PersentationLayer.Properties.Resources.criminal_record1;
             this.viewRecord.ImageSize = new System.Drawing.Size(30, 30);
-            this.viewRecord.Location = new System.Drawing.Point(40, 0);
-            this.viewRecord.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.viewRecord.Location = new System.Drawing.Point(34, 0);
+            this.viewRecord.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.viewRecord.Name = "viewRecord";
-            this.viewRecord.Size = new System.Drawing.Size(219, 98);
+            this.viewRecord.Size = new System.Drawing.Size(188, 80);
             this.viewRecord.TabIndex = 1;
             this.viewRecord.Text = "عرض سجل";
             this.viewRecord.Tile = true;
@@ -225,18 +228,18 @@
             // 
             this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel5.Location = new System.Drawing.Point(0, 0);
-            this.panel5.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(40, 98);
+            this.panel5.Size = new System.Drawing.Size(34, 80);
             this.panel5.TabIndex = 0;
             // 
             // panel4
             // 
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(1064, 0);
-            this.panel4.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.panel4.Location = new System.Drawing.Point(912, 0);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(40, 98);
+            this.panel4.Size = new System.Drawing.Size(34, 80);
             this.panel4.TabIndex = 0;
             // 
             // elips_P
@@ -246,17 +249,19 @@
             // panel2
             // 
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(1086, 50);
+            this.panel2.Location = new System.Drawing.Point(931, 41);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(18, 608);
+            this.panel2.Size = new System.Drawing.Size(15, 493);
             this.panel2.TabIndex = 5;
             // 
             // panel6
             // 
             this.panel6.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel6.Location = new System.Drawing.Point(0, 50);
+            this.panel6.Location = new System.Drawing.Point(0, 41);
+            this.panel6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(18, 608);
+            this.panel6.Size = new System.Drawing.Size(15, 493);
             this.panel6.TabIndex = 6;
             // 
             // DGV_coustomers
@@ -285,14 +290,14 @@
             this.DGV_coustomers.DefaultCellStyle = dataGridViewCellStyle6;
             this.DGV_coustomers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGV_coustomers.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            this.DGV_coustomers.Location = new System.Drawing.Point(18, 50);
-            this.DGV_coustomers.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.DGV_coustomers.Location = new System.Drawing.Point(15, 41);
+            this.DGV_coustomers.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.DGV_coustomers.Name = "DGV_coustomers";
             this.DGV_coustomers.ReadOnly = true;
             this.DGV_coustomers.RowHeadersVisible = false;
             this.DGV_coustomers.RowHeadersWidth = 82;
             this.DGV_coustomers.RowTemplate.Height = 35;
-            this.DGV_coustomers.Size = new System.Drawing.Size(1068, 608);
+            this.DGV_coustomers.Size = new System.Drawing.Size(916, 493);
             this.DGV_coustomers.TabIndex = 7;
             this.DGV_coustomers.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.DGV_coustomers.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -316,18 +321,26 @@
             this.DGV_coustomers.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.DGV_coustomers.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
+            // 
+            // printDialog1
+            // 
+            this.printDialog1.UseEXDialog = true;
+            // 
             // AddClient
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.DGV_coustomers);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "AddClient";
-            this.Size = new System.Drawing.Size(1104, 756);
+            this.Size = new System.Drawing.Size(946, 614);
             this.Load += new System.EventHandler(this.AddClient_Load);
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -352,5 +365,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel6;
         private Guna.UI2.WinForms.Guna2DataGridView DGV_coustomers;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.PrintDialog printDialog1;
     }
 }

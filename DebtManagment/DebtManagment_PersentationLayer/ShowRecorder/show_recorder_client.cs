@@ -2,6 +2,7 @@
 
 using DebtManagment_BusinessLayer;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace DebtManagment_PersentationLayer
 {
@@ -141,6 +142,36 @@ namespace DebtManagment_PersentationLayer
                 return -1;
             }
             return (int)DataGridView_paying.CurrentRow.Cells[0].Value;
+        }
+
+        private void btn_praint_paying_Click(object sender, EventArgs e)
+        {
+            if (printDialog1_pay.ShowDialog() == DialogResult.OK)
+            {
+                printDocument1_pay.Print();
+            }
+        }
+
+        private void printDocument1_pay_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            Bitmap bt=new Bitmap(this.DataGridView_paying.Width,this.DataGridView_paying.Height);
+            DataGridView_paying.DrawToBitmap(bt,new Rectangle(0,0,this.DataGridView_paying.Width,this.DataGridView_paying.Height)); 
+            e.Graphics.DrawImage(bt,0,0);   
+        }
+
+        private void btn_print_dept_Click(object sender, EventArgs e)
+        {
+            if (printDialog2.ShowDialog() == DialogResult.OK)
+            {
+                printDocument2.Print();
+            }
+        }
+
+        private void printDocument2_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            Bitmap bt =new Bitmap(this.DataGridView_dept.Width,this.DataGridView_dept.Height);
+            DataGridView_dept.DrawToBitmap(bt,new Rectangle(0,0, this.DataGridView_dept.Width,this.DataGridView_dept.Height));
+            e.Graphics.DrawImage(bt,0,0);   
         }
     }
 }

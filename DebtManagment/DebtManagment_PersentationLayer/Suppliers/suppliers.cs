@@ -166,5 +166,13 @@ namespace DebtManagment_PersentationLayer
             }
             return (int)DGV_suppliers.CurrentRow.Cells[0].Value;
         }
+
+        private void print_Click(object sender, EventArgs e)
+        {
+            if (printDialog1.ShowDialog() == DialogResult.OK)
+            {
+                printDocument1.Print(); 
+            }
+        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using DebtManagment_BusinessLayer;
 using System.Windows.Forms;
-
+using System.Drawing;
 namespace DebtManagment_PersentationLayer
 {
     public partial class AddClient : UserControl
@@ -104,6 +104,21 @@ namespace DebtManagment_PersentationLayer
                 return -1;
             }
             return (int)DGV_coustomers.CurrentRow.Cells[0].Value;
+        }
+
+        private void print_Click(object sender, EventArgs e)
+        {
+            if(printDialog1.ShowDialog() == DialogResult.OK)
+            {
+                printDocument1.Print();
+            }
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            Bitmap bt =new Bitmap(this.DGV_coustomers.Width,this.DGV_coustomers.Height);
+            DGV_coustomers.DrawToBitmap(bt,new Rectangle(0,0,this.DGV_coustomers.Width,this.DGV_coustomers.Height));
+            e.Graphics.DrawImage(bt, 0, 0);
         }
     }
 }
