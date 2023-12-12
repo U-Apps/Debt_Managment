@@ -31,7 +31,7 @@ namespace DebtManagment_PersentationLayer
         private void US_home_Load(object sender, EventArgs e)
         {
             SetInfo();
-            TheTime.Text = DateTime.Now.ToString();
+            timer1.Start();
             pic_Logo.Image = DebtManagment_BusinessLayer.ApplicationContext.CampanyLogo;
             Name_of_Company.Text = DebtManagment_BusinessLayer.ApplicationContext.CampanyName;
 
@@ -50,6 +50,11 @@ namespace DebtManagment_PersentationLayer
         private void users2_Load(object sender, EventArgs e)
         {
             
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            TheTime.Text = DateTime.Now.ToString();
         }
     }
 }

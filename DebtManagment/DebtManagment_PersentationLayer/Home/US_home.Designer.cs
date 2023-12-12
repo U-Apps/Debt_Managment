@@ -34,6 +34,7 @@
             this.pic_logo_usGenerl = new System.Windows.Forms.PictureBox();
             this.pic_Logo = new System.Windows.Forms.PictureBox();
             this.TheTime = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pic_logo_usGenerl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_Logo)).BeginInit();
             this.SuspendLayout();
@@ -99,9 +100,13 @@
             this.TheTime.Text = "اسم الشعار";
             this.TheTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // US_home
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(26F, 52F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(31F, 64F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.TheTime);
             this.Controls.Add(this.pic_Logo);
@@ -125,5 +130,6 @@
         private Guna.UI2.WinForms.Guna2Elipse guna2Elipse1;
         private System.Windows.Forms.PictureBox pic_Logo;
         private System.Windows.Forms.Label TheTime;
+        private System.Windows.Forms.Timer timer1;
     }
 }
