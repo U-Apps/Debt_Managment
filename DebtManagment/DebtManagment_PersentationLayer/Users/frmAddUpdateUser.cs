@@ -68,23 +68,47 @@ namespace DebtManagment_PersentationLayer.Users
                 pictureBox1.Image =  null;
             }
 
+            if (_User.CheckAccessPermission(enUserPermissions.All))
+            {
+                foreach (CheckBox item in groupBox1.Controls)
+                {
+                    item.Checked = true;
+                    item.Enabled = false;
+                }
+                chkFullAccess.Enabled = true;
+            }
+            else
+            {
+                foreach (CheckBox item in groupBox1.Controls)
+                {
+                    if (_User.CheckAccessPermission((enUserPermissions)int.Parse(item.Tag.ToString())))
+                    {
+                        item.Checked = true;
+                    }
+
+                }
+            }
 
         }
 
-        private void AddPerimssions(ref clsUser U)
+        private void AddPerimssions()
         {
+            if (chkFullAccess.Checked)
+            {
+                _User.AddPermisson(enUserPermissions.All);
+                return;
+            }
             foreach (CheckBox item in groupBox1.Controls)
             {
-                if (item.Name == "chkFullAccess" && item.Checked)
-                { 
-                    U.AddPermisson(enUserPermissions.All);
-                    return;
-                }
+                
                // MessageBox.Show(int.Parse(item.Tag.ToString()).ToString());
                 if (item.Checked)
                 {
-                    U.AddPermisson((enUserPermissions)(int.Parse(item.Tag.ToString())));
-
+                    _User.AddPermisson((enUserPermissions)(int.Parse(item.Tag.ToString())));
+                }
+                else
+                {
+                    _User.RemovePermisson((enUserPermissions)(int.Parse(item.Tag.ToString())));
                 }
 
             }
@@ -184,7 +208,7 @@ namespace DebtManagment_PersentationLayer.Users
             _User.Password = txtUserPassword.Text;
 
             _User.ImgaeData = _imageData;
-            AddPerimssions(ref _User);
+            AddPerimssions();
 
             if (_User.Save())
                 MessageBox.Show("User Added Succedfully");
