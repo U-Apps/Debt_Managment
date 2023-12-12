@@ -173,5 +173,18 @@ namespace DebtManagment_PersentationLayer
             DataGridView_dept.DrawToBitmap(bt,new Rectangle(0,0, this.DataGridView_dept.Width,this.DataGridView_dept.Height));
             e.Graphics.DrawImage(bt,0,0);   
         }
+
+        private void txtRemainder_TextChanged(object sender, EventArgs e)
+        {
+            if (Convert.ToDouble(txtTotalPayments.Text) > Convert.ToDouble(txt_TotalDebts.Text))
+            {
+                label7.Text = "المتبقي له  ";
+                double remainder = Convert.ToDouble(txtRemainder.Text);
+                remainder = Math.Abs(remainder);
+                txtRemainder.Text = remainder.ToString();
+            }
+            else
+                label7.Text = "المتبقي";
+        }
     }
 }

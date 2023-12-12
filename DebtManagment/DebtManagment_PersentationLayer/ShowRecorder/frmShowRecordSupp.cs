@@ -1,6 +1,8 @@
 ﻿using DebtManagment_BusinessLayer;
 using System.Windows.Forms;
 using System.Drawing;
+using System;
+using System.Resources;
 
 namespace DebtManagment_PersentationLayer.ShowRecorder
 {
@@ -157,6 +159,20 @@ namespace DebtManagment_PersentationLayer.ShowRecorder
             Bitmap bt =new Bitmap(this.DataGridView_dept.Width,this.DataGridView_dept.Height);
             DataGridView_dept.DrawToBitmap(bt , new Rectangle(0,0,this.DataGridView_dept.Width,this.DataGridView_dept.Height)); 
             e.Graphics.DrawImage(bt,0,0);
+        }
+
+        private void txtRemainder_TextChanged(object sender, System.EventArgs e)
+        {
+           
+            if (Convert.ToDouble(txtTotalPayments.Text)>Convert.ToDouble(txt_TotalDebts.Text))
+            {
+                label7.Text = "المتبقي لك";
+                double remainder = Convert.ToDouble(txtRemainder.Text);
+                remainder = Math.Abs(remainder);
+                txtRemainder.Text = remainder.ToString();
+            }
+            else
+                label7.Text = "المتبقي";
         }
     }
 }
