@@ -59,7 +59,7 @@ namespace DebtManagment_PersentationLayer
             {
 
                 //throw;
-                MessageBox.Show(ex.Message);
+                //MessageBox.Show(ex.Message);
             }
         }
 
